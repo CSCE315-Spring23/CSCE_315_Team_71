@@ -1,0 +1,16 @@
+{
+    "java.project.sourcePaths": [
+        "restaurant/src"
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/an/Documents/javafx-sdk-19.0.2.1/lib/javafx-swt.jar",
+        "/home/an/Documents/javafx-sdk-19.0.2.1/lib/javafx.web.jar",
+        "/home/an/Documents/javafx-sdk-19.0.2.1/lib/javafx.swing.jar",
+        "/home/an/Documents/javafx-sdk-19.0.2.1/lib/javafx.media.jar",
+        "/home/an/Documents/javafx-sdk-19.0.2.1/lib/javafx.graphics.jar",
+        "/home/an/Documents/javafx-sdk-19.0.2.1/lib/javafx.fxml.jar",
+        "/home/an/Documents/javafx-sdk-19.0.2.1/lib/javafx.controls.jar",
+        "/home/an/Documents/javafx-sdk-19.0.2.1/lib/javafx.base.jar"
+    ]
+}
