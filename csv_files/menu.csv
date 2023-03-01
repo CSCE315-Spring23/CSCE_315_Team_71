@@ -1,0 +1,50 @@
+menu_item_id,menu_item_name,menu_item_price,size,is_meal
+20,Milkshake Chocolate,4.19,,f
+23,Milkshake Cookies & Cream,4.19,,f
+21,Milkshake Vanilla,4.19,,f
+22,Milkshake Strawberry,4.19,,f
+36,Chicken Cool Wrap Grilled,10.99,,t
+16,Nuggets Grilled,5.35,8 ct,f
+39,Salad Spicy Southwest,9.45,,f
+19,Salad Market,9.45,,f
+38,Salad Cobb,9.25,,f
+46,Coffee Iced Cold Brew,3.09,,f
+24,Chocolate Chip Cookie,2.59,,f
+25,Chicken Sandwich,8.09,,t
+1,Chicken Sandwich,4.49,,f
+2,Chicken Sandwich Deluxe,5.19,,f
+26,Chicken Sandwich Deluxe,8.79,,t
+3,Spicy Chicken Sandwich,4.89,,f
+27,Spicy Chicken Sandwich,8.39,,t
+4,Spicy Chicken Sandwich Deluxe,5.59,,f
+28,Spicy Chicken Sandwich Deluxe,9.09,,t
+6,Nuggets,4.55,8 ct,f
+7,Nuggets,6.29,12 ct,f
+30,Nuggets,8.09,8 ct,t
+31,Nuggets,9.85,12 ct,t
+18,Chicken Sandwich Grilled,6.15,,f
+29,Chicken Sandwich Grilled,9.85,,t
+34,Chicken Sandwich Grilled Club,7.79,,f
+35,Chicken Sandwich Grilled Club,11.49,,t
+37,Chicken Cool Wrap Grilled,7.45,,f
+40,Iced Tea,2.09,medium,f
+41,Iced Tea,2.39,large,f
+15,Lemonade,2.39,medium,f
+42,Lemonade,2.89,large,f
+9,Soft Drink,1.99,medium,f
+43,Soft Drink,2.45,large,f
+44,Sunjoy,2.39,medium,f
+45,Sunjoy,2.89,large,f
+47,Lemonade Frosted,4.09,,f
+48,Coffee Frosted,4.09,,f
+49,Icedream Cone,1.65,,f
+50,Chocolate Fudge Brownie,2.09,,f
+51,Chocolate Chunk Cookie,1.49,,f
+12,Waffle Fries,2.29,medium,f
+52,Waffle Fries,2.69,large,f
+53,Waffle Chips,1.99,,f
+54,Fruit Cup,3.79,,f
+55,Side Salad,3.79,,f
+17,Nuggets Grilled,7.69,12 ct,f
+33,Nuggets Grilled,11.25,12 ct,t
+32,Nuggets Grilled,8.99,8 ct,t
