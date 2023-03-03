@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.stage.Stage?>
+
+<Stage xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <scene>
+        <Scene>
+            <AnchorPane prefHeight="511.0" prefWidth="557.0">
+            <children>
+               <Text layoutX="237.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manager Page" wrappingWidth="83.8037109375" />
+            </children></AnchorPane>
+        </Scene>
+    </scene>
+</Stage>
