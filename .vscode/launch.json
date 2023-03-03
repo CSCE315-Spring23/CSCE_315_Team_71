@@ -6,18 +6,17 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Main",
+            "name": "Current File",
             "request": "launch",
-            "mainClass": "Main",
-            "projectName": "blah_7108edf1"
+            "mainClass": "${file}"
         },
         {
             "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "chickfila.Main",
-            "projectName": "blah_7108edf1",
-            "vmArgs": "--module-path /home/an/Documents/javafx-sdk-19.0.2.1/lib --add-modules javafx.controls,javafx.fxml"
+            "projectName": "CSCE_315_Team_71_98bde901",
+            "vmArgs": "--module-path \"C:/javafx-sdk-19/lib/\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
