@@ -1,5 +1,3 @@
-package chickfila.server;
-
 import java.sql.*;
 
 /*
@@ -20,8 +18,8 @@ public class jdbcpostgreSQL {
 
     //Building the connection with your credentials
     Connection conn = null;
-    String teamNumber = "team_0";
-    String dbName = "csce315331_" + teamNumber;
+    String teamNumber = "team_71";
+    String dbName = "csce315331_team_71";
     String dbConnectionString = "jdbc:postgresql://csce-315-db.engr.tamu.edu/" + dbName;
     dbSetup myCredentials = new dbSetup(); 
 
@@ -42,7 +40,7 @@ public class jdbcpostgreSQL {
 
        //Running a query
        //TODO: update the sql command here
-       String sqlStatement = "SELECT * FROM menu_items LIMIT 10";
+       String sqlStatement = "SELECT * FROM orders LIMIT 100";
 
        //send statement to DBMS
        //This executeQuery command is useful for data retrieval
@@ -55,7 +53,7 @@ public class jdbcpostgreSQL {
        //You will need to output the results differently depeninding on which function you use
        System.out.println("--------------------Query Results--------------------");
        while (result.next()) {
-       System.out.println(result.getString("column_name")); //Replace column_name with any column name on your table
+       System.out.println(result.getString("order_time")); //Replace column_name with any column name on your table
        }
        //OR
        //System.out.println(result);

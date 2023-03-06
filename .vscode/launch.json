@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "jdbcpostgreSQL",
+            "request": "launch",
+            "mainClass": "jdbcpostgreSQL",
+            "projectName": "Project2_cdce3c59"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "chickfila.Main",
+            "projectName": "Project2_cdce3c59",
+            "vmArgs": "--module-path ./restaurant/lib/javafx-sdk-19.0.2.1/lib --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}
