@@ -10,7 +10,7 @@
       <Button fx:id="addOrder" layoutX="449.0" layoutY="459.0" mnemonicParsing="false" onAction="#orderCreation" text="addOrder" />
       <Button fx:id="back" layoutX="104.0" layoutY="67.0" mnemonicParsing="false" onAction="#handleBack" text="back" />
       <Button layoutX="279.0" layoutY="67.0" mnemonicParsing="false" onAction="#showSales" text="Sales report" />
-      <Button layoutX="502.0" layoutY="67.0" mnemonicParsing="false" text="order history" />
+      <Button layoutX="502.0" layoutY="67.0" mnemonicParsing="false" onAction ="#showOrders" text="order history" />
       <Text layoutX="113.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU CREATION:" />
       <Text layoutX="145.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="item_name:" />
       <Text layoutX="134.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="item ingredients:" />

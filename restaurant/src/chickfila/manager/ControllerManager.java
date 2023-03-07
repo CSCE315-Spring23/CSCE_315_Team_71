@@ -156,4 +156,16 @@ public class ControllerManager implements Initializable {
             stage.setScene(scene);
         
         }
+        //switches to Orders stage. This just opens the seperate fxml file.
+        public void showOrders(ActionEvent event) throws IOException , SQLException{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("./orders.fxml"));
+            Parent root = loader.load();
+            ((ControllerOrders) loader.getController()).setConnection(conn);
+    
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    
+            stage.setScene(scene);
+        
+        }
 }
