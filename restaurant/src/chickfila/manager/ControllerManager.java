@@ -3,14 +3,12 @@ package chickfila.manager;
 import java.io.IOException;
 import java.net.URL;
 
-import chickfila.manager.sales;
+
 import java.sql.*;
 import java.util.*;
 
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+
 import chickfila.Controller;
 import chickfila.logic.DB;
 import javafx.event.ActionEvent;
@@ -20,27 +18,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+
 import javafx.stage.Stage;
 import javafx.scene.Node;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import java.util.Arrays;
+
 public class ControllerManager implements Initializable {
 
     private DB conn;
-
-    @FXML
-    private TableView <sales> tableView;
-    
-    @FXML 
-    private TableColumn<sales,Integer> idColumn;
-    @FXML
-    private TableColumn<sales,String> dateColumn;
-    @FXML
-    private TableColumn<sales,Double> totalSalesColumn;
-    @FXML
-    private TableColumn<sales,Double> totalTaxColumn;
     @FXML
     private TextField item_name;
     @FXML
@@ -90,7 +74,8 @@ public class ControllerManager implements Initializable {
             }
             System.out.println("success");
         }
-    }//INSERT INTO menu_items (menu_item_id, menu_item_name, menu_item_price) VALUES(56,'test_item' , 9.4);
+
+    }
     private void loadInventory() throws SQLException {
         ResultSet invFetch = conn.select("SELECT * FROM inventory;");
 
@@ -124,16 +109,10 @@ public class ControllerManager implements Initializable {
         Parent root = loader.load();
         ((ControllerSales) loader.getController()).setConnection(conn);
 
-
-        //Scene scene = new Scene(root);
-        // Stage stage = new Stage();
-        // stage.setScene(new Scene(root, 500, 300));
-
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         stage.setScene(scene);
-        //loadSales();
     }
 
     public void showMenu(ActionEvent event) throws IOException , SQLException{
@@ -141,47 +120,11 @@ public class ControllerManager implements Initializable {
         Parent root = loader.load();
         ((ControllerMenu) loader.getController()).setConnection(conn);
 
-
-        //Scene scene = new Scene(root);
-        // Stage stage = new Stage();
-        // stage.setScene(new Scene(root, 500, 300));
-
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         stage.setScene(scene);
-        //loadSales();
+    
     }
 
-
-    // private void loadSales() throws SQLException {
-    //     //TableColumn<sales,Integer> idColumn = new TableColumn<>("sales_id");
-    //     // idColumn.setCellValueFactory(new PropertyValueFactory<sales,Integer>("sales_id"));
-
-    //     // //TableColumn<sales,Integer> dateColumn = new TableColumn<>("sales_date");
-    //     // dateColumn.setCellValueFactory(new PropertyValueFactory<sales, String>("sales_date"));
-
-    //     // //TableColumn<sales,Integer> totalSalesColumn = new TableColumn<>("total_sales");
-    //     // totalSalesColumn.setCellValueFactory(new PropertyValueFactory<sales, Double>("total_sales"));
-
-    //     // //TableColumn<sales,Integer> totalTaxColumn = new TableColumn<>("total_tax");
-    //     // totalTaxColumn.setCellValueFactory(new PropertyValueFactory<sales,Double>("total_tax"));
-
-    //     //tableView.getColumns().addAll(idColumn, dateColumn, totalSalesColumn, totalTaxColumn);
-
-    //     ResultSet salesFetch = conn.select("SELECT * FROM sales;");
-
-    //     ObservableList<sales> data = FXCollections.observableArrayList();
-        
-    //     while (salesFetch.next()) {
-    //         int salesID = salesFetch.getInt("sales_id");
-    //         String date = salesFetch.getString("sales_date");
-    //         double cost = salesFetch.getDouble("total_sales");
-    //         double tax = salesFetch.getDouble("total_tax");
-    //         sales sale = new sales(salesID, date,cost,tax);
-    //         data.add(sale);
-    //         System.out.println(sale);
-    //     }
-    //     tableView.setItems(data);
-    // }
 }

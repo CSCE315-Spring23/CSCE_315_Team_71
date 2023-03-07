@@ -5,16 +5,16 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chickfila.manager.ControllerMenu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chickfila.manager.ControllerMenu">
    <children>
       <Button fx:id="backButton" layoutX="47.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeButtonAction" text="back" />
-      <TableView fx:id="tableView" layoutX="54.0" layoutY="64.0" prefHeight="313.0" prefWidth="474.0">
+      <TableView fx:id="tableView" layoutX="54.0" layoutY="64.0" prefHeight="445.0" prefWidth="587.0">
         <columns>
-          <TableColumn fx:id="idColumn" prefWidth="103.33334350585938" text="menu_item_id" />
-          <TableColumn fx:id="nameColumn" prefWidth="105.3333740234375" text="menu_item_name" />
-            <TableColumn fx:id="priceColumn" prefWidth="112.66668701171875" text="menu_item_price" />
-            <TableColumn fx:id="sizeColumn" prefWidth="75.0" text="size" />
-            <TableColumn fx:id="mealColumn" prefWidth="75.0" text="is_meal" />
+          <TableColumn fx:id="idColumn" prefWidth="92.66665649414062" text="menu_item_id" />
+          <TableColumn fx:id="nameColumn" prefWidth="199.33331298828125" text="menu_item_name" />
+            <TableColumn fx:id="priceColumn" prefWidth="106.66668701171875" text="menu_item_price" />
+            <TableColumn fx:id="sizeColumn" prefWidth="65.3333740234375" text="size" />
+            <TableColumn fx:id="mealColumn" prefWidth="124.6666259765625" text="is_meal" />
         </columns>
       </TableView>
    </children>

@@ -56,23 +56,6 @@ public class ControllerSales {
         stage.setScene(scene);
     }
     public void initialize() throws SQLException, IOException{
-        // FXMLLoader loader = new FXMLLoader(getClass().getResource("salesRep.fxml"));
-        // Parent root = loader.load();
-        // ((ControllerSales) loader.getController()).setConnection(conn);
-        // FXMLLoader loader = new FXMLLoader(getClass().getResource("./salesRep.fxml"));
-        // Parent root = loader.load();
-        // //((ControllerSales) loader.getController()).setConnection(conn);
-
-
-        // //Scene scene = new Scene(root);
-        // // Stage stage = new Stage();
-       
-
-        // Scene scene = new Scene(root);
-        // //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        // Stage stage = new Stage();
-        // stage.setScene(new Scene(root, 500, 300));
-        // stage.show();
         loadSales();
     }
 
@@ -82,38 +65,12 @@ public class ControllerSales {
         System.out.println("asdfasgegegege3");
     }
 
-    // public void showSales(ActionEvent event) throws IOException , SQLException{
-    //     FXMLLoader loader = new FXMLLoader(getClass().getResource("salesRep.fxml"));
-    //     Parent root = loader.load();
-    //     ((ControllerManager) loader.getController()).setConnection(conn);
-
-
-    //     //Scene scene = new Scene(root);
-    //     Stage stage = new Stage();
-    //     stage.setScene(new Scene(root, 500, 300));
-    //     stage.show();
-    //     loadSales();
-    // }
 
     private void loadSales() throws SQLException , IOException {
-        //TableColumn<sales,Integer> idColumn = new TableColumn<>("sales_id");
         idColumn.setCellValueFactory(new PropertyValueFactory<sales,Integer>("sales_id"));
-
-        //TableColumn<sales,Integer> dateColumn = new TableColumn<>("sales_date");
         dateColumn.setCellValueFactory(new PropertyValueFactory<sales, String>("sales_date"));
-
-        //TableColumn<sales,Integer> totalSalesColumn = new TableColumn<>("total_sales");
         totalSalesColumn.setCellValueFactory(new PropertyValueFactory<sales, Double>("total_sales"));
-
-        //TableColumn<sales,Integer> totalTaxColumn = new TableColumn<>("total_tax");
         totalTaxColumn.setCellValueFactory(new PropertyValueFactory<sales,Double>("total_tax"));
-
-        //tableView.getColumns().addAll(idColumn, dateColumn, totalSalesColumn, totalTaxColumn);
-        // FXMLLoader loader = new FXMLLoader(getClass().getResource("./salesRep.fxml"));
-        // Parent root = loader.load();
-
-        // ((ControllerSales) loader.getController()).setConnection(conn);
-
 
         conn = new DB(dbSetup.user, dbSetup.pswd);
         ResultSet salesFetch = conn.select("SELECT * FROM sales;");
