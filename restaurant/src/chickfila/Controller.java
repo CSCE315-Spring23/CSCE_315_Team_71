@@ -40,7 +40,7 @@ public class Controller {
 
     public void handleManager(ActionEvent event) throws IOException {
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("./cashier/cashier.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager/manager.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 

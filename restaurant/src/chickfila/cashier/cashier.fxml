@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chickfila.cashier.ControllerCashier">
    <children>
-      <Button fx:id="newOrder" layoutX="79.0" layoutY="20.0" mnemonicParsing="false" text="newOrder" />
-      <Button fx:id="completeOrder" layoutX="428.0" layoutY="20.0" mnemonicParsing="false" text="completeOrder" />
+      <Button fx:id="newOrder" layoutX="459.0" layoutY="704.0" mnemonicParsing="false" text="newOrder" />
+      <Button fx:id="completeOrder" layoutX="747.0" layoutY="704.0" mnemonicParsing="false" text="completeOrder" />
+      <Button fx:id="back" layoutX="104.0" layoutY="67.0" mnemonicParsing="false" onAction="#handleBack" text="back" />
+      <Label layoutX="111.0" layoutY="708.0" scaleX="2.0" scaleY="2.0" text="Price" />
    </children>
 </AnchorPane>

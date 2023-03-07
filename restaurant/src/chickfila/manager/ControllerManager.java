@@ -1,4 +1,4 @@
-package chickfila.cashier;
+package chickfila.manager;
 
 import java.io.IOException;
 
@@ -12,13 +12,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
-public class ControllerCashier {
-
-    @FXML 
-    Button newOrder;
-
-    @FXML
-    Button completeOrder;
+public class ControllerManager {
 
     public void initialize() {
 
