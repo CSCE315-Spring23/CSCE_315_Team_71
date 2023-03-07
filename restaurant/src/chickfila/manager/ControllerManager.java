@@ -25,6 +25,8 @@ import javafx.scene.Node;
 public class ControllerManager implements Initializable {
 
     private DB conn;
+    private HashMap<Integer, String[]> menu;
+
     @FXML
     private TextField item_name;
     @FXML
@@ -94,7 +96,7 @@ public class ControllerManager implements Initializable {
     public void handleBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../start.fxml"));
         Parent root = loader.load();
-        ((Controller) loader.getController()).setConnection(conn);
+        ((Controller) loader.getController()).setConnection(conn, menu);
 
 
         Scene scene = new Scene(root);
@@ -103,8 +105,9 @@ public class ControllerManager implements Initializable {
         stage.setScene(scene);
     }
     //db connection stuff, don't know deets
-    public void setConnection(DB db) {
+    public void setConnection(DB db, HashMap<Integer, String[]> menu) {
         conn = db;
+        this.menu = menu;
         System.out.println("asdfasgegegege3");
     }
 
@@ -112,7 +115,7 @@ public class ControllerManager implements Initializable {
     public void showSales(ActionEvent event) throws IOException , SQLException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./salesRep.fxml"));
         Parent root = loader.load();
-        ((ControllerSales) loader.getController()).setConnection(conn);
+        ((ControllerSales) loader.getController()).setConnection(conn, menu);
 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -123,7 +126,7 @@ public class ControllerManager implements Initializable {
     public void showMenu(ActionEvent event) throws IOException , SQLException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./showMenu.fxml"));
         Parent root = loader.load();
-        ((ControllerMenu) loader.getController()).setConnection(conn);
+        ((ControllerMenu) loader.getController()).setConnection(conn, menu);
 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -136,7 +139,7 @@ public class ControllerManager implements Initializable {
         public void showInventory(ActionEvent event) throws IOException , SQLException{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("./inventory.fxml"));
             Parent root = loader.load();
-            ((ControllerInventory) loader.getController()).setConnection(conn);
+            ((ControllerInventory) loader.getController()).setConnection(conn, menu);
     
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -148,7 +151,7 @@ public class ControllerManager implements Initializable {
         public void showInventoryAdd(ActionEvent event) throws IOException , SQLException{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("./inventory_add.fxml"));
             Parent root = loader.load();
-            ((ControllerInventoryAdd) loader.getController()).setConnection(conn);
+            ((ControllerInventoryAdd) loader.getController()).setConnection(conn, menu);
     
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -160,7 +163,7 @@ public class ControllerManager implements Initializable {
         public void showOrders(ActionEvent event) throws IOException , SQLException{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("./orders.fxml"));
             Parent root = loader.load();
-            ((ControllerOrders) loader.getController()).setConnection(conn);
+            ((ControllerOrders) loader.getController()).setConnection(conn, menu);
     
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

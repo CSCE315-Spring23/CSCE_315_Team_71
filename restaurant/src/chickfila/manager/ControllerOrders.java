@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 
 public class ControllerOrders {
     private DB conn;
+    private HashMap<Integer, String[]> menu;
     @FXML
     private TableView <orders> tableView;
     @FXML
@@ -51,7 +52,7 @@ public class ControllerOrders {
     public void closeButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager.fxml"));
         Parent root = loader.load();
-        ((ControllerManager) loader.getController()).setConnection(conn);
+        ((ControllerManager) loader.getController()).setConnection(conn, menu);
 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -59,9 +60,13 @@ public class ControllerOrders {
         stage.setScene(scene);
 
     }
-
-    public void setConnection(DB db) {
+    public void initialize() throws SQLException, IOException{
+        //loadOrders();
+    }
+    
+    public void setConnection(DB db, HashMap<Integer, String[]> menu) {
         conn = db;
+        this.menu = menu;
         System.out.println("asdfasgegegege3");
     }
 

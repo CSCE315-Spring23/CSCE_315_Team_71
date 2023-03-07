@@ -12,8 +12,8 @@
 
 <AnchorPane fx:id="wrap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chickfila.cashier.ControllerCashier">
    <children>
-      <Button fx:id="newOrder" layoutX="58.0" layoutY="723.0" mnemonicParsing="false" text="newOrder" />
-      <Button fx:id="completeOrder" layoutX="414.0" layoutY="723.0" mnemonicParsing="false" text="completeOrder" />
+      <Button fx:id="newOrder" layoutX="58.0" layoutY="723.0" mnemonicParsing="false" onAction="#handleNewOrder" text="newOrder" />
+      <Button fx:id="completeOrder" layoutX="485.0" layoutY="723.0" mnemonicParsing="false" text="completeOrder" />
       <Button fx:id="back" layoutX="30.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleBack" text="back" />
       <GridPane alignment="BOTTOM_LEFT" layoutX="30.0" layoutY="101.0" prefHeight="542.0" prefWidth="602.0">
         <columnConstraints>
@@ -230,7 +230,7 @@
             </Button>
          </children>
       </GridPane>
-      <Label layoutX="659.0" layoutY="715.0" prefHeight="42.0" prefWidth="69.0" text="Total:">
+      <Label fx:id="priceDisplay" layoutX="659.0" layoutY="715.0" prefHeight="42.0" prefWidth="268.0" text="Total: 0.00$">
          <font>
             <Font size="20.0" />
          </font>

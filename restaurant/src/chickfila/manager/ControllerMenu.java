@@ -32,6 +32,7 @@ import chickfila.logic.dbSetup;
 public class ControllerMenu {
 
     private DB conn;
+    private HashMap<Integer, String[]> menu;
 
     @FXML
     private TableView <menuItems> tableView;
@@ -54,7 +55,7 @@ public class ControllerMenu {
     public void closeButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager.fxml"));
         Parent root = loader.load();
-        ((ControllerManager) loader.getController()).setConnection(conn);
+        ((ControllerManager) loader.getController()).setConnection(conn, menu);
 
 
         Scene scene = new Scene(root);
@@ -67,8 +68,9 @@ public class ControllerMenu {
     }
 
 
-    public void setConnection(DB db) {
+    public void setConnection(DB db, HashMap<Integer, String[]> menu) {
         conn = db;
+        this.menu = menu;
         System.out.println("asdfasgegegege3");
     }
 
