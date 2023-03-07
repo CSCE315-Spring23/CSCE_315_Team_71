@@ -23,5 +23,7 @@
       <TextField fx:id="price" layoutX="233.0" layoutY="290.0" />
       <Text layoutX="164.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
       <Button fx:id="menu_item" layoutX="284.0" layoutY="122.0" mnemonicParsing="false" onAction="#showMenu" text="Menu Items" />
+      <Button layoutX="653.0" layoutY="67.0" mnemonicParsing="false" onAction="#showInventory" text="Inventory" />
+      <Button layoutX="653.0" layoutY="122.0" mnemonicParsing="false" onAction="#showInventoryAdd" text="Mod_Inventory" />
    </children>
 </AnchorPane>
