@@ -24,14 +24,14 @@ public class Main extends Application {
         loadMenu();
 
         //CHECK MENU - UNCOMMENT TO VIEW IN CONSOLE
-        // for (Map.Entry<Integer, String[]> entry : menu.entrySet()) {
-        //     int id = entry.getKey();
-        //     String name = entry.getValue()[0];
-        //     double price = Double.parseDouble(entry.getValue()[1]);
-        //     String meal = entry.getValue()[2];
+        for (Map.Entry<Integer, String[]> entry : menu.entrySet()) {
+            int id = entry.getKey();
+            String name = entry.getValue()[0];
+            double price = Double.parseDouble(entry.getValue()[1]);
+            String meal = entry.getValue()[2];
 
-        //     System.out.println(id + " - " + name + ": " + price + ", " + meal);
-        // }
+            System.out.println(id + " - " + name + ": " + price + ", " + meal);
+        }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./start.fxml"));
         Parent root = loader.load();
