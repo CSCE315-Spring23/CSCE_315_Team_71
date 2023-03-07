@@ -163,7 +163,7 @@ public class ControllerManager implements Initializable {
         public void showOrders(ActionEvent event) throws IOException , SQLException{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("./orders.fxml"));
             Parent root = loader.load();
-            ((ControllerOrders) loader.getController()).setConnection(conn);
+            ((ControllerOrders) loader.getController()).setConnection(conn, menu);
     
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
