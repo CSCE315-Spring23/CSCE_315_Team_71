@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cashier.ControllerCahsier">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chickfila.cashier.ControllerCashier">
    <children>
       <Button fx:id="newOrder" layoutX="79.0" layoutY="20.0" mnemonicParsing="false" text="newOrder" />
       <Button fx:id="completeOrder" layoutX="428.0" layoutY="20.0" mnemonicParsing="false" text="completeOrder" />

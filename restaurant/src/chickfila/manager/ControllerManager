@@ -7,10 +7,11 @@ import javafx.scene.control.Label;
 public class ControllerManager {
 
     @FXML 
-    //Button newOrder;
+    Button newOrder;
+
 
     @FXML
-    //Button completeOrder;
+    Button completeOrder;
 
     public void initialize() {
 

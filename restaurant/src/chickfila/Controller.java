@@ -33,7 +33,7 @@ public class Controller {
         if(text.equals("manager")){
 
             System.out.println("hi manager");
-            Parent root = FXMLLoader.load(getClass().getResource("/chickfila/manager/manager.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/chickfila/cashier/cashier.fxml"));
            // newStage = (Stage)((Node)e.getSource()).getScene().getWindow();
            //newStage= (Stage) currentSceneNode.getScene().getWindow();
 
