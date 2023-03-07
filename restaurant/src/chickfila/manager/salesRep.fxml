@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chickfila.manager.ControllerSales">
+   <children>
+      <Button fx:id="backButton" layoutX="201.0" layoutY="46.0" mnemonicParsing="false" onAction="#closeButtonAction" text="close" />
+      <Button fx:id="addOrder" layoutX="460.0" layoutY="711.0" mnemonicParsing="false" text="addOrder" />
+      <TableView fx:id="tableView" layoutX="163.0" layoutY="150.0" prefHeight="543.0" prefWidth="621.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="170.0" text="sales_id" />
+          <TableColumn fx:id="dateColumn" prefWidth="145.0" text="sales_date" />
+            <TableColumn fx:id="totalSalesColumn" prefWidth="159.0" text="total_sales" />
+            <TableColumn fx:id="totalTaxColumn" prefWidth="146.0" text="total_tax" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
