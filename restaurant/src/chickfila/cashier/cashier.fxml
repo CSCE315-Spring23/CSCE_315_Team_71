@@ -321,7 +321,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="wrap1" mnemonicParsing="false" onAction="#handleClick" prefHeight="56.0" prefWidth="114.0" text="WRP" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                              <Button fx:id="wrap" mnemonicParsing="false" onAction="#handleClick" prefHeight="56.0" prefWidth="114.0" text="WRP" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <graphic>
                                     <ImageView fx:id="wrap" fitHeight="66.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -471,17 +471,26 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
+                              <Button fx:id="n8Meal" mnemonicParsing="false" onAction="#handleClick" prefHeight="65.0" prefWidth="100.0" text="8ct">
+                                 <graphic>
+                                    <ImageView fitHeight="62.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../resource/nuggets_8ct.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="wrapMeal" mnemonicParsing="false" onAction="#handleClick" prefHeight="56.0" prefWidth="114.0" text="WRP" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <graphic>
+                                    <ImageView fx:id="wrap1" fitHeight="66.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../resource/wrap.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </GridPane>
-                        <Button fx:id="n8Meal" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleClick" prefHeight="65.0" prefWidth="100.0" text="8ct">
-                           <graphic>
-                              <ImageView fitHeight="62.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../resource/nuggets_8ct.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
                      </children>
                   </AnchorPane>
             </content>
