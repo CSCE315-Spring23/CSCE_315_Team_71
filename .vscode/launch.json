@@ -6,10 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "chickfila.Main",
+            "projectName": "CSCE_315_Team_71_51b4fde1",
+            "vmArgs": "--module-path ./restaurant/lib/javafx-sdk-19.0.2.1/lib --add-modules javafx.controls,javafx.fxml"
+
+        },
+        {
+            "type": "java",
             "name": "jdbcpostgreSQL",
             "request": "launch",
             "mainClass": "jdbcpostgreSQL",
-            "projectName": "Project2_cdce3c59"
+            "projectName": "Project2_cdce3c59",
+
         },
         {
             "type": "java",
