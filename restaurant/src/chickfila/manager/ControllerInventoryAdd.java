@@ -33,6 +33,10 @@ public class ControllerInventoryAdd {
     private TextField inventoryId;
     @FXML
     private TextField quantity;
+    @FXML
+    private TextField itemName;
+    @FXML
+    private Button addButton;
 
     @FXML
     public void closeButtonAction(ActionEvent event) throws IOException {
@@ -60,6 +64,27 @@ public class ControllerInventoryAdd {
         int itemId = Integer.parseInt(inventoryId.getText());
         int quantity_query = Integer.parseInt(quantity.getText());
         conn.performQuery("UPDATE inventory SET quantity = "+quantity_query+" WHERE item_id = "+itemId+";");
+    }
+}
+
+public void addItem(ActionEvent event) throws SQLException , IOException  {
+    if (quantity.getText().equals("")||itemName.getText().equals("")) {
+            System.out.println("input value");
+    } 
+    else {
+        //int itemId = Integer.parseInt(inventoryId.getText());
+        int quantity_query = Integer.parseInt(quantity.getText());
+        String name = itemName.getText();
+        Integer max_id = 0;
+        ResultSet sizeFetch = conn.select("SELECT MAX(item_id) FROM inventory;");
+        while(sizeFetch.next()){
+            max_id = sizeFetch.getInt("max");
+
+            System.out.println(max_id);
+        }
+        Integer newMenuId= max_id +1;
+        conn.performQuery("INSERT INTO inventory (item_id,quantity, item_name) VALUES ("+newMenuId+","+quantity_query+" , '"+name+"');");
+        System.out.println("successnv");
     }
 }
 }
