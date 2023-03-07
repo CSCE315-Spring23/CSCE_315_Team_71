@@ -10,5 +10,16 @@
       <Button fx:id="completeOrder" layoutX="747.0" layoutY="704.0" mnemonicParsing="false" text="completeOrder" />
       <Button fx:id="back" layoutX="104.0" layoutY="67.0" mnemonicParsing="false" onAction="#handleBack" text="back" />
       <Label layoutX="111.0" layoutY="708.0" scaleX="2.0" scaleY="2.0" text="Price" />
+      <Button fx:id="n8" layoutX="153.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleClick" text="nugget8" />
+      <Button fx:id="n12" layoutX="263.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleClick" text="nugget12" />
+      <Button fx:id="gn8" layoutX="373.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleClick" text="gnugget8" />
+      <Button fx:id="gn12" layoutX="483.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleClick" text="gnugget12" />
+      <Button fx:id="csGr" layoutX="153.0" layoutY="227.0" mnemonicParsing="false" onAction="#handleClick" text="chickSandGr" />
+      <Button fx:id="fries" layoutX="263.0" layoutY="227.0" mnemonicParsing="false" onAction="#handleClick" text="Waffle" />
+      <Button fx:id="sM" layoutX="373.0" layoutY="227.0" mnemonicParsing="false" onAction="#handleClick" text="saladM" />
+      <Button fx:id="sC" layoutX="483.0" layoutY="227.0" mnemonicParsing="false" onAction="#handleClick" text="saladCobb" />
+      <Button fx:id="cs" layoutX="633.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleClick" text="chickSand" />
+      <Button fx:id="csSp" layoutX="743.0" layoutY="151.0" mnemonicParsing="false" onAction="#handleClick" text="chickSandSp" />
+      <Button fx:id="sS" layoutX="633.0" layoutY="227.0" mnemonicParsing="false" onAction="#handleClick" text="saladSouth" />
    </children>
 </AnchorPane>
