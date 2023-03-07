@@ -49,8 +49,11 @@ public class ControllerManager implements Initializable {
     private Button addOrder;
     @FXML
     private TextField price;
+
+    private HashMap<String, Integer> inventory;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        inventory = new HashMap<String, Integer>();
     }
 
     public void orderCreation(ActionEvent event) throws SQLException {
@@ -68,14 +71,32 @@ public class ControllerManager implements Initializable {
             Integer newMenuId= max_id +1;
             String ingredients = ingredientlist.getText();
             String[] splitString = ingredients.split("-");
-
             double price1 = Double.parseDouble(price.getText());
+            
+            
+            conn.performQuery("INSERT INTO menu_items (menu_item_id, menu_item_name, menu_item_price) VALUES ("+newMenuId+",'"+item_name.getText()+"' , "+price1+");");
+            loadInventory();
+
             for (int i = 0 ;i < splitString.length; i++){
                 System.out.println("---->"+splitString[i]);
+                //conn.performQuery("INSERT INTO recipes (menu_item_id, inventory_id, quantity)");
+                String[] commaSplit = splitString[i].split(",");
+                //inventory.get(commaSplit[0]);
+                System.out.println(inventory.get(commaSplit[0]));
+                System.out.println(commaSplit[1]);
+                conn.performQuery("INSERT INTO recipes (menu_item_id,inventory_id,quantity) VALUES ("+newMenuId+", "+inventory.get(commaSplit[0])+","+commaSplit[1]+");");
             }
-            
-            conn.performQuery("INSERT INTO menu_items (menu_item_id, menu_item_name, menu_item_price) VALUES ("+newMenuId+",'"+item_name.getText()+"' , "+price1+")");
             System.out.println("success");
+        }
+    }//INSERT INTO menu_items (menu_item_id, menu_item_name, menu_item_price) VALUES(56,'test_item' , 9.4);
+    private void loadInventory() throws SQLException {
+        ResultSet invFetch = conn.select("SELECT * FROM inventory;");
+
+        while (invFetch.next()) {
+            int invID = invFetch.getInt("item_id");
+            int quantity = invFetch.getInt("quantity");
+            String invName = invFetch.getString("item_name");
+            inventory.put(invName, invID);
         }
     }
 
