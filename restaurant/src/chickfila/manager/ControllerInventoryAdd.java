@@ -6,6 +6,7 @@ import java.util.*;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import chickfila.Controller;
 import chickfila.logic.DB;
@@ -28,14 +29,34 @@ public class ControllerInventoryAdd {
     private DB conn;
 
     @FXML
+    private TextField inventoryId;
+    @FXML
+    private TextField quantity;
+
+    @FXML
     public void closeButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager.fxml"));
         Parent root = loader.load();
         ((ControllerManager) loader.getController()).setConnection(conn);
-
+        
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        
+        stage.setScene(scene);
     }
     public void setConnection(DB db) {
         conn = db;
         System.out.println("asdfasgegegege3");
     }
+
+    public void updateQuantity(ActionEvent event) throws SQLException , IOException  {
+    if (inventoryId.getText().equals("") || quantity.getText().equals("")) {
+            System.out.println("input value");
+    } 
+    else {
+        int itemId = Integer.parseInt(inventoryId.getText());
+        int quantity_query = Integer.parseInt(quantity.getText());
+        conn.performQuery("UPDATE inventory SET quantity = "+quantity_query+" WHERE item_id = "+itemId+";");
+    }
+}
 }

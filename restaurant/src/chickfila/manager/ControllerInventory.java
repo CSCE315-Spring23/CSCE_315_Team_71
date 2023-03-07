@@ -71,7 +71,7 @@ public class ControllerInventory {
                 nameColumn.setCellValueFactory(new PropertyValueFactory<inventory, String>("inventory_item_name"));
         
                 conn = new DB(dbSetup.user, dbSetup.pswd);
-                ResultSet inventoryFetch = conn.select("SELECT * FROM inventory;");
+                ResultSet inventoryFetch = conn.select("SELECT * FROM inventory ORDER BY item_id;");
         
                 ObservableList<inventory> data = FXCollections.observableArrayList();
                 //need to make a list of all the lines from the database into menuItems;

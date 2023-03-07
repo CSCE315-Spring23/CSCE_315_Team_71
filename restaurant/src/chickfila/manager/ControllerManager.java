@@ -132,7 +132,7 @@ public class ControllerManager implements Initializable {
     
     }
 
-        //switches to menu recipes stage. This just opens the seperate fxml file. Sales report code goes in ControllerMenu
+        //switches to menu recipes stage. This just opens the seperate fxml file. 
         public void showInventory(ActionEvent event) throws IOException , SQLException{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("./inventory.fxml"));
             Parent root = loader.load();
@@ -144,7 +144,7 @@ public class ControllerManager implements Initializable {
             stage.setScene(scene);
         
         }
-        //switches to Inventory_Add stage. This just opens the seperate fxml file. Sales report code goes in ControllerMenu
+        //switches to Inventory_Add stage. This just opens the seperate fxml file.
         public void showInventoryAdd(ActionEvent event) throws IOException , SQLException{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("./inventory_add.fxml"));
             Parent root = loader.load();
