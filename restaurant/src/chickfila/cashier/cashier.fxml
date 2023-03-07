@@ -69,7 +69,7 @@
             </Button>
             <Button fx:id="cs" mnemonicParsing="false" onAction="#handleClick" prefHeight="68.0" prefWidth="110.0" text="CS" GridPane.rowIndex="1">
                <graphic>
-                  <ImageView fx:id="cs" fitHeight="54.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="54.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resource/CFASandwich.png" />
                      </image>
