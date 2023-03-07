@@ -23,24 +23,30 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import chickfila.logic.DB;
 import chickfila.logic.dbSetup;
-
+import javafx.scene.control.TextField;
 
 public class ControllerOrders {
     private DB conn;
     @FXML
-    private TableView <inventory> tableView;
+    private TableView <orders> tableView;
     @FXML
     private Button backButton;
     @FXML
     private Button loadButton;
     @FXML 
-    private TableColumn<inventory,Integer> idColumn;
+    private TableColumn<orders,Integer> idColumn;
     @FXML
-    private TableColumn<inventory,Integer> quantityColumn;
+    private TableColumn<orders,Double> priceColumn;
     @FXML
-    private TableColumn<inventory,String> nameColumn;
-
-
+    private TableColumn<orders,Boolean> paidColumn;
+    @FXML
+    private TableColumn<orders,Timestamp> timeColumn;
+    @FXML
+    private TextField beginningdate;
+    @FXML
+    private TextField enddate;
+    @FXML
+    private Label profit;
     @FXML
     public void closeButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager.fxml"));
@@ -53,37 +59,48 @@ public class ControllerOrders {
         stage.setScene(scene);
 
     }
-    public void initialize() throws SQLException, IOException{
-        //loadOrders();
-    }
-    
+
     public void setConnection(DB db) {
         conn = db;
         System.out.println("asdfasgegegege3");
     }
-/* 
-    private void loadOrders() throws SQLException , IOException {
+
+    public void loadOrders(ActionEvent event) throws SQLException , IOException {
         //THESE LINES TELLS THE COLUMNS TO GET THE CERTAIN ATTRIBUTES FROM THE inventoryItem class objects for the certain columns
-                idColumn.setCellValueFactory(new PropertyValueFactory<inventory,Integer>("inventory_item_id"));
+        if (beginningdate.getText().equals("") || enddate.getText().equals("")) {
+            System.out.println("input value");
+        } 
+        else {
+                idColumn.setCellValueFactory(new PropertyValueFactory<orders,Integer>("orderId"));
         
-                quantityColumn.setCellValueFactory(new PropertyValueFactory<inventory, Integer>("quantity"));
+                priceColumn.setCellValueFactory(new PropertyValueFactory<orders, Double>("price"));
         
-                nameColumn.setCellValueFactory(new PropertyValueFactory<inventory, String>("inventory_item_name"));
-        
+                paidColumn.setCellValueFactory(new PropertyValueFactory<orders, Boolean>("paid"));
+
+                timeColumn.setCellValueFactory(new PropertyValueFactory<orders, Timestamp>("orderTime"));
+
                 conn = new DB(dbSetup.user, dbSetup.pswd);
-                ResultSet inventoryFetch = conn.select("SELECT * FROM inventory ORDER BY item_id;");
+
+                ResultSet ordersFetch = conn.select("SELECT * FROM orders JOIN order_items ON orders.order_id = order_items.order_id WHERE orders.order_time::date >= '"+beginningdate.getText()+"' AND orders.order_time::date <= '"+enddate.getText()+"';");
         
-                ObservableList<inventory> data = FXCollections.observableArrayList();
+                ObservableList<orders> data = FXCollections.observableArrayList();
                 //need to make a list of all the lines from the database into menuItems;
-                while (inventoryFetch.next()) {
-                    int menuID = inventoryFetch.getInt("item_id");
-                    int quantity = inventoryFetch.getInt("quantity");
-                    String name = inventoryFetch.getString("item_name");;
-                    inventory menu = new inventory(menuID, quantity, name);
+                double addProfit = 0.00;
+                while (ordersFetch.next()) {
+                    int orderId = ordersFetch.getInt("order_id");
+                    double price = ordersFetch.getDouble("price");
+                    Boolean paid = ordersFetch.getBoolean("is_paid");
+                    Timestamp orderTime = ordersFetch.getTimestamp("order_time");;
+                    addProfit += price;
+                    orders menu = new orders(orderId, price, paid, orderTime);
                     data.add(menu);
                     System.out.println(menu);
                 }
+
+                String formattedProfit = String.format("%.02f", addProfit);
+                profit.setText("Profit: $"+formattedProfit);
                 //pushing all the menuItems to the table is enough afterwards for the table to be made.
                 tableView.setItems(data);
-            }*/
+            }
+    }
 }
