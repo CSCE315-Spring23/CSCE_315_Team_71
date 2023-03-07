@@ -5,9 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="chickfila.manager.ControllerManager">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chickfila.manager.Controller">
    <children>
       <Label layoutX="143.0" layoutY="14.0" text="This is scene 2">
          <font>
@@ -19,5 +17,6 @@ fx:controller="chickfila.manager.ControllerManager">
             <Font size="20.0" />
          </font>
       </Button>
+      <Button layoutX="24.0" layoutY="26.0" mnemonicParsing="false" text="Back" />
    </children>
 </AnchorPane>

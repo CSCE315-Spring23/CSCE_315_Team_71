@@ -27,34 +27,30 @@ public class Controller {
     //     String text = password.getText();
 
     // });
+    
+
     public void passwordcheck (ActionEvent e) throws IOException{
         String text = password.getText();
         System.out.println("You entered "+text);
         if(text.equals("manager")){
 
             System.out.println("hi manager");
-            Parent root = FXMLLoader.load(getClass().getResource("/chickfila/cashier/cashier.fxml"));
-           // newStage = (Stage)((Node)e.getSource()).getScene().getWindow();
-           //newStage= (Stage) currentSceneNode.getScene().getWindow();
-
-        //    FXMLLoader loader= new FXMLLoader(getClass().getResource("./manager/manager.fxml"));
-        //     Parent root;
-        //     root = (Parent)loader.load();
-
-        //     Stage stage = (Stage) root.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("/chickfila/manager/manager.fxml"));
 
             Scene currscene = password.getScene();
             Scene newScene = new Scene(root);
             Stage newStage = (Stage) currscene.getWindow();
             newStage.setScene(newScene);
 
-            //newStage.setTitle("manager");
-            //newStage.setScene(new Scene(root2, 600, 400));
-            //newStage.show();
-           // newStage.show();
+        }else if(text.equals("cashier")){
+            System.out.println("hello cashier");
 
-        }else if(text.equals("client")){
-            System.out.println("hello client");
+            Parent root = FXMLLoader.load(getClass().getResource("/chickfila/cashier/cashier.fxml"));
+
+            Scene currscene = password.getScene();
+            Scene newScene = new Scene(root);
+            Stage newStage = (Stage) currscene.getWindow();
+            newStage.setScene(newScene);
         }else{
             System.out.println("wrong password");
         }
