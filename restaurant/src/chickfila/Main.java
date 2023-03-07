@@ -14,18 +14,29 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private DB conn;
-    private HashMap<String, Double> menu;
+    private HashMap<Integer, String[]> menu;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         conn = new DB(dbSetup.user, dbSetup.pswd);
-        menu = new HashMap<String, Double>();
+        menu = new HashMap<Integer, String[]>();
         loadMenu();
+
+        //CHECK MENU - UNCOMMENT TO VIEW IN CONSOLE
+        // for (Map.Entry<Integer, String[]> entry : menu.entrySet()) {
+        //     int id = entry.getKey();
+        //     String name = entry.getValue()[0];
+        //     double price = Double.parseDouble(entry.getValue()[1]);
+
+        //     System.out.println(id + " - " + name + ": " + price);
+        // }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./start.fxml"));
         Parent root = loader.load();
-        primaryStage.setTitle("Hello World");
+        ((Controller) loader.getController()).setConnection(conn);
+
+        primaryStage.setTitle("Chick-Fil-A");
         primaryStage.setScene(new Scene(root, 1000, 800));
         primaryStage.show();
     }
@@ -34,9 +45,10 @@ public class Main extends Application {
         ResultSet menuFetch = conn.select("SELECT * FROM menu_items;");
 
         while (menuFetch.next()) {
+            int menuID = menuFetch.getInt("menu_item_id");
             String menuName = menuFetch.getString("menu_item_name");
-            double menuPrice = menuFetch.getDouble("menu_item_price");
-            menu.put(menuName, menuPrice);
+            String menuPrice = menuFetch.getString("menu_item_price");
+            menu.put(menuID, new String[]{menuName, menuPrice});
         }
     }
 
