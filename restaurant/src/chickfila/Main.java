@@ -28,13 +28,14 @@ public class Main extends Application {
         //     int id = entry.getKey();
         //     String name = entry.getValue()[0];
         //     double price = Double.parseDouble(entry.getValue()[1]);
+        //     String meal = entry.getValue()[2];
 
-        //     System.out.println(id + " - " + name + ": " + price);
+        //     System.out.println(id + " - " + name + ": " + price + ", " + meal);
         // }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./start.fxml"));
         Parent root = loader.load();
-        ((Controller) loader.getController()).setConnection(conn);
+        ((Controller) loader.getController()).setConnection(conn, menu);
 
         primaryStage.setTitle("Chick-Fil-A");
         primaryStage.setScene(new Scene(root, 1000, 800));
@@ -48,7 +49,8 @@ public class Main extends Application {
             int menuID = menuFetch.getInt("menu_item_id");
             String menuName = menuFetch.getString("menu_item_name");
             String menuPrice = menuFetch.getString("menu_item_price");
-            menu.put(menuID, new String[]{menuName, menuPrice});
+            String isMeal = menuFetch.getString("is_meal");
+            menu.put(menuID, new String[]{menuName, menuPrice, isMeal});
         }
     }
 

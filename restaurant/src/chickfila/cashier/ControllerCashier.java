@@ -29,9 +29,10 @@ import chickfila.logic.*;;
 public class ControllerCashier {
 
     private DB conn;
-    private ArrayList<OrderItem> currentOrder;
+    private HashMap<Integer, String[]> menu;
+    private Order currentOrder;
 
-    @FXML 
+    @FXML
     Button newOrder;
 
     @FXML
@@ -41,16 +42,20 @@ public class ControllerCashier {
     Button backButton;
 
     @FXML
-    Button n8, n12, gn8, gn12, cs, csSp, csGr, fries, sM, sC, sS;
+    Button n8, n12, gn8, gn12, cs, csSp, csSpD, csD, csGr, csGrD, fries, friesL, chips, sM, sC, sS, sideSal, fruitCup,
+            wrap1, brownie, cookie, iceDream, softDrinkM, softDrinkL, teaM, teaL, sunjM, sunjL, frosLemonade,
+            frosCoffee, milkshakeCC, milkshakeCH, milkshakeS, milkshakeV;
+
+    @FXML
+    Label priceDisplay;
 
     public void initialize() {
-
     }
 
     public void handleBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../start.fxml"));
         Parent root = loader.load();
-        ((Controller) loader.getController()).setConnection(conn);
+        ((Controller) loader.getController()).setConnection(conn, menu);
 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -66,39 +71,42 @@ public class ControllerCashier {
         Button b = (Button) event.getSource();
 
         if (b.equals(n8)) {
-            System.out.println("goop");
+            currentOrder.addItem(new OrderItem("nuggets (8ct)", 6));
+        } else if (b.equals(n12)) {
+            currentOrder.addItem(new OrderItem("nuggets (12ct)", 7));
+        } else if (b.equals(gn8)) {
+            currentOrder.addItem(new OrderItem("nuggets grilled (8ct)", 16));
+        } else if (b.equals(gn12)) {
+            currentOrder.addItem(new OrderItem("nuggets grilled (12ct)", 17));
+        } else if (b.equals(cs)) {
+            currentOrder.addItem(new OrderItem("chicken sandwich", 1));
+        } else if (b.equals(csSp)) {
+            currentOrder.addItem(new OrderItem("chicken sandwich spicy", 3));
+        } else if (b.equals(csGr)) {
+            currentOrder.addItem(new OrderItem("chicken sandwich grilled", 18));
+        } else if (b.equals(fries)) {
+            currentOrder.addItem(new OrderItem("waffle fries", 12));
+        } else if (b.equals(sM)) {
+            currentOrder.addItem(new OrderItem("market salad", 19));
+        } else if (b.equals(sC)) {
+            currentOrder.addItem(new OrderItem("cobb salad", 38));
+        } else if (b.equals(sS)) {
+            currentOrder.addItem(new OrderItem("southwest salad", 39));
         }
-        else if (b.equals(n12)) {
-            System.out.println("goop2");
-        }
-        else if (b.equals(gn8)) {
-            System.out.println("goop3");
-        }
-        else if (b.equals(gn12)) {
-            System.out.println("goop4");
-        }
-        else if (b.equals(cs)) {
-            System.out.println("goop5");
-        }
-        else if (b.equals(csSp)) {
-            System.out.println("goop6");
-        }
-        else if (b.equals(csGr)) {
-            System.out.println("goop7");
-        }
-        else if (b.equals(fries)) {
-            System.out.println("goop8");
-        }
-        else if (b.equals(sM)) {
-            System.out.println("goop9");
-        }
-        else if (b.equals(sC)) {
-            System.out.println("goop10");
-        }
-        else if (b.equals(sS)) {
-            System.out.println("goop12");
-        }
+
+        priceDisplay.setText("Total: " + String.format("%.2f", currentOrder.getPrice()) + "$");
     }
 
-    
+    public void handleNewOrder() {
+        priceDisplay.setText("Total: 0.00$");
+        currentOrder.resetOrder();
+
+    }
+
+    public void setConnection(DB db, HashMap<Integer, String[]> menu) {
+        conn = db;
+        this.menu = menu;
+        currentOrder = new Order(menu);
+        System.out.println("asdfasgegegege2");
+    }
 }
