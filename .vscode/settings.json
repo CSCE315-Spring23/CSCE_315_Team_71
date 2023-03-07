@@ -1,5 +1,0 @@
-{
-    "java.project.referencedLibraries": [
-        "./restaurant/lib/**/*.jar"
-    ]
-}
