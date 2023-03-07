@@ -2,8 +2,12 @@ package chickfila.cashier;
 
 import java.io.IOException;
 import java.util.*;
+import java.sql.*;
+
+
 
 import chickfila.Controller;
+import javafx.fxml.Initializable;
 import chickfila.logic.DB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +18,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+
+import javafx.stage.Stage;
+import javafx.scene.Node;
+
+
 
 import chickfila.logic.*;;
 
@@ -27,6 +36,9 @@ public class ControllerCashier {
 
     @FXML
     Button completeOrder;
+
+    @FXML
+    Button backButton;
 
     @FXML
     Button n8, n12, gn8, gn12, cs, csSp, csGr, fries, sM, sC, sS;
@@ -44,6 +56,10 @@ public class ControllerCashier {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         stage.setScene(scene);
+    }
+    public void setConnection(DB db) {
+        conn = db;
+        System.out.println("asdfasgegegege2");
     }
 
     public void handleClick(ActionEvent event) {
@@ -84,8 +100,5 @@ public class ControllerCashier {
         }
     }
 
-    public void setConnection(DB db) {
-        conn = db;
-        System.out.println("asdfasgegegege2");
-    }
+    
 }
