@@ -51,6 +51,7 @@ public class ControllerInventoryAdd {
         System.out.println("asdfasgegegege3");
     }
 
+    //Takes in the Quantity and itemID and changes the Quantity in the database
     public void updateQuantity(ActionEvent event) throws SQLException , IOException  {
     if (inventoryId.getText().equals("") || quantity.getText().equals("")) {
             System.out.println("input value");

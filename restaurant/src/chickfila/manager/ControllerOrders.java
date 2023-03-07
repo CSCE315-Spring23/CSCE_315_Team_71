@@ -71,7 +71,7 @@ public class ControllerOrders {
     }
 
     public void loadOrders(ActionEvent event) throws SQLException , IOException {
-        //THESE LINES TELLS THE COLUMNS TO GET THE CERTAIN ATTRIBUTES FROM THE inventoryItem class objects for the certain columns
+        //THESE LINES TELLS THE COLUMNS TO GET THE CERTAIN ATTRIBUTES FROM THE orders class objects for the certain columns
         if (beginningdate.getText().equals("") || enddate.getText().equals("")) {
             System.out.println("input value");
         } 
@@ -89,7 +89,7 @@ public class ControllerOrders {
                 ResultSet ordersFetch = conn.select("SELECT * FROM orders JOIN order_items ON orders.order_id = order_items.order_id WHERE orders.order_time::date >= '"+beginningdate.getText()+"' AND orders.order_time::date <= '"+enddate.getText()+"';");
         
                 ObservableList<orders> data = FXCollections.observableArrayList();
-                //need to make a list of all the lines from the database into menuItems;
+                //need to make a list of all the lines from the database into orders
                 double addProfit = 0.00;
                 while (ordersFetch.next()) {
                     int orderId = ordersFetch.getInt("order_id");
@@ -104,7 +104,7 @@ public class ControllerOrders {
 
                 String formattedProfit = String.format("%.02f", addProfit);
                 profit.setText("Profit: $"+formattedProfit);
-                //pushing all the menuItems to the table is enough afterwards for the table to be made.
+                //pushing all the orders to the table is enough afterwards for the table to be made.
                 tableView.setItems(data);
             }
     }
