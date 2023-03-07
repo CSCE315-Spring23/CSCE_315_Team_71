@@ -22,5 +22,6 @@
       <Text layoutX="371.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WRITE DOWN THE ITEM_NAME AND ITEM INGREDIENTS AND CLICK ON ADD ORDER" />
       <TextField fx:id="price" layoutX="233.0" layoutY="290.0" />
       <Text layoutX="164.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
+      <Button fx:id="menu_item" layoutX="284.0" layoutY="122.0" mnemonicParsing="false" onAction="#showMenu" text="Menu Items" />
    </children>
 </AnchorPane>

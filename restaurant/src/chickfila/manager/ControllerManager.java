@@ -49,6 +49,8 @@ public class ControllerManager implements Initializable {
     private Button addOrder;
     @FXML
     private TextField price;
+    @FXML
+    private Button menu_item;
 
     private HashMap<String, Integer> inventory;
     @Override
@@ -133,6 +135,24 @@ public class ControllerManager implements Initializable {
         stage.setScene(scene);
         //loadSales();
     }
+
+    public void showMenu(ActionEvent event) throws IOException , SQLException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("./showMenu.fxml"));
+        Parent root = loader.load();
+        ((ControllerMenu) loader.getController()).setConnection(conn);
+
+
+        //Scene scene = new Scene(root);
+        // Stage stage = new Stage();
+        // stage.setScene(new Scene(root, 500, 300));
+
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        //loadSales();
+    }
+
 
     // private void loadSales() throws SQLException {
     //     //TableColumn<sales,Integer> idColumn = new TableColumn<>("sales_id");
