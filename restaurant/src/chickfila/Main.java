@@ -23,10 +23,10 @@ public class Main extends Application {
         menu = new HashMap<String, Double>();
         loadMenu();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("./hellofx.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("./start.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 800, 800));
+        primaryStage.setScene(new Scene(root, 1000, 800));
         primaryStage.show();
     }
 
