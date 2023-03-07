@@ -6,14 +6,14 @@ public class menuItems {
     private String menu_item_name;
     private Double menu_item_price;
     private String size;
-    private String isMeal;
+    private Boolean isMeal;
 
 
 
     public menuItems() {
     }
 
-    public menuItems(int menu_item_id, String menu_item_name, Double menu_item_price, String size, String isMeal) {
+    public menuItems(int menu_item_id, String menu_item_name, Double menu_item_price, String size, Boolean isMeal) {
         this.menu_item_id = menu_item_id;
         this.menu_item_name = menu_item_name;
         this.menu_item_price = menu_item_price;
@@ -53,11 +53,11 @@ public class menuItems {
         this.size = size;
     }
 
-    public String getIsMeal() {
+    public Boolean getIsMeal() {
         return this.isMeal;
     }
 
-    public void setIsMeal(String isMeal) {
+    public void setIsMeal(Boolean isMeal) {
         this.isMeal = isMeal;
     }
 
@@ -81,7 +81,7 @@ public class menuItems {
         return this;
     }
 
-    public menuItems isMeal(String isMeal) {
+    public menuItems isMeal(Boolean isMeal) {
         setIsMeal(isMeal);
         return this;
     }

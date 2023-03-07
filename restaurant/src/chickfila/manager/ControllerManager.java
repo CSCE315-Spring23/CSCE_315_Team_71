@@ -42,6 +42,9 @@ public class ControllerManager implements Initializable {
         inventory = new HashMap<String, Integer>();
     }
 
+    // creates order when add order is clicked on
+    //see instruction on the app to see how the string format is implemented and how parsing works.
+    //FIXME: WON'T WORK IF INPUT ISN'T PROVIDED IN SPECIFIC FORMAT AND IF NAME OF INGREDIENT ISN'T THE EXACT SAME AS INGREDIENTS. NEED TO USE TRY CATCH FOR IT
     public void orderCreation(ActionEvent event) throws SQLException {
     
         if(item_name.getText().equals("") || ingredientlist.getText().equals("")||price.getText().equals("")){
@@ -76,6 +79,7 @@ public class ControllerManager implements Initializable {
         }
 
     }
+    //creates a hashmap of all the inventory items. It's used to get inventory_id from inventory_name for creation of recipes.
     private void loadInventory() throws SQLException {
         ResultSet invFetch = conn.select("SELECT * FROM inventory;");
 
@@ -86,7 +90,7 @@ public class ControllerManager implements Initializable {
             inventory.put(invName, invID);
         }
     }
-
+    //changes scene to start onclick of back button
     public void handleBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../start.fxml"));
         Parent root = loader.load();
@@ -98,12 +102,13 @@ public class ControllerManager implements Initializable {
         
         stage.setScene(scene);
     }
-
+    //db connection stuff, don't know deets
     public void setConnection(DB db) {
         conn = db;
         System.out.println("asdfasgegegege3");
     }
 
+    //switches to sales report stage. This just opens the seperate fxml file. Sales report code goes in ControllerSales
     public void showSales(ActionEvent event) throws IOException , SQLException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./salesRep.fxml"));
         Parent root = loader.load();
@@ -114,7 +119,7 @@ public class ControllerManager implements Initializable {
 
         stage.setScene(scene);
     }
-
+    //switches to menu recipes stage. This just opens the seperate fxml file. Sales report code goes in ControllerMenu
     public void showMenu(ActionEvent event) throws IOException , SQLException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./showMenu.fxml"));
         Parent root = loader.load();
