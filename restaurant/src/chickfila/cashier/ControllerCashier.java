@@ -40,8 +40,8 @@ public class ControllerCashier {
     @FXML
     Button n8, n12, gn8, gn12, cs, csSp, csSpD, csD, csGr, csGrD, fries, friesL, chips, sM, sC, sS, sideSal, fruitCup,
             wrap1, brownie, cookie, iceDream, softDrinkM, softDrinkL, teaM, teaL, sunjM, sunjL, frosLemonade,
-            frosCoffee, milkshakeCC, milkshakeCH, milkshakeS, milkshakeV,n12Meal,gn8Meal, 
-            gn12Meal, csMeal, csDMeal,csSpMeal, csSpDMeal, csGrMeal, csGrDMeal, n8Meal, wrapMeal, water;
+            frosCoffee, milkshakeCC, milkshakeCH, milkshakeS, milkshakeV, n12Meal, gn8Meal,
+            gn12Meal, csMeal, csDMeal, csSpMeal, csSpDMeal, csGrMeal, csGrDMeal, n8Meal, wrapMeal, water;
     @FXML
     Label priceDisplay,taxDisplay, subtotalDisplay;
 
@@ -80,13 +80,13 @@ public class ControllerCashier {
         } else if (b.equals(csSp)) {
             currentOrder.addItem(new OrderItem("chicken sandwich spicy", 3));
         } else if (b.equals(csD)) {
-            currentOrder.addItem(new OrderItem("chicken sandwich deluxe", 2)); 
+            currentOrder.addItem(new OrderItem("chicken sandwich deluxe", 2));
         } else if (b.equals(csSpD)) {
-            currentOrder.addItem(new OrderItem("chicken sandwich spicy deluxe", 4)); 
+            currentOrder.addItem(new OrderItem("chicken sandwich spicy deluxe", 4));
         } else if (b.equals(csGr)) {
             currentOrder.addItem(new OrderItem("chicken sandwich grilled", 18));
         } else if (b.equals(csGrD)) {
-            currentOrder.addItem(new OrderItem("chicken sandwich grilled club", 34)); 
+            currentOrder.addItem(new OrderItem("chicken sandwich grilled club", 34));
         } else if (b.equals(fries)) {
             currentOrder.addItem(new OrderItem("waffle fries (medium)", 12));
         } else if (b.equals(sM)) {
@@ -94,51 +94,51 @@ public class ControllerCashier {
         } else if (b.equals(sC)) {
             currentOrder.addItem(new OrderItem("cobb salad", 38));
         } else if (b.equals(sS)) {
-            currentOrder.addItem(new OrderItem("southwest salad", 39)); 
+            currentOrder.addItem(new OrderItem("southwest salad", 39));
         } else if (b.equals(friesL)) {
             currentOrder.addItem(new OrderItem("waffle fries (large)", 52));
         } else if (b.equals(sideSal)) {
-            currentOrder.addItem(new OrderItem("side salad", 55)); 
+            currentOrder.addItem(new OrderItem("side salad", 55));
         } else if (b.equals(fruitCup)) {
-            currentOrder.addItem(new OrderItem("fruit cup", 54)); 
+            currentOrder.addItem(new OrderItem("fruit cup", 54));
         } else if (b.equals(wrap1)) {
-            currentOrder.addItem(new OrderItem("chicken cool wrap", 37)); 
+            currentOrder.addItem(new OrderItem("chicken cool wrap", 37));
         } else if (b.equals(chips)) {
-            currentOrder.addItem(new OrderItem("waffle chips", 53)); 
+            currentOrder.addItem(new OrderItem("waffle chips", 53));
         } else if (b.equals(cookie)) {
-            currentOrder.addItem(new OrderItem("chocolate chunk cookie", 51)); 
+            currentOrder.addItem(new OrderItem("chocolate chunk cookie", 51));
         } else if (b.equals(iceDream)) {
-            currentOrder.addItem(new OrderItem("icedream cone", 49)); 
+            currentOrder.addItem(new OrderItem("icedream cone", 49));
         } else if (b.equals(brownie)) {
-            currentOrder.addItem(new OrderItem("chocolate fudge brownie", 50)); 
+            currentOrder.addItem(new OrderItem("chocolate fudge brownie", 50));
         } else if (b.equals(n12Meal)) {
-            currentOrder.addItem(new OrderItem("nuggets (12ct) meal", 31)); 
+            currentOrder.addItem(new OrderItem("nuggets (12ct) meal", 31));
         } else if (b.equals(gn8Meal)) {
-            currentOrder.addItem(new OrderItem("nuggets grilled (8ct) meal", 32)); 
+            currentOrder.addItem(new OrderItem("nuggets grilled (8ct) meal", 32));
         } else if (b.equals(gn12Meal)) {
-            currentOrder.addItem(new OrderItem("nuggets grilled (12ct) meal", 33)); 
+            currentOrder.addItem(new OrderItem("nuggets grilled (12ct) meal", 33));
         } else if (b.equals(csMeal)) {
-            currentOrder.addItem(new OrderItem("chicken sandwich meal", 25)); 
+            currentOrder.addItem(new OrderItem("chicken sandwich meal", 25));
         } else if (b.equals(csDMeal)) {
-            currentOrder.addItem(new OrderItem("chicken sandwich deluxe meal", 26)); 
+            currentOrder.addItem(new OrderItem("chicken sandwich deluxe meal", 26));
         } else if (b.equals(csSpMeal)) {
-            currentOrder.addItem(new OrderItem("chicken sandwich spicy meal", 27)); 
+            currentOrder.addItem(new OrderItem("chicken sandwich spicy meal", 27));
         } else if (b.equals(csSpDMeal)) {
-            currentOrder.addItem(new OrderItem("chicken sandwich spicy deluxe meal", 28)); 
+            currentOrder.addItem(new OrderItem("chicken sandwich spicy deluxe meal", 28));
         } else if (b.equals(csGrMeal)) {
-            currentOrder.addItem(new OrderItem("chicken sandwich grilled meal", 29)); 
+            currentOrder.addItem(new OrderItem("chicken sandwich grilled meal", 29));
         } else if (b.equals(csGrDMeal)) {
-            currentOrder.addItem(new OrderItem("chicken sandwich grilled club meal", 36)); 
+            currentOrder.addItem(new OrderItem("chicken sandwich grilled club meal", 36));
         } else if (b.equals(n8Meal)) {
-            currentOrder.addItem(new OrderItem("nuggets (8ct) meal", 30)); 
+            currentOrder.addItem(new OrderItem("nuggets (8ct) meal", 30));
         } else if (b.equals(wrapMeal)) {
-            currentOrder.addItem(new OrderItem("chicken cool wrap meal", 36)); 
+            currentOrder.addItem(new OrderItem("chicken cool wrap meal", 36));
         } else if (b.equals(softDrinkM)) {
-            currentOrder.addItem(new OrderItem("soft drink (medium)", 9)); 
+            currentOrder.addItem(new OrderItem("soft drink (medium)", 9));
         } else if (b.equals(softDrinkL)) {
-            currentOrder.addItem(new OrderItem("soft drink (large)", 42)); 
+            currentOrder.addItem(new OrderItem("soft drink (large)", 42));
         } else if (b.equals(frosLemonade)) {
-            currentOrder.addItem(new OrderItem("frosted lemonade", 47)); 
+            currentOrder.addItem(new OrderItem("frosted lemonade", 47));
         } else if (b.equals(teaM)) {
             currentOrder.addItem(new OrderItem("tea (medium)", 40));
         } else if (b.equals(teaL)) {
@@ -175,6 +175,18 @@ public class ControllerCashier {
 
     }
 
+    public void handleInventory(OrderItem item) throws SQLException {
+        ResultSet recipe = conn.select(String.format("SELECT * FROM recipes WHERE menu_item_id = %d", item.getID()));
+
+        while (recipe.next()) {
+            int invID = recipe.getInt("inventory_id");
+            conn.performQuery(String.format("UPDATE inventory SET quantity = quantity - %d WHERE item_id = %d;",
+                    item.getQuantity(), invID));
+        }
+
+        System.out.println("asgege");
+    }
+
     public void handleCompleteOrder() throws SQLException {
         if (currentOrder.isEmpty()) {
             System.out.println("nothing in order");
@@ -198,6 +210,8 @@ public class ControllerCashier {
             conn.performQuery(
                     String.format("INSERT INTO order_items (order_id, menu_item_id, quantity) VALUES (%d, %d, %d);",
                             newID, item.getID(), item.getQuantity()));
+
+            handleInventory(item);
         }
 
         handleNewOrder();
