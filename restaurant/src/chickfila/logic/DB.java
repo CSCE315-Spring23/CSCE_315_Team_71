@@ -21,9 +21,11 @@ public class DB {
         ResultSet result = sql.createStatement().executeQuery(query);
         return result;
     }
+
     public void performQuery(String query) throws SQLException{
         sql.createStatement().executeUpdate(query);
     }
+    
     public void close() throws SQLException {
         sql.close();
     }
