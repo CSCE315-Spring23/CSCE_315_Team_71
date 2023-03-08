@@ -24,7 +24,10 @@ import javafx.collections.ObservableList;
 import chickfila.logic.DB;
 import chickfila.logic.dbSetup;
 
-
+/**
+ * @author Alan Nguyen
+ * 
+ */
 public class ControllerInventoryAdd {
     private DB conn;
     private HashMap<Integer, String[]> menu;
@@ -38,7 +41,18 @@ public class ControllerInventoryAdd {
     @FXML
     private Button addButton;
 
-    @FXML
+    /**
+
+    * This method is called when the "close" button is pressed in the UI. It loads the "manager.fxml" file and sets up the
+
+    * connection and menu for the controller. Then, it creates a new scene using the root, and sets the scene to be displayed
+
+    * in the current stage.
+
+    * @param event The action event triggered by the "close" button press
+
+    * @throws IOException If there is an error loading the "manager.fxml" file
+    */
     public void closeButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager.fxml"));
         Parent root = loader.load();
@@ -49,13 +63,28 @@ public class ControllerInventoryAdd {
         
         stage.setScene(scene);
     }
+
     public void setConnection(DB db, HashMap<Integer, String[]> menu) {
         conn = db;
         this.menu = menu;
         System.out.println("asdfasgegegege3");
     }
 
-    //Takes in the Quantity and itemID and changes the Quantity in the database
+    /**
+    * This method updates the inventory item in the database with the new values entered in the UI. It checks if the inventory ID
+
+    * field is empty, and if so, prints an error message. If the ID field is not empty, it checks if either the quantity or item
+
+    * name fields are empty, and if so, prints another error message. Otherwise, it retrieves the item ID from the inventory ID
+
+    * field and updates the database with the new quantity and/or item name values.
+
+    * @param event The action event triggered by clicking the "update" button
+
+    * @throws SQLException If there is an error accessing the database
+
+    * @throws IOException If there is an error reading from the database
+    */
     public void updateItem(ActionEvent event) throws SQLException , IOException  {
         if (inventoryId.getText().equals("")) {
                 System.out.println("input value inventory ID");
@@ -78,6 +107,20 @@ public class ControllerInventoryAdd {
         }
     }
 
+    /**
+
+    * This method adds a new item to the inventory table in the database. It checks if either the quantity or item name
+
+    * fields are empty, and if so, prints an error message. Otherwise, it retrieves the new quantity and item name values
+
+    * entered in the UI, generates a new item ID for the item, and inserts the new item into the inventory table in the database.
+
+    * @param event The action event triggered by clicking the "add" button
+
+    * @throws SQLException If there is an error accessing the database
+
+    * @throws IOException If there is an error reading from the database
+    */
 public void addItem(ActionEvent event) throws SQLException , IOException  {
     if (quantity.getText().equals("")||itemName.getText().equals("")) {
             System.out.println("input value");
