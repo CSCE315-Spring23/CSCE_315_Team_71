@@ -27,6 +27,9 @@ import javafx.scene.control.TextField;
 
 public class ControllerOrders {
     private DB conn;
+
+
+
     private HashMap<Integer, String[]> menu;
     @FXML
     private TableView <orders> tableView;
@@ -46,9 +49,15 @@ public class ControllerOrders {
     private TextField beginningdate;
     @FXML
     private TextField enddate;
+
     @FXML
     private Label profit;
     @FXML
+    private Label taxAmount;
+    @FXML
+    private Label salesAmount;
+    @FXML
+
     public void closeButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager.fxml"));
         Parent root = loader.load();
@@ -86,11 +95,12 @@ public class ControllerOrders {
 
                 conn = new DB(dbSetup.user, dbSetup.pswd);
 
-                ResultSet ordersFetch = conn.select("SELECT * FROM orders JOIN order_items ON orders.order_id = order_items.order_id WHERE orders.order_time::date >= '"+beginningdate.getText()+"' AND orders.order_time::date <= '"+enddate.getText()+"';");
-        
+                ResultSet ordersFetch = conn.select("SELECT * FROM orders WHERE orders.order_time::date >= '"+beginningdate.getText()+"' AND orders.order_time::date <= '"+enddate.getText()+"';");
+            //JOIN order_items ON orders.order_id = order_items.order_id
                 ObservableList<orders> data = FXCollections.observableArrayList();
                 //need to make a list of all the lines from the database into orders
                 double addProfit = 0.00;
+                double tax = 0;
                 while (ordersFetch.next()) {
                     int orderId = ordersFetch.getInt("order_id");
                     double price = ordersFetch.getDouble("price");
@@ -101,11 +111,18 @@ public class ControllerOrders {
                     data.add(menu);
                     System.out.println(menu);
                 }
-
+                String formattedSales = String.format("%.02f", addProfit);
+                tax = addProfit * 0.0825;
+                String formattedTax = String.format("%.02f", tax);
+                addProfit -= tax;
                 String formattedProfit = String.format("%.02f", addProfit);
+
                 profit.setText("Profit: $"+formattedProfit);
+                taxAmount.setText("Tax: $"+formattedTax);
+                salesAmount.setText("Sales: $"+formattedSales);
                 //pushing all the orders to the table is enough afterwards for the table to be made.
                 tableView.setItems(data);
             }
     }
+
 }

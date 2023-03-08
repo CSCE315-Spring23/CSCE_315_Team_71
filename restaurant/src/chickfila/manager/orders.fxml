@@ -25,6 +25,8 @@
       <Text layoutX="217.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To get orders, set two dates in YYYY-MM-DD format" />
       <Text layoutX="148.0" layoutY="591.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beginning Date" />
       <Text layoutX="430.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date" />
-      <Label fx:id="profit" layoutX="294.0" layoutY="603.0" text="Profit: " />
+      <Label fx:id="profit" layoutX="294.0" layoutY="629.0" text="Profit: " />
+      <Label fx:id="salesAmount" layoutX="272.0" layoutY="578.0" text="Sales Amount: " />
+      <Label fx:id="taxAmount" layoutX="298.0" layoutY="603.0" text="Tax: " />
    </children>
 </AnchorPane>

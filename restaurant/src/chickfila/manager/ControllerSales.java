@@ -2,11 +2,13 @@ package chickfila.manager;
 
 import java.io.IOException;
 import chickfila.manager.sales;
+import chickfila.manager.orders;
 import java.sql.*;
 import java.util.*;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import chickfila.Controller;
 import chickfila.logic.DB;
@@ -43,6 +45,8 @@ public class ControllerSales {
     private TableColumn<sales,Double> totalSalesColumn;
     @FXML
     private TableColumn<sales,Double> totalTaxColumn;
+    @FXML
+    private TextField createSalesReport;
 
     @FXML
     public void closeButtonAction(ActionEvent event) throws IOException {
@@ -89,5 +93,52 @@ public class ControllerSales {
             System.out.println(sale);
         }
         tableView.setItems(data);
+    }
+
+    //Adds Functionality to create a sales Report for a specific day
+    public void addSalesReport(ActionEvent event) throws SQLException , IOException  {
+        double profits;
+        double taxes;
+        if (createSalesReport.getText().equals("")) {
+                System.out.println("input value");
+        } 
+        else {
+            //int itemId = Integer.parseInt(inventoryId.getText());
+            //int quantity_query = Integer.parseInt(quantity.getText());
+            //String name = itemName.getText();
+            conn = new DB(dbSetup.user, dbSetup.pswd);
+            Integer max_id = 0;
+            ResultSet sizeFetch = conn.select("SELECT MAX(sales_id) FROM sales;");
+            while(sizeFetch.next()){
+                max_id = sizeFetch.getInt("max");
+    
+                System.out.println(max_id);
+            }
+            Integer newSalesRepId= max_id +1;
+
+
+        Double sales = getTotalDaySales(createSalesReport.getText());
+
+        taxes = sales * 0.0825;
+        profits = sales - taxes;
+
+        conn.performQuery("INSERT INTO sales (sales_id, sales_date, total_sales, total_tax) VALUES ("+newSalesRepId+",'"+createSalesReport.getText()+"' , "+profits+" , "+taxes+");");
+        System.out.println("successnv");
+        loadSales();
+        
+    }
+}
+
+    public double getTotalDaySales(String day) throws SQLException , IOException{
+        double dailySales = 0;
+        conn = new DB(dbSetup.user, dbSetup.pswd);
+
+        ResultSet ordersFetch = conn.select("SELECT SUM(price) FROM orders WHERE orders.order_time::date = '"+day+"';");
+        
+        while(ordersFetch.next()){
+            dailySales = ordersFetch.getDouble(1);
+        }
+
+        return dailySales;
     }
 }
