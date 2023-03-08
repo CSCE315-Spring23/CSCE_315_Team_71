@@ -170,14 +170,13 @@ public class ControllerCashier {
     }
 
     public void handleCompleteOrder() throws SQLException {
-
         if (currentOrder.isEmpty()) {
             System.out.println("nothing in order");
             return;
         }
 
         conn.performQuery(String.format("INSERT INTO orders (price, is_paid, order_time) VALUES (%.2f, %b, NOW());",
-                currentOrder.getPrice(), currentOrder.isPaid()));
+                currentOrder.getPrice(), true));
 
         ResultSet lastOrderID = conn.select("SELECT order_id from orders ORDER BY order_id DESC LIMIT 1;");
         int newID = 0;
