@@ -131,7 +131,7 @@ public class ControllerSales {
 
     public double getTotalDaySales(String day) throws SQLException , IOException{
         double dailySales = 0;
-        conn = new DB(dbSetup.user, dbSetup.pswd);
+        //conn = new DB(dbSetup.user, dbSetup.pswd);
 
         ResultSet ordersFetch = conn.select("SELECT SUM(price) FROM orders WHERE orders.order_time::date = '"+day+"';");
         

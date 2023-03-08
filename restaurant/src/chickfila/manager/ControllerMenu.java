@@ -23,6 +23,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import chickfila.logic.DB;
 import chickfila.logic.dbSetup;
+import javafx.scene.control.TextField;
 
 //BASIC OVERVIEW OF HOW CONTROLLER MENU WORKS: CREATES A TABLEVIEW OBJECT. TABLE VIEW HAS TABLECOLUMN OBJECTS IN IT
 // TABLEVIEW IS THE TABLE AND TABLECOLUMNS ARE THE COLUMNS.
@@ -51,7 +52,12 @@ public class ControllerMenu {
     @FXML
     private TableColumn<menuItems,Boolean> mealColumn;
 
+    
     @FXML
+    private TextField menuItemInput;
+    @FXML
+    private TextField priceInput;
+
     public void closeButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager.fxml"));
         Parent root = loader.load();
@@ -76,7 +82,7 @@ public class ControllerMenu {
 
     //FIXME: CAN'T FIND is_meal for some reason.
     private void loadMenu() throws SQLException , IOException {
-//THESE LINES TELLS THE COUMNS TO GET THE CERTAIN ATTRIBUTES FROM THE menuItem class objects for the certain columns
+    //THESE LINES TELLS THE COUMNS TO GET THE CERTAIN ATTRIBUTES FROM THE menuItem class objects for the certain columns
         idColumn.setCellValueFactory(new PropertyValueFactory<menuItems,Integer>("menu_item_id"));
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<menuItems, String>("menu_item_name"));
@@ -88,7 +94,7 @@ public class ControllerMenu {
         mealColumn.setCellValueFactory(new PropertyValueFactory<menuItems,Boolean>("is_meal"));
 
         conn = new DB(dbSetup.user, dbSetup.pswd);
-        ResultSet menuFetch = conn.select("SELECT * FROM menu_items;");
+        ResultSet menuFetch = conn.select("SELECT * FROM menu_items ORDER BY menu_item_id;");
 
         ObservableList<menuItems> data = FXCollections.observableArrayList();
         //need to make a list of all the lines from the database into menuItems;
@@ -106,4 +112,18 @@ public class ControllerMenu {
         //CONTROLLERSALES works exaclty like this as well
         tableView.setItems(data);
     }
+
+    public void modifyPrice(ActionEvent event) throws SQLException , IOException  {
+        if (menuItemInput.getText().equals("")||priceInput.getText().equals("")) {
+                System.out.println("input value");
+        } 
+        else {
+            int menuItemId = Integer.parseInt(menuItemInput.getText());
+            Double updatedPrice = Double.parseDouble(priceInput.getText());
+            conn.performQuery("UPDATE menu_items SET menu_item_price = "+updatedPrice+" WHERE menu_item_id = "+menuItemId+";");
+        }
+
+        loadMenu();
+    }
+
 }

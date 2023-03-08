@@ -56,7 +56,6 @@ public class ControllerOrders {
     private Label taxAmount;
     @FXML
     private Label salesAmount;
-    @FXML
 
     public void closeButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager.fxml"));
@@ -93,7 +92,7 @@ public class ControllerOrders {
 
                 timeColumn.setCellValueFactory(new PropertyValueFactory<orders, Timestamp>("orderTime"));
 
-                conn = new DB(dbSetup.user, dbSetup.pswd);
+                //conn = new DB(dbSetup.user, dbSetup.pswd);
 
                 ResultSet ordersFetch = conn.select("SELECT * FROM orders WHERE orders.order_time::date >= '"+beginningdate.getText()+"' AND orders.order_time::date <= '"+enddate.getText()+"';");
             //JOIN order_items ON orders.order_id = order_items.order_id
