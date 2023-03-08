@@ -42,6 +42,11 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    @Override
+    public void stop() throws Exception {
+        conn.close();
+    }
+
     private void loadMenu() throws SQLException {
         ResultSet menuFetch = conn.select("SELECT * FROM menu_items;");
 

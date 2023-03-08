@@ -200,7 +200,6 @@ public class ControllerCashier {
                             newID, item.getID(), item.getQuantity()));
         }
 
-
         handleNewOrder();
     }
 
