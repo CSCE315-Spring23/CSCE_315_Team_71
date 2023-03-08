@@ -38,7 +38,7 @@ public class Main extends Application {
         ((Controller) loader.getController()).setConnection(conn, menu);
 
         primaryStage.setTitle("Chick-Fil-A");
-        primaryStage.setScene(new Scene(root, 1000, 800));
+        primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }
 

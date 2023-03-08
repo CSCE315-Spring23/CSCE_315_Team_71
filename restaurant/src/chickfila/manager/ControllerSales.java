@@ -71,7 +71,16 @@ public class ControllerSales {
         System.out.println("asdfasgegegege3");
     }
 
+        /**
 
+        Loads sales data from the database and populates the table view with the data.
+
+        Sets the cell value factories for the table columns.
+
+        @throws SQLException if there is an error executing the SQL query
+
+        @throws IOException if there is an error with the input/output operations
+        */
     private void loadSales() throws SQLException , IOException {
         idColumn.setCellValueFactory(new PropertyValueFactory<sales,Integer>("sales_id"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<sales, String>("sales_date"));
@@ -96,6 +105,20 @@ public class ControllerSales {
     }
 
     //Adds Functionality to create a sales Report for a specific day
+    /**
+
+        Adds a new sales report to the database.
+
+        Calculates profits and taxes based on the total sales for the given date.
+
+        Loads updated sales data into the table view.
+
+        @param event the action event triggered by the user
+
+        @throws SQLException if there is an error executing the SQL query
+
+        @throws IOException if there is an error with the input/output operations
+        */
     public void addSalesReport(ActionEvent event) throws SQLException , IOException  {
         double profits;
         double taxes;
@@ -128,6 +151,19 @@ public class ControllerSales {
         
     }
 }
+
+/**
+
+    Calculates the total sales for a given day by summing the price of all orders made on that day.
+
+    @param day the date for which to calculate the total sales (in the format "yyyy-MM-dd")
+
+    @return the total sales for the given day
+
+    @throws SQLException if there is an error executing the SQL query
+
+    @throws IOException if there is an error with the input/output operations
+    */
 
     public double getTotalDaySales(String day) throws SQLException , IOException{
         double dailySales = 0;
