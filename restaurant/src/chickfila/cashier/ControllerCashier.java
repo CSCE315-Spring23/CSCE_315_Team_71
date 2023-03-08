@@ -48,6 +48,14 @@ public class ControllerCashier {
     public void initialize() {
     }
 
+    /**
+
+Handles the action of clicking the back button by loading the "start.fxml" file and setting the connection and menu properties of the controller.
+
+@param event The event object representing the action of clicking the back button.
+
+@throws IOException If an error occurs while loading the "start.fxml" file.
+*/
     public void handleBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../start.fxml"));
         Parent root = loader.load();
@@ -64,6 +72,14 @@ public class ControllerCashier {
         System.out.println("asdfasgegegege2");
     }
 
+
+    
+/**
+
+Handles the click of a menu item button and adds the corresponding item to the current order.
+
+@param event The ActionEvent object representing the click of a menu item button.
+*/
     public void handleClick(ActionEvent event) {
         Button b = (Button) event.getSource();
 
@@ -181,7 +197,7 @@ public class ControllerCashier {
         while (recipe.next()) {
             int invID = recipe.getInt("inventory_id");
             conn.performQuery(String.format("UPDATE inventory SET quantity = quantity - %d WHERE item_id = %d;",
-                    item.getQuantity(), invID));
+                    item.getQuantity(), invID)); 
         }
 
         System.out.println("asgege");
