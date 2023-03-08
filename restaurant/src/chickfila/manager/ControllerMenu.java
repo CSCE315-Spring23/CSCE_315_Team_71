@@ -57,6 +57,8 @@ public class ControllerMenu {
     private TextField menuItemInput;
     @FXML
     private TextField priceInput;
+    @FXML
+    private TextField nameInput;
 
     public void closeButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager.fxml"));
@@ -113,17 +115,30 @@ public class ControllerMenu {
         tableView.setItems(data);
     }
 
-    public void modifyPrice(ActionEvent event) throws SQLException , IOException  {
-        if (menuItemInput.getText().equals("")||priceInput.getText().equals("")) {
-                System.out.println("input value");
+    public void modifyItem(ActionEvent event) throws SQLException , IOException  {
+        if (menuItemInput.getText().equals("")) {
+                System.out.println("input value menu_item_id");
         } 
         else {
-            int menuItemId = Integer.parseInt(menuItemInput.getText());
-            Double updatedPrice = Double.parseDouble(priceInput.getText());
-            conn.performQuery("UPDATE menu_items SET menu_item_price = "+updatedPrice+" WHERE menu_item_id = "+menuItemId+";");
-        }
+            if (priceInput.getText().equals("") && nameInput.getText().equals("")) {
+                System.out.println("input value name or price");
+            
+            }
+            else {
+                int menuItemId = Integer.parseInt(menuItemInput.getText());
 
-        loadMenu();
+                if(priceInput.getText() != "") {
+                    Double updatedPrice = Double.parseDouble(priceInput.getText());
+                    conn.performQuery("UPDATE menu_items SET menu_item_price = "+updatedPrice+" WHERE menu_item_id = "+menuItemId+";");
+                }
+
+                if(nameInput.getText() != "") {
+                    String updatedName = nameInput.getText();
+                    conn.performQuery("UPDATE menu_items SET menu_item_name = '"+updatedName+"' WHERE menu_item_id = "+menuItemId+";");
+                }
+                loadMenu();
+            }
+        }
     }
 
 }
