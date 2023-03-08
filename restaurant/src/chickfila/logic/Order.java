@@ -19,7 +19,7 @@ public class Order {
 
     public void addItem(OrderItem item) {
 
-        price += Double.parseDouble(menu.get(item.getID())[1]);
+        price += (Double.parseDouble(menu.get(item.getID())[1]))* 1.0825 ;
 
         boolean duplicate = false;
         for (int i = 0; i < items.size(); i++) {

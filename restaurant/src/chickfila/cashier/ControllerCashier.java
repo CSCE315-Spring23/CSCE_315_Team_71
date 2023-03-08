@@ -43,7 +43,7 @@ public class ControllerCashier {
             frosCoffee, milkshakeCC, milkshakeCH, milkshakeS, milkshakeV,n12Meal,gn8Meal, 
             gn12Meal, csMeal, csDMeal,csSpMeal, csSpDMeal, csGrMeal, csGrDMeal, n8Meal, wrapMeal, water;
     @FXML
-    Label priceDisplay;
+    Label priceDisplay,taxDisplay, subtotalDisplay;
 
     public void initialize() {
     }
@@ -160,10 +160,16 @@ public class ControllerCashier {
         } else if (b.equals(milkshakeV)) {
             currentOrder.addItem(new OrderItem("vanilla milkshake", 21));
         }
+
+        double subtotal = (currentOrder.getPrice()) / 1.0825;
+        subtotalDisplay.setText("Subtotal: " + "$" + String.format("%.2f", subtotal));
+        taxDisplay.setText("Tax: " + "$" + String.format("%.2f", (subtotal * 0.0825)));
         priceDisplay.setText("Total: " + "$" + String.format("%.2f", currentOrder.getPrice()));
     }
 
     public void handleNewOrder() {
+        subtotalDisplay.setText("Subtotal: $0.00");
+        taxDisplay.setText("Tax: $0.00");
         priceDisplay.setText("Total: $0.00");
         currentOrder.resetOrder();
 
