@@ -39,15 +39,9 @@ public class ControllerCashier {
 
     @FXML
     Button n8, n12, gn8, gn12, cs, csSp, csSpD, csD, csGr, csGrD, fries, friesL, chips, sM, sC, sS, sideSal, fruitCup,
-<<<<<<< Updated upstream
-            wrapMeal, brownie, cookie, iceDream, softDrinkM, softDrinkL, teaM, teaL, sunjM, sunjL, frosLemonade,
-            frosCoffee, milkshakeCC, milkshakeCH, milkshakeS, milkshakeV;
-
-=======
             wrap1, brownie, cookie, iceDream, softDrinkM, softDrinkL, teaM, teaL, sunjM, sunjL, frosLemonade,
             frosCoffee, milkshakeCC, milkshakeCH, milkshakeS, milkshakeV,n12Meal,gn8Meal, 
             gn12Meal, csMeal, csDMeal,csSpMeal, csSpDMeal, csGrMeal, csGrDMeal, n8Meal, wrapMeal, water;
->>>>>>> Stashed changes
     @FXML
     Label priceDisplay;
 
@@ -107,11 +101,7 @@ public class ControllerCashier {
             currentOrder.addItem(new OrderItem("side salad", 55)); 
         } else if (b.equals(fruitCup)) {
             currentOrder.addItem(new OrderItem("fruit cup", 54)); 
-<<<<<<< Updated upstream
-        } else if (b.equals(wrap)) {
-=======
         } else if (b.equals(wrap1)) {
->>>>>>> Stashed changes
             currentOrder.addItem(new OrderItem("chicken cool wrap", 37)); 
         } else if (b.equals(chips)) {
             currentOrder.addItem(new OrderItem("waffle chips", 53)); 
@@ -168,18 +158,9 @@ public class ControllerCashier {
         } else if (b.equals(milkshakeS)) {
             currentOrder.addItem(new OrderItem("strawberry milkshake", 22));
         } else if (b.equals(milkshakeV)) {
-<<<<<<< Updated upstream
             currentOrder.addItem(new OrderItem("vanilla milkshake", 21));
         }
         priceDisplay.setText("Total: " + "$" + String.format("%.2f", currentOrder.getPrice()));
-=======
-            currentOrder.addItem(new OrderItem("vanilla milkshake", 21)); 
-        } else if (b.equals(water)) {
-            currentOrder.addItem(new OrderItem("water bottle", 41)); 
-        }
-
-        priceDisplay.setText("Total: " + String.format("%.2f", currentOrder.getPrice()) + "$");
->>>>>>> Stashed changes
     }
 
     public void handleNewOrder() {
