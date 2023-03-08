@@ -56,16 +56,27 @@ public class ControllerInventoryAdd {
     }
 
     //Takes in the Quantity and itemID and changes the Quantity in the database
-    public void updateQuantity(ActionEvent event) throws SQLException , IOException  {
-    if (inventoryId.getText().equals("") || quantity.getText().equals("")) {
-            System.out.println("input value");
-    } 
-    else {
-        int itemId = Integer.parseInt(inventoryId.getText());
-        int quantity_query = Integer.parseInt(quantity.getText());
-        conn.performQuery("UPDATE inventory SET quantity = "+quantity_query+" WHERE item_id = "+itemId+";");
+    public void updateItem(ActionEvent event) throws SQLException , IOException  {
+        if (inventoryId.getText().equals("")) {
+                System.out.println("input value inventory ID");
+        } 
+        else {
+            if(quantity.getText().equals("") && itemName.getText().equals("")) {
+                System.out.println("input value quantity or item Name");
+            }
+            else {
+                int itemId = Integer.parseInt(inventoryId.getText());
+                if (quantity.getText() != "") {
+                    int quantityQuery = Integer.parseInt(quantity.getText());
+                    conn.performQuery("UPDATE inventory SET quantity = "+quantityQuery+" WHERE item_id = "+itemId+";");
+                }
+                if (itemName.getText() != "") {
+                    String nameQuery = itemName.getText();
+                    conn.performQuery("UPDATE inventory SET item_name = '"+nameQuery+"' WHERE item_id = "+itemId+";");
+                }
+             }
+        }
     }
-}
 
 public void addItem(ActionEvent event) throws SQLException , IOException  {
     if (quantity.getText().equals("")||itemName.getText().equals("")) {
@@ -88,3 +99,4 @@ public void addItem(ActionEvent event) throws SQLException , IOException  {
     }
 }
 }
+

@@ -7,14 +7,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chickfila.manager.ControllerInventoryAdd">
    <children>
-      <Button layoutX="435.0" layoutY="379.0" mnemonicParsing="false" onAction="#updateQuantity" text="Modify Quantity" />
+      <Button layoutX="435.0" layoutY="379.0" mnemonicParsing="false" onAction="#updateItem" text="Modify Item" />
       <TextField fx:id="inventoryId" layoutX="264.0" layoutY="102.0" />
-      <TextField fx:id="quantity" layoutX="263.0" layoutY="222.0" />
-      <Text layoutX="315.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Item ID" />
-      <Text layoutX="315.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" />
+      <TextField fx:id="quantity" layoutX="262.0" layoutY="182.0" />
+      <Text layoutX="293.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Item ID" />
+      <Text layoutX="314.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" />
       <Button layoutX="45.0" layoutY="44.0" mnemonicParsing="false" onAction="#closeButtonAction" text="back" />
       <Button fx:id="addButton" layoutX="150.0" layoutY="379.0" mnemonicParsing="false" onAction="#addItem" text="Add new ingredient" />
-      <TextField fx:id="itemName" layoutX="264.0" layoutY="324.0" />
-      <Text layoutX="308.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name" />
+      <TextField fx:id="itemName" layoutX="261.0" layoutY="267.0" />
+      <Text layoutX="307.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name" />
    </children>
 </AnchorPane>
