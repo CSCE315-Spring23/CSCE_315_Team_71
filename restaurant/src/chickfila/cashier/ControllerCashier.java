@@ -14,6 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
@@ -27,6 +29,9 @@ public class ControllerCashier {
     private DB conn;
     private HashMap<Integer, String[]> menu;
     private Order currentOrder;
+
+    @FXML 
+    Tab newItemTab;
 
     @FXML
     Button newOrder;
@@ -43,7 +48,29 @@ public class ControllerCashier {
             frosCoffee, milkshakeCC, milkshakeCH, milkshakeS, milkshakeV, n12Meal, gn8Meal,
             gn12Meal, csMeal, csDMeal, csSpMeal, csSpDMeal, csGrMeal, csGrDMeal, n8Meal, wrapMeal, water;
     @FXML
-    Label priceDisplay,taxDisplay, subtotalDisplay;
+    Label priceDisplay, taxDisplay, subtotalDisplay;
+
+    @FXML 
+    AnchorPane newMenuItems;
+
+    public void addNewItems(ActionEvent event) throws SQLException {
+        ResultSet newItems = conn.select("SELECT * FROM menu_items WHERE menu_item_id > 55;");
+
+        while (newItems.next()) {
+            String nbName = newItems.getString("menu_item_name");
+            int nbID = newItems.getInt("menu_item_id");
+            System.out.println(nbName);
+            Button b = new Button(nbName);
+
+            b.setOnAction(e -> {
+                currentOrder.addItem(new OrderItem(nbName, nbID));
+            });
+
+            AnchorPane selected = (AnchorPane) ((Tab) event.getSource()).getContent();
+            selected.getChildren().add(b);
+
+        }
+    }
 
     public void initialize() {
     }
@@ -82,7 +109,7 @@ Handles the click of a menu item button and adds the corresponding item to the c
 */
     public void handleClick(ActionEvent event) {
         Button b = (Button) event.getSource();
-
+    
         if (b.equals(n8)) {
             currentOrder.addItem(new OrderItem("nuggets (8ct)", 6));
         } else if (b.equals(n12)) {
@@ -191,18 +218,39 @@ Handles the click of a menu item button and adds the corresponding item to the c
 
     }
 
+    /**
+     * 
+     * Handles the inventory for a given order item by updating the quantity of each
+     * ingredient in the database.
+     * Retrieves the recipe for the menu item associated with the order item and
+     * updates the quantity of each ingredient
+     * accordingly.
+     * 
+     * @param item the order item to handle the inventory for
+     * @throws SQLException if a database access error occurs
+     */
     public void handleInventory(OrderItem item) throws SQLException {
         ResultSet recipe = conn.select(String.format("SELECT * FROM recipes WHERE menu_item_id = %d", item.getID()));
 
         while (recipe.next()) {
             int invID = recipe.getInt("inventory_id");
+            int q = recipe.getInt("quantity");
             conn.performQuery(String.format("UPDATE inventory SET quantity = quantity - %d WHERE item_id = %d;",
-                    item.getQuantity(), invID)); 
+                    item.getQuantity() * q, invID));
         }
 
         System.out.println("asgege");
     }
 
+    /**
+     * 
+     * Completes the current order by inserting it into the database as a new order
+     * with paid status and current time,
+     * and updating the inventory for each order item. After the order is completed,
+     * a new empty order is created.
+     * 
+     * @throws SQLException if a database access error occurs
+     */
     public void handleCompleteOrder() throws SQLException {
         if (currentOrder.isEmpty()) {
             System.out.println("nothing in order");
@@ -232,6 +280,8 @@ Handles the click of a menu item button and adds the corresponding item to the c
 
         handleNewOrder();
     }
+
+
 
     public void setConnection(DB db, HashMap<Integer, String[]> menu) {
         conn = db;
