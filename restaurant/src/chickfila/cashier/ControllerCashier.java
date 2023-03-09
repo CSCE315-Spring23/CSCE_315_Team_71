@@ -6,6 +6,7 @@ import java.sql.*;
 
 import chickfila.Controller;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import chickfila.logic.DB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,7 +31,9 @@ public class ControllerCashier {
     private HashMap<Integer, String[]> menu;
     private Order currentOrder;
 
-    @FXML 
+    private boolean isSet;
+
+    @FXML
     Tab newItemTab;
 
     @FXML
@@ -50,39 +53,56 @@ public class ControllerCashier {
     @FXML
     Label priceDisplay, taxDisplay, subtotalDisplay;
 
-    @FXML 
+    @FXML
     AnchorPane newMenuItems;
 
-    public void addNewItems(ActionEvent event) throws SQLException {
+    public void addNewItems() throws SQLException {
+
+        if (isSet) {
+            return;
+        }
+
         ResultSet newItems = conn.select("SELECT * FROM menu_items WHERE menu_item_id > 55;");
 
+        int numNew = 0;
         while (newItems.next()) {
             String nbName = newItems.getString("menu_item_name");
             int nbID = newItems.getInt("menu_item_id");
-            System.out.println(nbName);
             Button b = new Button(nbName);
 
             b.setOnAction(e -> {
                 currentOrder.addItem(new OrderItem(nbName, nbID));
+                updateDisplay();
             });
 
-            AnchorPane selected = (AnchorPane) ((Tab) event.getSource()).getContent();
-            selected.getChildren().add(b);
+            b.setPadding(new Insets(20, 20, 20, 20));
+            b.setLayoutX(10 + (numNew % 4) * 150);
+            b.setLayoutY(30 + (numNew / 4) * 100);
+
+            newMenuItems.getChildren().add(b);
+
+            numNew++;
 
         }
+
+        System.out.println(numNew);
+        isSet = true;
     }
 
     public void initialize() {
+        isSet = false;
     }
 
     /**
-
-Handles the action of clicking the back button by loading the "start.fxml" file and setting the connection and menu properties of the controller.
-
-@param event The event object representing the action of clicking the back button.
-
-@throws IOException If an error occurs while loading the "start.fxml" file.
-*/
+     * 
+     * Handles the action of clicking the back button by loading the "start.fxml"
+     * file and setting the connection and menu properties of the controller.
+     * 
+     * @param event The event object representing the action of clicking the back
+     *              button.
+     * 
+     * @throws IOException If an error occurs while loading the "start.fxml" file.
+     */
     public void handleBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../start.fxml"));
         Parent root = loader.load();
@@ -94,22 +114,17 @@ Handles the action of clicking the back button by loading the "start.fxml" file 
         stage.setScene(scene);
     }
 
-    public void setConnection(DB db) {
-        conn = db;
-        System.out.println("asdfasgegegege2");
-    }
-
-
-    
-/**
-
-Handles the click of a menu item button and adds the corresponding item to the current order.
-
-@param event The ActionEvent object representing the click of a menu item button.
-*/
+    /**
+     * 
+     * Handles the click of a menu item button and adds the corresponding item to
+     * the current order.
+     * 
+     * @param event The ActionEvent object representing the click of a menu item
+     *              button.
+     */
     public void handleClick(ActionEvent event) {
         Button b = (Button) event.getSource();
-    
+
         if (b.equals(n8)) {
             currentOrder.addItem(new OrderItem("nuggets (8ct)", 6));
         } else if (b.equals(n12)) {
@@ -204,10 +219,7 @@ Handles the click of a menu item button and adds the corresponding item to the c
             currentOrder.addItem(new OrderItem("vanilla milkshake", 21));
         }
 
-        double subtotal = (currentOrder.getPrice()) / 1.0825;
-        subtotalDisplay.setText("Subtotal: " + "$" + String.format("%.2f", subtotal));
-        taxDisplay.setText("Tax: " + "$" + String.format("%.2f", (subtotal * 0.0825)));
-        priceDisplay.setText("Total: " + "$" + String.format("%.2f", currentOrder.getPrice()));
+        updateDisplay();
     }
 
     public void handleNewOrder() {
@@ -239,7 +251,6 @@ Handles the click of a menu item button and adds the corresponding item to the c
                     item.getQuantity() * q, invID));
         }
 
-        System.out.println("asgege");
     }
 
     /**
@@ -281,12 +292,16 @@ Handles the click of a menu item button and adds the corresponding item to the c
         handleNewOrder();
     }
 
-
-
     public void setConnection(DB db, HashMap<Integer, String[]> menu) {
         conn = db;
         this.menu = menu;
         currentOrder = new Order(menu);
-        System.out.println("asdfasgegegege2");
+    }
+
+    private void updateDisplay() {
+        double subtotal = (currentOrder.getPrice()) / 1.0825;
+        subtotalDisplay.setText("Subtotal: " + "$" + String.format("%.2f", subtotal));
+        taxDisplay.setText("Tax: " + "$" + String.format("%.2f", (subtotal * 0.0825)));
+        priceDisplay.setText("Total: " + "$" + String.format("%.2f", currentOrder.getPrice()));
     }
 }

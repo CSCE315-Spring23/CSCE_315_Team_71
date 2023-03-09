@@ -515,7 +515,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="newItemTab" text="New Items">
+            <Tab fx:id="newItemTab" onSelectionChanged="#addNewItems" text="New Items">
                <content>
                   <AnchorPane fx:id="newMenuItems" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
