@@ -108,7 +108,6 @@ public class ControllerManager implements Initializable {
     public void setConnection(DB db, HashMap<Integer, String[]> menu) {
         conn = db;
         this.menu = menu;
-        System.out.println("asdfasgegegege3");
     }
 
     //switches to sales report stage. This just opens the seperate fxml file. Sales report code goes in ControllerSales

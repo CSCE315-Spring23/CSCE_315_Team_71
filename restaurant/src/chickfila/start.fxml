@@ -5,12 +5,19 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chickfila.Controller">
     <children>
 
-      <Button fx:id="cashier" layoutX="461.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleCashier" prefHeight="125.0" prefWidth="278.0" text="Cashier" />
-      <Button fx:id="manager" layoutX="461.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleManager" prefHeight="125.0" prefWidth="278.0" text="Manager" />
+      <Button fx:id="cashier" layoutX="461.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleCashier" prefHeight="125.0" prefWidth="278.0" style="-fx-background-color: E51636;" text="Cashier" textFill="WHITE">
+         <font>
+            <Font size="40.0" />
+         </font></Button>
+      <Button fx:id="manager" layoutX="461.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleManager" prefHeight="125.0" prefWidth="278.0" style="-fx-background-color: E51636;" text="Manager" textFill="WHITE">
+         <font>
+            <Font size="40.0" />
+         </font></Button>
       <ImageView fitHeight="297.0" fitWidth="539.0" layoutX="331.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resource/logo.png" />

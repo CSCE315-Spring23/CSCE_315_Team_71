@@ -25,7 +25,11 @@ public class Controller {
     Button cashier, manager;
 
     public void initialize() {
+        cashier.setOnMouseEntered(e -> cashier.setStyle("-fx-background-color: #ff3c46;"));
+        cashier.setOnMouseExited(e -> cashier.setStyle("-fx-background-color: #e60e33;"));
 
+        manager.setOnMouseEntered(e -> manager.setStyle("-fx-background-color: #ff3c46;"));
+        manager.setOnMouseExited(e -> manager.setStyle("-fx-background-color: #e60e33;"));
     }
 
     public void handleCashier(ActionEvent event) throws IOException {
@@ -58,7 +62,6 @@ public class Controller {
     public void setConnection(DB db, HashMap<Integer, String[]> menu) {
         conn = db;
         this.menu = menu;
-        System.out.println("asdfasgegegege");
     }
 
 }

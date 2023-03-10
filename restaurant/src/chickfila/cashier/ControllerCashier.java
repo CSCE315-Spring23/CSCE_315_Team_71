@@ -78,6 +78,7 @@ public class ControllerCashier {
             b.setPadding(new Insets(20, 20, 20, 20));
             b.setLayoutX(10 + (numNew % 4) * 150);
             b.setLayoutY(30 + (numNew / 4) * 100);
+            b.setPrefSize(175, 65);
 
             newMenuItems.getChildren().add(b);
 
@@ -85,7 +86,6 @@ public class ControllerCashier {
 
         }
 
-        System.out.println(numNew);
         isSet = true;
     }
 
