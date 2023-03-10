@@ -32,26 +32,55 @@ public class ControllerManager implements Initializable {
     @FXML
     private TextField ingredientlist;
     @FXML
+    private TextField quantityIngredient;
+    @FXML
     private Button addOrder;
     @FXML
     private TextField price;
     @FXML
     private Button menu_item;
 
+
+    @FXML
+    private Button addIngredient;
+
+    protected String ingredientString;
     private HashMap<String, Integer> inventory;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ingredientString = "";
         inventory = new HashMap<String, Integer>();
     }
 
+    public void ingredientAdder(ActionEvent event) {
+        if(ingredientlist.getText().equals("") || quantityIngredient.getText().equals("")){
+            System.out.println("needs the values");
+        }else{
+            if(ingredientString.equals("")){
+                ingredientString+=(ingredientlist.getText()+","+quantityIngredient.getText());
+            }else{
+                ingredientString+=("-"+ingredientlist.getText()+","+quantityIngredient.getText());
+            }
+        }
+        System.out.println("succesfully added "+ingredientlist.getText());
+        ingredientlist.setText("");
+        quantityIngredient.setText("");
+        
+    }
     // creates order when add order is clicked on
     //see instruction on the app to see how the string format is implemented and how parsing works.
     //FIXME: WON'T WORK IF INPUT ISN'T PROVIDED IN SPECIFIC FORMAT AND IF NAME OF INGREDIENT ISN'T THE EXACT SAME AS INGREDIENTS. NEED TO USE TRY CATCH FOR IT
     public void orderCreation(ActionEvent event) throws SQLException {
-    
-        if(item_name.getText().equals("") || ingredientlist.getText().equals("")||price.getText().equals("")){
-            System.out.println("input value");
-        }else{
+        boolean noInput = false;
+        boolean noIng = false;
+        if(item_name.getText().equals("") ||price.getText().equals("")){
+            System.out.println("input value in name and price");
+            noInput = true;
+        }if(ingredientString.equals("")){
+            System.out.println("ingredients haven't been uploaded");
+            noIng = true;
+        }
+        if(noIng == false && noInput == false){
             Integer max_id = 0;
             ResultSet salesFetch = conn.select("SELECT MAX(menu_item_id) FROM menu_items;");
             while(salesFetch.next()){
@@ -60,7 +89,8 @@ public class ControllerManager implements Initializable {
                 System.out.println(max_id);
             }
             Integer newMenuId= max_id +1;
-            String ingredients = ingredientlist.getText();
+            String ingredients = ingredientString;
+            ingredientString = "";
             String[] splitString = ingredients.split("-");
             double price1 = Double.parseDouble(price.getText());
             
@@ -73,9 +103,18 @@ public class ControllerManager implements Initializable {
                 //conn.performQuery("INSERT INTO recipes (menu_item_id, inventory_id, quantity)");
                 String[] commaSplit = splitString[i].split(",");
                 //inventory.get(commaSplit[0]);
-                System.out.println(inventory.get(commaSplit[0]));
-                System.out.println(commaSplit[1]);
-                conn.performQuery("INSERT INTO recipes (menu_item_id,inventory_id,quantity) VALUES ("+newMenuId+", "+inventory.get(commaSplit[0])+","+commaSplit[1]+");");
+                if(inventory.containsKey(commaSplit[0])){
+                    System.out.println(inventory.get(commaSplit[0]));
+                    System.out.println(commaSplit[1]);
+                    conn.performQuery("INSERT INTO recipes (menu_item_id,inventory_id,quantity) VALUES ("+newMenuId+", "+inventory.get(commaSplit[0])+","+commaSplit[1]+");");
+                }else{
+                    ingredientString = "";
+                    System.out.println("fix ingredients entered as they are not in the available ingredients");
+                    item_name.setText("");
+                    price.setText("");
+                    break;
+
+                }
             }
             System.out.println("success");
         }

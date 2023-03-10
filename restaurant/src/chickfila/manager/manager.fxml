@@ -3,27 +3,51 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chickfila.manager.ControllerManager">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #FBF9F3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chickfila.manager.ControllerManager">
    <children>
-      <Button fx:id="addOrder" layoutX="449.0" layoutY="459.0" mnemonicParsing="false" onAction="#orderCreation" text="addOrder" />
-      <Button fx:id="back" layoutX="104.0" layoutY="67.0" mnemonicParsing="false" onAction="#handleBack" text="back" />
-      <Button layoutX="279.0" layoutY="67.0" mnemonicParsing="false" onAction="#showSales" text="Sales report" />
-      <Button layoutX="502.0" layoutY="67.0" mnemonicParsing="false" onAction ="#showOrders" text="order history" />
-      <Text layoutX="113.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU CREATION:" />
-      <Text layoutX="145.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="item_name:" />
-      <Text layoutX="134.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="item ingredients:" />
-      <TextField fx:id="ingredientlist" layoutX="233.0" layoutY="262.0" />
-      <TextField fx:id="item_name" layoutX="233.0" layoutY="236.0" />
-      <Text layoutX="186.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INSTRUCTIONS TO MAKE A NEW MENU ITEM: " />
-      <Text layoutX="449.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WRITE DOWN MENU INGREDIENTS IN THE TEXT FIELD ITEM INGREDIENTS. FORMAT IS &quot;&lt;INGREDIENT&gt;,&lt;QUANTITY&gt;|&lt;NEW INGREDIENT&gt;,&lt;QUANTITY&gt;...&quot;" wrappingWidth="359.109375" />
-      <Text layoutX="422.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXAMPLE: &quot;chickenNugget,10-waffleFries,1&quot;" />
-      <Text layoutX="371.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WRITE DOWN THE ITEM_NAME AND ITEM INGREDIENTS AND CLICK ON ADD ORDER" />
-      <TextField fx:id="price" layoutX="233.0" layoutY="290.0" />
-      <Text layoutX="164.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
-      <Button fx:id="menu_item" layoutX="284.0" layoutY="122.0" mnemonicParsing="false" onAction="#showMenu" text="Menu Items" />
-      <Button layoutX="653.0" layoutY="67.0" mnemonicParsing="false" onAction="#showInventory" text="Inventory" />
-      <Button layoutX="653.0" layoutY="122.0" mnemonicParsing="false" onAction="#showInventoryAdd" text="Mod_Inventory" />
+      <AnchorPane layoutX="195.0" layoutY="207.0" prefHeight="472.0" prefWidth="625.0" style="-fx-background-color: #E5173F;">
+         <children>
+            <Text layoutX="340.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXAMPLE: &quot;chickenNugget,10-waffleFries,1&quot;" />
+            <Text layoutX="54.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WRITE DOWN THE ITEM_NAME AND ITEM INGREDIENTS AND CLICK ON ADD ORDER" />
+            <TextField fx:id="item_name" layoutX="250.0" layoutY="211.0" />
+            <TextField fx:id="ingredientlist" layoutX="250.0" layoutY="57.0" />
+            <TextField fx:id="price" layoutX="250.0" layoutY="259.0" />
+            <Text layoutX="14.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INSTRUCTIONS TO MAKE A NEW MENU ITEM: " />
+            <Text fill="#004f71" layoutX="123.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM NAME:">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Text>
+            <Text layoutX="147.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="item ingredients:" />
+            <Text layoutX="156.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
+            <Button fx:id="addIngredient" layoutX="278.0" layoutY="141.0" mnemonicParsing="false" onAction="#ingredientAdder" text="add ingredient" />
+            <TextField fx:id="quantityIngredient" layoutX="253.0" layoutY="98.0" />
+            <Text layoutX="169.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Button fx:id="addOrder" layoutX="245.0" layoutY="301.0" mnemonicParsing="false" onAction="#orderCreation" prefHeight="94.0" prefWidth="166.0" text="addOrder" />
+         </children>
+      </AnchorPane>
+      <Text fill="#004f71" layoutX="111.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU CREATION:">
+         <font>
+            <Font name="System Bold" size="51.0" />
+         </font></Text>
+      <HBox prefHeight="100.0" prefWidth="1000.0">
+         <children>
+            <Button fx:id="back" mnemonicParsing="false" onAction="#handleBack" prefHeight="103.0" prefWidth="176.0" text="back" />
+            <Button mnemonicParsing="false" onAction="#showSales" prefHeight="121.0" prefWidth="223.0" text="Sales report" />
+            <Button mnemonicParsing="false" onAction="#showOrders" prefHeight="138.0" prefWidth="228.0" text="order history" />
+            <Button fx:id="menu_item" mnemonicParsing="false" onAction="#showMenu" prefHeight="246.0" prefWidth="207.0" text="Menu Items" />
+            <Button mnemonicParsing="false" onAction="#showInventory" prefHeight="100.0" prefWidth="194.0" text="INVENTORY" textFill="#dd0032">
+               <font>
+                  <Font name="Gloucester MT Extra Condensed" size="26.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#showInventoryAdd" prefHeight="100.0" prefWidth="217.0" text="Mod_Inventory" />
+         </children>
+      </HBox>
+      <Text fill="#dd0032" layoutX="328.0" layoutY="704.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WRITE DOWN MENU INGREDIENTS IN THE TEXT FIELD ITEM INGREDIENTS. FORMAT IS &quot;&lt;INGREDIENT&gt;,&lt;QUANTITY&gt;|&lt;NEW INGREDIENT&gt;,&lt;QUANTITY&gt;...&quot;" wrappingWidth="359.109375" />
    </children>
 </AnchorPane>
