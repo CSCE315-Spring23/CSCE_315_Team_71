@@ -11,22 +11,31 @@
    <children>
       <AnchorPane layoutX="195.0" layoutY="207.0" prefHeight="472.0" prefWidth="625.0" style="-fx-background-color: #E5173F;">
          <children>
-            <Text layoutX="340.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXAMPLE: &quot;chickenNugget,10-waffleFries,1&quot;" />
-            <Text layoutX="54.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WRITE DOWN THE ITEM_NAME AND ITEM INGREDIENTS AND CLICK ON ADD ORDER" />
             <TextField fx:id="item_name" layoutX="250.0" layoutY="211.0" />
             <TextField fx:id="ingredientlist" layoutX="250.0" layoutY="57.0" />
             <TextField fx:id="price" layoutX="250.0" layoutY="259.0" />
-            <Text layoutX="14.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INSTRUCTIONS TO MAKE A NEW MENU ITEM: " />
             <Text fill="#004f71" layoutX="123.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM NAME:">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Text>
-            <Text layoutX="147.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="item ingredients:" />
-            <Text layoutX="156.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
+            <Text fill="#004f71" layoutX="117.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INGREDIENTS:">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Text>
+            <Text fill="#004f71" layoutX="179.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRICE:">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Text>
             <Button fx:id="addIngredient" layoutX="278.0" layoutY="141.0" mnemonicParsing="false" onAction="#ingredientAdder" text="add ingredient" />
-            <TextField fx:id="quantityIngredient" layoutX="253.0" layoutY="98.0" />
-            <Text layoutX="169.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <TextField fx:id="quantityIngredient" layoutX="250.0" layoutY="99.0" />
+            <Text fill="#004f71" layoutX="133.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUANTITY:">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Text>
             <Button fx:id="addOrder" layoutX="245.0" layoutY="301.0" mnemonicParsing="false" onAction="#orderCreation" prefHeight="94.0" prefWidth="166.0" text="addOrder" />
          </children>
       </AnchorPane>
@@ -48,6 +57,29 @@
             <Button mnemonicParsing="false" onAction="#showInventoryAdd" prefHeight="100.0" prefWidth="217.0" text="Mod_Inventory" />
          </children>
       </HBox>
-      <Text fill="#dd0032" layoutX="328.0" layoutY="704.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WRITE DOWN MENU INGREDIENTS IN THE TEXT FIELD ITEM INGREDIENTS. FORMAT IS &quot;&lt;INGREDIENT&gt;,&lt;QUANTITY&gt;|&lt;NEW INGREDIENT&gt;,&lt;QUANTITY&gt;...&quot;" wrappingWidth="359.109375" />
+      <AnchorPane layoutX="701.0" layoutY="542.0" prefHeight="232.0" prefWidth="263.0" style="-fx-background-color: #f65e5e;">
+         <children>
+            <Text fill="#007061" layoutX="14.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INSTRUCTIONS:">
+               <font>
+                  <Font name="System Bold" size="33.0" />
+               </font>
+            </Text>
+            <Text fill="#007061" layoutX="4.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write each inredient and its quantity and then press add ingredient" wrappingWidth="267.21875">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Text fill="#007061" layoutX="4.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat for each ingredient in menu">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Text fill="#007061" layoutX="4.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="After all ingredients are added, enter item name and price and press addOrder" wrappingWidth="267.21875">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
