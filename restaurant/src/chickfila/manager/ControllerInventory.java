@@ -1,7 +1,6 @@
 package chickfila.manager;
 
 import java.io.IOException;
-import chickfila.manager.sales;
 import java.sql.*;
 import java.util.*;
 
@@ -28,8 +27,10 @@ import chickfila.logic.dbSetup;
  * @author Alan Nguyen
  */
 public class ControllerInventory {
+
     private DB conn;
     private HashMap<Integer, String[]> menu;
+
     @FXML
     private TableView<inventory> tableView;
     @FXML
@@ -43,22 +44,30 @@ public class ControllerInventory {
     @FXML
     private TableColumn<inventory, String> nameColumn;
 
+    public ControllerInventory(DB conn, HashMap<Integer, String[]> menu) {
+        this.conn = conn;
+        this.menu = menu;
+    }
+
     /**
-
-    * This method is called when the "close" button is pressed in the UI. It loads the "manager.fxml" file and sets up the
-
-    * connection and menu for the controller. Then, it creates a new scene using the root, and sets the scene to be displayed
-
-    * in the current stage.
-
-    * @param event The action event triggered by the "close" button press
-
-    * @throws IOException If there is an error loading the "manager.fxml" file
-    */
+     * 
+     * This method is called when the "close" button is pressed in the UI. It loads
+     * the "manager.fxml" file and sets up the
+     * 
+     * connection and menu for the controller. Then, it creates a new scene using
+     * the root, and sets the scene to be displayed
+     * 
+     * in the current stage.
+     * 
+     * @param event The action event triggered by the "close" button press
+     * 
+     * @throws IOException If there is an error loading the "manager.fxml" file
+     */
     public void closeButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager.fxml"));
+        ControllerManager c = new ControllerManager(conn, menu);
+        loader.setController(c);
         Parent root = loader.load();
-        ((ControllerManager) loader.getController()).setConnection(conn, menu);
 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -71,24 +80,21 @@ public class ControllerInventory {
         loadInventory();
     }
 
-    public void setConnection(DB db, HashMap<Integer, String[]> menu) {
-        conn = db;
-        this.menu = menu;
-        System.out.println("asdfasgegegege3");
-    }
-    
     /**
-
-    * This method loads the inventory data from the database and displays it in the table view. It sets up the table columns
-
-    * to display the appropriate attributes from the "inventory" class objects. It retrieves the inventory data from the database
-
-    * and adds it to an observable list. Finally, it sets the items of the table view to be the data in the observable list.
-
-    * @throws SQLException If there is an error accessing the database
-
-    * @throws IOException If there is an error reading from the database
-    */
+     * 
+     * This method loads the inventory data from the database and displays it in the
+     * table view. It sets up the table columns
+     * 
+     * to display the appropriate attributes from the "inventory" class objects. It
+     * retrieves the inventory data from the database
+     * 
+     * and adds it to an observable list. Finally, it sets the items of the table
+     * view to be the data in the observable list.
+     * 
+     * @throws SQLException If there is an error accessing the database
+     * 
+     * @throws IOException  If there is an error reading from the database
+     */
     private void loadInventory() throws SQLException, IOException {
         // THESE LINES TELLS THE COLUMNS TO GET THE CERTAIN ATTRIBUTES FROM THE
         // inventoryItem class objects for the certain columns
@@ -98,7 +104,6 @@ public class ControllerInventory {
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<inventory, String>("inventory_item_name"));
 
-        conn = new DB(dbSetup.user, dbSetup.pswd);
         ResultSet inventoryFetch = conn.select("SELECT * FROM inventory ORDER BY item_id;");
 
         ObservableList<inventory> data = FXCollections.observableArrayList();
@@ -110,7 +115,6 @@ public class ControllerInventory {
             ;
             inventory menu = new inventory(menuID, quantity, name);
             data.add(menu);
-            System.out.println(menu);
         }
         // pushing all the menuItems to the table is enough afterwards for the table to
         // be made.

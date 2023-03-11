@@ -1,24 +1,23 @@
 package chickfila.manager;
 
 import java.util.Objects;
+
 public class menuItems {
     private int menu_item_id;
     private String menu_item_name;
     private Double menu_item_price;
     private String size;
-    private Boolean isMeal;
-
-
+    private Boolean is_meal;
 
     public menuItems() {
     }
 
-    public menuItems(int menu_item_id, String menu_item_name, Double menu_item_price, String size, Boolean isMeal) {
+    public menuItems(int menu_item_id, String menu_item_name, Double menu_item_price, String size, Boolean is_meal) {
         this.menu_item_id = menu_item_id;
         this.menu_item_name = menu_item_name;
         this.menu_item_price = menu_item_price;
         this.size = size;
-        this.isMeal = isMeal;
+        this.is_meal = is_meal;
     }
 
     public int getMenu_item_id() {
@@ -53,12 +52,12 @@ public class menuItems {
         this.size = size;
     }
 
-    public Boolean getIsMeal() {
-        return this.isMeal;
+    public Boolean getIs_meal() {
+        return this.is_meal;
     }
 
     public void setIsMeal(Boolean isMeal) {
-        this.isMeal = isMeal;
+        this.is_meal = isMeal;
     }
 
     public menuItems menu_item_id(int menu_item_id) {
@@ -94,22 +93,24 @@ public class menuItems {
             return false;
         }
         menuItems menuItems = (menuItems) o;
-        return menu_item_id == menuItems.menu_item_id && Objects.equals(menu_item_name, menuItems.menu_item_name) && Objects.equals(menu_item_price, menuItems.menu_item_price) && Objects.equals(size, menuItems.size) && Objects.equals(isMeal, menuItems.isMeal);
+        return menu_item_id == menuItems.menu_item_id && Objects.equals(menu_item_name, menuItems.menu_item_name)
+                && Objects.equals(menu_item_price, menuItems.menu_item_price) && Objects.equals(size, menuItems.size)
+                && Objects.equals(is_meal, menuItems.is_meal);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(menu_item_id, menu_item_name, menu_item_price, size, isMeal);
+        return Objects.hash(menu_item_id, menu_item_name, menu_item_price, size, is_meal);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " menu_item_id='" + getMenu_item_id() + "'" +
-            ", menu_item_name='" + getMenu_item_name() + "'" +
-            ", menu_item_price='" + getMenu_item_price() + "'" +
-            ", size='" + getSize() + "'" +
-            ", isMeal='" + getIsMeal() + "'" +
-            "}";
+                " menu_item_id='" + getMenu_item_id() + "'" +
+                ", menu_item_name='" + getMenu_item_name() + "'" +
+                ", menu_item_price='" + getMenu_item_price() + "'" +
+                ", size='" + getSize() + "'" +
+                ", isMeal='" + getIs_meal() + "'" +
+                "}";
     }
 }

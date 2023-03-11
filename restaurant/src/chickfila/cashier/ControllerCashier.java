@@ -2,6 +2,7 @@ package chickfila.cashier;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.ResourceBundle.Control;
 import java.sql.*;
 
 import chickfila.Controller;
@@ -56,6 +57,15 @@ public class ControllerCashier {
     @FXML
     AnchorPane newMenuItems;
 
+    public ControllerCashier(DB conn, HashMap<Integer, String[]> menu) {
+        this.conn = conn;
+        this.menu = menu;
+        this.isSet = false;
+
+        currentOrder = new Order(menu);
+
+    }
+
     public void addNewItems() throws SQLException {
 
         if (isSet) {
@@ -90,7 +100,6 @@ public class ControllerCashier {
     }
 
     public void initialize() {
-        isSet = false;
     }
 
     /**
@@ -105,8 +114,9 @@ public class ControllerCashier {
      */
     public void handleBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../start.fxml"));
+        Controller c = new Controller(conn, menu);
+        loader.setController(c);
         Parent root = loader.load();
-        ((Controller) loader.getController()).setConnection(conn, menu);
 
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -290,12 +300,6 @@ public class ControllerCashier {
         }
 
         handleNewOrder();
-    }
-
-    public void setConnection(DB db, HashMap<Integer, String[]> menu) {
-        conn = db;
-        this.menu = menu;
-        currentOrder = new Order(menu);
     }
 
     private void updateDisplay() {

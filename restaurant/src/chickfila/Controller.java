@@ -24,6 +24,11 @@ public class Controller {
     @FXML
     Button cashier, manager;
 
+    public Controller(DB conn, HashMap<Integer, String[]> menu) {
+        this.conn = conn;
+        this.menu = menu;
+    }
+
     public void initialize() {
         cashier.setOnMouseEntered(e -> cashier.setStyle("-fx-background-color: #ff3c46;"));
         cashier.setOnMouseExited(e -> cashier.setStyle("-fx-background-color: #e60e33;"));
@@ -35,8 +40,9 @@ public class Controller {
     public void handleCashier(ActionEvent event) throws IOException {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./cashier/cashier.fxml"));
+        ControllerCashier c = new ControllerCashier(conn, menu);
+        loader.setController(c);
         Parent root = loader.load();
-        ((ControllerCashier) loader.getController()).setConnection(conn, menu);
 
         Scene scene = new Scene(root);
 
@@ -49,19 +55,15 @@ public class Controller {
     public void handleManager(ActionEvent event) throws IOException {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager/manager.fxml"));
+        ControllerManager c = new ControllerManager(conn, menu);
+        loader.setController(c);
         Parent root = loader.load();
-        ((ControllerManager) loader.getController()).setConnection(conn, menu);
 
         Scene scene = new Scene(root);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
 
-    }
-
-    public void setConnection(DB db, HashMap<Integer, String[]> menu) {
-        conn = db;
-        this.menu = menu;
     }
 
 }

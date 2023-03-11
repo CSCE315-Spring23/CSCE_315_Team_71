@@ -24,8 +24,9 @@ public class Main extends Application {
         loadMenu();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./start.fxml"));
+        Controller c = new Controller(conn, menu);
+        loader.setController(c);
         Parent root = loader.load();
-        ((Controller) loader.getController()).setConnection(conn, menu);
 
         primaryStage.setTitle("Chick-Fil-A");
         primaryStage.setScene(new Scene(root, 1200, 800));
