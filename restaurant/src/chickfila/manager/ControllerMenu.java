@@ -139,4 +139,17 @@ public class ControllerMenu {
         }
     }
 
+    public void removeMenuItem(ActionEvent event) throws SQLException, IOException {
+        if (menuItemInput.getText().equals("")) {
+            System.out.println("input value");
+        } else {
+            // int itemId = Integer.parseInt(inventoryId.getText());
+            int menuID = Integer.parseInt(menuItemInput.getText());
+            conn.performQuery("DELETE FROM menu_items WHERE menu_item_id = "+ menuID +";");
+            conn.performQuery("DELETE FROM recipes WHERE menu_item_id = "+ menuID +";");
+            System.out.println("successnv");
+        }
+        loadMenu();
+    }
+
 }

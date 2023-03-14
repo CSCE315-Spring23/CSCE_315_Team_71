@@ -22,7 +22,8 @@
       <Text layoutX="296.0" layoutY="536.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Item" />
       <TextField fx:id="menuItemInput" layoutX="113.0" layoutY="546.0" promptText="menuItemID" />
       <TextField fx:id="priceInput" layoutX="273.0" layoutY="546.0" promptText="new Price" />
-      <Button layoutX="287.0" layoutY="609.0" mnemonicParsing="false" onAction="#modifyItem" text="Modify Price" />
+      <Button layoutX="221.0" layoutY="609.0" mnemonicParsing="false" onAction="#modifyItem" text="Modify Price" />
       <TextField fx:id="nameInput" layoutX="434.0" layoutY="546.0" promptText="new Name" />
+      <Button layoutX="393.0" layoutY="609.0" mnemonicParsing="false" onAction="#removeMenuItem" text="Delete Menu Item" />
    </children>
 </AnchorPane>
