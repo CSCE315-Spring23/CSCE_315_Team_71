@@ -149,4 +149,15 @@ public class ControllerInventoryAdd {
             System.out.println("successnv");
         }
     }
+
+    public void removeItem(ActionEvent event) throws SQLException, IOException {
+        if (inventoryId.getText().equals("")) {
+            System.out.println("input value");
+        } else {
+            // int itemId = Integer.parseInt(inventoryId.getText());
+            int menuID = Integer.parseInt(inventoryId.getText());
+            conn.performQuery("DELETE FROM inventory WHERE item_id = "+ menuID +";");
+            System.out.println("successnv");
+        }
+    }
 }

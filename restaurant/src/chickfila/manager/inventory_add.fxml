@@ -16,5 +16,6 @@
       <Button fx:id="addButton" layoutX="150.0" layoutY="379.0" mnemonicParsing="false" onAction="#addItem" text="Add new ingredient" />
       <TextField fx:id="itemName" layoutX="261.0" layoutY="267.0" />
       <Text layoutX="307.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name" />
+      <Button layoutX="298.0" layoutY="430.0" mnemonicParsing="false" onAction="#removeItem" text="Delete Item" />
    </children>
 </AnchorPane>
