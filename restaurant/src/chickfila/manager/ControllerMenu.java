@@ -22,6 +22,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import chickfila.logic.DB;
 import chickfila.logic.dbSetup;
+import chickfila.logic.menuItems;
 import javafx.scene.control.TextField;
 
 //BASIC OVERVIEW OF HOW CONTROLLER MENU WORKS: CREATES A TABLEVIEW OBJECT. TABLE VIEW HAS TABLECOLUMN OBJECTS IN IT

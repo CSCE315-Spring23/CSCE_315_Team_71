@@ -27,6 +27,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import chickfila.logic.DB;
 import chickfila.logic.dbSetup;
+import chickfila.logic.sales;
 
 public class ControllerSales {
 
@@ -86,6 +87,9 @@ public class ControllerSales {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
+            firstDate.setText(null);
+            secondDate.setText(null);
         });
     }
 

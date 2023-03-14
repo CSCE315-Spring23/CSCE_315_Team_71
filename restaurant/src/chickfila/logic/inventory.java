@@ -1,4 +1,4 @@
-package chickfila.manager;
+package chickfila.logic;
 
 import java.util.Objects;
 public class inventory {

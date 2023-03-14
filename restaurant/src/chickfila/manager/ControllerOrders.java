@@ -22,6 +22,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import chickfila.logic.DB;
 import chickfila.logic.dbSetup;
+import chickfila.logic.orders;
 import javafx.scene.control.TextField;
 
 public class ControllerOrders {

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="wrap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="wrap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../css/styleCashier.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="newOrder" layoutX="88.0" layoutY="672.0" mnemonicParsing="false" onAction="#handleNewOrder" prefHeight="65.0" prefWidth="125.0" text="newOrder" />
       <Button fx:id="completeOrder" layoutX="573.0" layoutY="672.0" mnemonicParsing="false" onAction="#handleCompleteOrder" prefHeight="65.0" prefWidth="125.0" text="completeOrder" />

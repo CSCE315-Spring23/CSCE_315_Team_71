@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,32 +12,32 @@
    <children>
       <AnchorPane layoutX="272.0" layoutY="191.0" prefHeight="472.0" prefWidth="625.0" style="-fx-background-color: #E5173F;">
          <children>
-            <TextField fx:id="item_name" layoutX="252.0" layoutY="212.0" />
-            <TextField fx:id="ingredientlist" layoutX="250.0" layoutY="57.0" />
-            <TextField fx:id="price" layoutX="252.0" layoutY="258.0" />
-            <Text fill="#004f71" layoutX="123.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM NAME:">
+            <TextField fx:id="item_name" layoutX="239.0" layoutY="271.0" />
+            <TextField fx:id="ingredientlist" layoutX="239.0" layoutY="65.0" />
+            <TextField fx:id="price" layoutX="239.0" layoutY="317.0" />
+            <Text fill="#004f71" layoutX="110.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM NAME:">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Text>
-            <Text fill="#004f71" layoutX="97.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INGREDIENTS:">
+            <Text fill="#004f71" layoutX="86.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INGREDIENTS:">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Text>
-            <Text fill="#004f71" layoutX="181.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRICE:">
+            <Text fill="#004f71" layoutX="168.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRICE:">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Text>
-            <Button fx:id="addIngredient" layoutX="281.0" layoutY="139.0" mnemonicParsing="false" onAction="#ingredientAdder" text="add ingredient" />
-            <TextField fx:id="quantityIngredient" layoutX="250.0" layoutY="99.0" />
-            <Text fill="#004f71" layoutX="133.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUANTITY:">
+            <Button fx:id="addIngredient" layoutX="242.0" layoutY="151.0" mnemonicParsing="false" onAction="#ingredientAdder" prefHeight="73.0" prefWidth="166.0" text="add ingredient" />
+            <TextField fx:id="quantityIngredient" layoutX="239.0" layoutY="107.0" />
+            <Text fill="#004f71" layoutX="122.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUANTITY:">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Text>
-            <Button fx:id="addOrder" layoutX="255.0" layoutY="303.0" mnemonicParsing="false" onAction="#orderCreation" prefHeight="94.0" prefWidth="166.0" text="addOrder" />
+            <Button fx:id="addOrder" layoutX="242.0" layoutY="362.0" mnemonicParsing="false" onAction="#orderCreation" prefHeight="73.0" prefWidth="166.0" text="addOrder" />
          </children>
       </AnchorPane>
       <Text fill="#004f71" layoutX="188.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU CREATION:">
@@ -45,19 +46,34 @@
          </font></Text>
       <HBox prefHeight="100.0" prefWidth="1200.0" AnchorPane.bottomAnchor="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="back" mnemonicParsing="false" onAction="#handleBack" prefHeight="103.0" prefWidth="176.0" text="back" />
-            <Button mnemonicParsing="false" onAction="#showSales" prefHeight="121.0" prefWidth="223.0" text="Sales report" />
-            <Button mnemonicParsing="false" onAction="#showOrders" prefHeight="138.0" prefWidth="228.0" text="order history" />
-            <Button fx:id="menu_item" mnemonicParsing="false" onAction="#showMenu" prefHeight="246.0" prefWidth="207.0" text="Menu Items" />
+            <Button fx:id="back" mnemonicParsing="false" onAction="#handleBack" prefHeight="103.0" prefWidth="176.0" text="BACK" textFill="#dd0032">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#showSales" prefHeight="121.0" prefWidth="223.0" text="SALES" textFill="#dd0032">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#showOrders" prefHeight="100.0" prefWidth="199.0" text="ORDERS" textFill="#dd0032">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font></Button>
+            <Button fx:id="menu_item" mnemonicParsing="false" onAction="#showMenu" prefHeight="100.0" prefWidth="232.0" text="MENU ITEMS" textFill="#dd0032">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font></Button>
             <Button mnemonicParsing="false" onAction="#showInventory" prefHeight="100.0" prefWidth="194.0" text="INVENTORY" textFill="#dd0032">
                <font>
-                  <Font name="Gloucester MT Extra Condensed" size="26.0" />
+                  <Font name="System Bold" size="23.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#showInventoryAdd" prefHeight="100.0" prefWidth="217.0" text="Mod_Inventory" />
+            <Button mnemonicParsing="false" onAction="#showInventoryAdd" prefHeight="100.0" prefWidth="176.0" text="MOD" textFill="#dd0032">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font></Button>
          </children>
       </HBox>
-      <AnchorPane layoutX="778.0" layoutY="526.0" prefHeight="232.0" prefWidth="263.0" style="-fx-background-color: #f65e5e;">
+      <AnchorPane layoutX="778.0" layoutY="526.0" prefHeight="232.0" prefWidth="325.0" style="-fx-background-color: #f65e5e;">
          <children>
             <Text fill="#007061" layoutX="14.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INSTRUCTIONS:">
                <font>
@@ -80,6 +96,9 @@
                </font>
             </Text>
          </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
       </AnchorPane>
    </children>
 </AnchorPane>
