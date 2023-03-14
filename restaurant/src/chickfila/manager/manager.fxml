@@ -7,43 +7,43 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #FBF9F3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #FBF9F3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="195.0" layoutY="207.0" prefHeight="472.0" prefWidth="625.0" style="-fx-background-color: #E5173F;">
+      <AnchorPane layoutX="272.0" layoutY="191.0" prefHeight="472.0" prefWidth="625.0" style="-fx-background-color: #E5173F;">
          <children>
-            <TextField fx:id="item_name" layoutX="250.0" layoutY="211.0" />
+            <TextField fx:id="item_name" layoutX="252.0" layoutY="212.0" />
             <TextField fx:id="ingredientlist" layoutX="250.0" layoutY="57.0" />
-            <TextField fx:id="price" layoutX="250.0" layoutY="259.0" />
+            <TextField fx:id="price" layoutX="252.0" layoutY="258.0" />
             <Text fill="#004f71" layoutX="123.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM NAME:">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Text>
-            <Text fill="#004f71" layoutX="117.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INGREDIENTS:">
+            <Text fill="#004f71" layoutX="97.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INGREDIENTS:">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Text>
-            <Text fill="#004f71" layoutX="179.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRICE:">
+            <Text fill="#004f71" layoutX="181.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRICE:">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Text>
-            <Button fx:id="addIngredient" layoutX="278.0" layoutY="141.0" mnemonicParsing="false" onAction="#ingredientAdder" text="add ingredient" />
+            <Button fx:id="addIngredient" layoutX="281.0" layoutY="139.0" mnemonicParsing="false" onAction="#ingredientAdder" text="add ingredient" />
             <TextField fx:id="quantityIngredient" layoutX="250.0" layoutY="99.0" />
             <Text fill="#004f71" layoutX="133.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUANTITY:">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Text>
-            <Button fx:id="addOrder" layoutX="245.0" layoutY="301.0" mnemonicParsing="false" onAction="#orderCreation" prefHeight="94.0" prefWidth="166.0" text="addOrder" />
+            <Button fx:id="addOrder" layoutX="255.0" layoutY="303.0" mnemonicParsing="false" onAction="#orderCreation" prefHeight="94.0" prefWidth="166.0" text="addOrder" />
          </children>
       </AnchorPane>
-      <Text fill="#004f71" layoutX="111.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU CREATION:">
+      <Text fill="#004f71" layoutX="188.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU CREATION:">
          <font>
             <Font name="System Bold" size="51.0" />
          </font></Text>
-      <HBox prefHeight="100.0" prefWidth="1000.0">
+      <HBox prefHeight="100.0" prefWidth="1200.0" AnchorPane.bottomAnchor="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Button fx:id="back" mnemonicParsing="false" onAction="#handleBack" prefHeight="103.0" prefWidth="176.0" text="back" />
             <Button mnemonicParsing="false" onAction="#showSales" prefHeight="121.0" prefWidth="223.0" text="Sales report" />
@@ -57,7 +57,7 @@
             <Button mnemonicParsing="false" onAction="#showInventoryAdd" prefHeight="100.0" prefWidth="217.0" text="Mod_Inventory" />
          </children>
       </HBox>
-      <AnchorPane layoutX="701.0" layoutY="542.0" prefHeight="232.0" prefWidth="263.0" style="-fx-background-color: #f65e5e;">
+      <AnchorPane layoutX="778.0" layoutY="526.0" prefHeight="232.0" prefWidth="263.0" style="-fx-background-color: #f65e5e;">
          <children>
             <Text fill="#007061" layoutX="14.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INSTRUCTIONS:">
                <font>

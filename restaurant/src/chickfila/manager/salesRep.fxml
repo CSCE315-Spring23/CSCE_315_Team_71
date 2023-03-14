@@ -1,25 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="906.0" prefWidth="1022.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="906.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="backButton" layoutX="60.0" layoutY="50.0" mnemonicParsing="false" onAction="#closeButtonAction" text="close" />
-      <Button fx:id="addSalesRep" layoutX="163.0" layoutY="786.0" mnemonicParsing="false" onAction="#addSalesReport" text="createSalesReport" />
-      <TableView fx:id="tableView" layoutX="163.0" layoutY="150.0" prefHeight="543.0" prefWidth="621.0">
-        <columns>
-          <TableColumn fx:id="idColumn" prefWidth="170.0" text="sales_id" />
-          <TableColumn fx:id="dateColumn" prefWidth="145.0" text="sales_date" />
-            <TableColumn fx:id="totalSalesColumn" prefWidth="159.0" text="total_sales" />
-            <TableColumn fx:id="totalTaxColumn" prefWidth="146.0" text="total_tax" />
-        </columns>
-      </TableView>
-      <TextField fx:id="createSalesReport" layoutX="144.0" layoutY="740.0" />
-      <Text layoutX="60.0" layoutY="736.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Sales Report for a Day, input in YYYY-MM-DD format" />
+      <TabPane fx:id="tabs" layoutX="250.0" layoutY="78.0" prefHeight="750.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Date">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableView" layoutX="6.0" prefHeight="600.0" prefWidth="723.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="idColumn" prefWidth="170.0" text="sales_id" />
+                            <TableColumn fx:id="dateColumn" prefWidth="145.0" text="sales_date" />
+                              <TableColumn fx:id="totalSalesColumn" prefWidth="159.0" text="total_sales" />
+                              <TableColumn fx:id="totalTaxColumn" prefWidth="146.0" text="total_tax" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="addSalesRep" layoutX="282.0" layoutY="663.0" mnemonicParsing="false" onAction="#addSalesReport" text="createSalesReport" />
+                        <TextField fx:id="createSalesReport" layoutX="265.0" layoutY="617.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Items">
+               <content>
+                  <AnchorPane fx:id="p" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="getAmount" layoutX="302.0" layoutY="654.0" mnemonicParsing="false" text="Get Amount" />
+                        <TextField fx:id="firstDate" layoutX="111.0" layoutY="582.0" />
+                        <TextField fx:id="secondDate" layoutX="419.0" layoutY="582.0" />
+                        <Text layoutX="114.0" layoutY="630.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date (YYYY-MM-DD)" />
+                        <Text layoutX="426.0" layoutY="630.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date (YYYY-MM-DD)" />
+                        <TableView fx:id="view" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="nameCol" prefWidth="210.0" text="Item Name" />
+                            <TableColumn fx:id="soldCol" prefWidth="210.0" text="Amount Sold" />
+                              <TableColumn fx:id="mealCol" prefWidth="210.0" text="Meal" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Button fx:id="backButton" layoutX="38.0" layoutY="33.0" mnemonicParsing="false" onAction="#closeButtonAction" text="close" />
    </children>
 </AnchorPane>

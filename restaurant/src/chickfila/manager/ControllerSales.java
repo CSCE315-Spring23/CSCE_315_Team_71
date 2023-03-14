@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import chickfila.Controller;
 import chickfila.logic.DB;
 import javafx.event.ActionEvent;
@@ -17,8 +18,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import chickfila.logic.DB;
@@ -32,19 +36,29 @@ public class ControllerSales {
     @FXML
     private TableView<sales> tableView;
     @FXML
-    private Button backButton;
-    @FXML
-    private Button loadButton;
+    private Button backButton, loadButton;
     @FXML
     private TableColumn<sales, Integer> idColumn;
     @FXML
     private TableColumn<sales, String> dateColumn;
     @FXML
-    private TableColumn<sales, Double> totalSalesColumn;
-    @FXML
-    private TableColumn<sales, Double> totalTaxColumn;
+    private TableColumn<sales, Double> totalSalesColumn, totalTaxColumn;
     @FXML
     private TextField createSalesReport;
+
+    @FXML
+    private TabPane tabs;
+    @FXML
+    private TableView<String[]> view;
+    @FXML
+    private AnchorPane p;
+    @FXML
+    private TextField firstDate, secondDate;
+    @FXML
+    private Button getAmount;
+    @FXML
+    TableColumn<String[], String> nameCol, soldCol, mealCol;
+
 
     public ControllerSales(DB conn, HashMap<Integer, String[]> menu) {
         this.conn = conn;
@@ -65,6 +79,14 @@ public class ControllerSales {
 
     public void initialize() throws SQLException, IOException {
         loadSales();
+
+        getAmount.setOnAction(event -> {
+            try {
+                loadItems(firstDate.getText(), secondDate.getText());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /**
@@ -171,5 +193,29 @@ public class ControllerSales {
         }
 
         return dailySales;
+    }
+
+    public void loadItems(String start, String end) throws SQLException {
+
+        view.getItems().clear();
+        
+        ResultSet itemSoldAmount = conn.select(
+                "SELECT is_meal, menu_item_name, count(*) AS count FROM order_items JOIN orders ON " +
+                        "orders.order_id=order_items.order_id JOIN menu_items ON order_items.menu_item_id = menu_items.menu_item_id "
+                        +
+                        "WHERE order_time::date >= '" + start + "' AND order_time::date <= '" + end
+                        + "' GROUP BY is_meal, menu_item_name ORDER BY menu_item_name;");
+
+        while (itemSoldAmount.next()) {
+            String[] data = new String[3];
+            data[0] = itemSoldAmount.getString("menu_item_name");
+            data[1] = itemSoldAmount.getString("count");
+            data[2] = itemSoldAmount.getString("is_meal");
+            view.getItems().add(data);
+        }
+
+        nameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
+        soldCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[1]));
+        mealCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[2]));
     }
 }
