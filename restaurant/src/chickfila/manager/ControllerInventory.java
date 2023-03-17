@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.Node;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import chickfila.logic.DB;
@@ -39,11 +40,14 @@ public class ControllerInventory {
     @FXML
     private Button loadButton;
     @FXML
-    private TableColumn<inventory, Integer> idColumn;
-    @FXML
-    private TableColumn<inventory, Integer> quantityColumn;
+    private TableColumn<inventory, Integer> idColumn, quantityColumn, minColumn;
     @FXML
     private TableColumn<inventory, String> nameColumn;
+
+    @FXML
+    private TableView<String[]> view;
+    @FXML
+    TableColumn<String[], String> nCol, qCol, mCol;
 
     public ControllerInventory(DB conn, HashMap<Integer, String[]> menu) {
         this.conn = conn;
@@ -79,6 +83,7 @@ public class ControllerInventory {
 
     public void initialize() throws SQLException, IOException {
         loadInventory();
+        loadRestock();
     }
 
     /**
@@ -100,10 +105,9 @@ public class ControllerInventory {
         // THESE LINES TELLS THE COLUMNS TO GET THE CERTAIN ATTRIBUTES FROM THE
         // inventoryItem class objects for the certain columns
         idColumn.setCellValueFactory(new PropertyValueFactory<inventory, Integer>("inventory_item_id"));
-
         quantityColumn.setCellValueFactory(new PropertyValueFactory<inventory, Integer>("quantity"));
-
         nameColumn.setCellValueFactory(new PropertyValueFactory<inventory, String>("inventory_item_name"));
+        minColumn.setCellValueFactory(new PropertyValueFactory<inventory, Integer>("min_amount"));
 
         ResultSet inventoryFetch = conn.select("SELECT * FROM inventory ORDER BY item_id;");
 
@@ -113,12 +117,28 @@ public class ControllerInventory {
             int menuID = inventoryFetch.getInt("item_id");
             int quantity = inventoryFetch.getInt("quantity");
             String name = inventoryFetch.getString("item_name");
-            ;
-            inventory menu = new inventory(menuID, quantity, name);
+            int minAmount = inventoryFetch.getInt("min_amount");
+            inventory menu = new inventory(menuID, quantity, name, minAmount);
             data.add(menu);
         }
         // pushing all the menuItems to the table is enough afterwards for the table to
         // be made.
         tableView.setItems(data);
+    }
+
+    private void loadRestock() throws SQLException {
+        ResultSet restock = conn.select("SELECT * FROM inventory WHERE quantity <= min_amount ORDER BY item_name;");
+
+        while (restock.next()) {
+            String[] data = new String[3];
+            data[0] = restock.getString("item_name");
+            data[1] = restock.getString("quantity");
+            data[2] = restock.getString("min_amount");
+            view.getItems().add(data);
+        }
+
+        nCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
+        qCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[1]));
+        mCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[2]));
     }
 }

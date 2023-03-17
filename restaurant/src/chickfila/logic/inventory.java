@@ -1,20 +1,29 @@
 package chickfila.logic;
 
 import java.util.Objects;
+
 public class inventory {
     private int inventory_item_id;
     private int quantity;
     private String inventory_item_name;
-
-
+    private int min_amount;
 
     public inventory() {
     }
 
-    public inventory(int inventory_item_id, int quantity, String nameString) {
+    public inventory(int inventory_item_id, int quantity, String nameString, int min_amount) {
         this.inventory_item_id = inventory_item_id;
         this.quantity = quantity;
         this.inventory_item_name = nameString;
+        this.min_amount = min_amount;
+    }
+
+    public int getMin_amount() {
+        return this.min_amount;
+    }
+
+    public void setMin_amount() {
+        this.min_amount = min_amount;
     }
 
     public int getInventory_item_id() {
@@ -41,7 +50,6 @@ public class inventory {
         this.inventory_item_name = nameString;
     }
 
-
     public inventory inventory_item_id(int inventory_item_id) {
         setInventory_item_id(inventory_item_id);
         return this;
@@ -57,7 +65,6 @@ public class inventory {
         return this;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -66,7 +73,9 @@ public class inventory {
             return false;
         }
         inventory inventory = (inventory) o;
-        return inventory_item_id == inventory.inventory_item_id && Objects.equals(inventory_item_name, inventory.inventory_item_name) && Objects.equals(quantity, inventory.quantity);
+        return inventory_item_id == inventory.inventory_item_id
+                && Objects.equals(inventory_item_name, inventory.inventory_item_name)
+                && Objects.equals(quantity, inventory.quantity) && Objects.equals(min_amount, inventory.min_amount);
     }
 
     @Override
@@ -77,9 +86,9 @@ public class inventory {
     @Override
     public String toString() {
         return "{" +
-            " menu_item_id='" + getInventory_item_id() + "'" +
-            ", menu_item_name='" + getQuantity() + "'" +
-            ", menu_item_price='" + getInventory_item_name() + "'" +
-            "}";
+                " menu_item_id='" + getInventory_item_id() + "'" +
+                ", menu_item_name='" + getQuantity() + "'" +
+                ", menu_item_price='" + getInventory_item_name() + "'" +
+                "}";
     }
 }

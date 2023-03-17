@@ -42,9 +42,10 @@
                         <Text layoutX="426.0" layoutY="630.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date (YYYY-MM-DD)" />
                         <TableView fx:id="view" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn fx:id="nameCol" prefWidth="210.0" text="Item Name" />
-                            <TableColumn fx:id="soldCol" prefWidth="210.0" text="Amount Sold" />
-                              <TableColumn fx:id="mealCol" prefWidth="210.0" text="Meal" />
+                            <TableColumn fx:id="nameCol" prefWidth="160.0" text="Item Name" />
+                            <TableColumn fx:id="soldCol" prefWidth="160.0" text="Amount Sold" />
+                              <TableColumn fx:id="mealCol" prefWidth="160.0" text="Meal" />
+                              <TableColumn fx:id="sizeCol" prefWidth="160.0" text="Size" />
                           </columns>
                         </TableView>
                      </children>

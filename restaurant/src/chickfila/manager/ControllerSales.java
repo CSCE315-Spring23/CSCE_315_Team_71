@@ -58,7 +58,7 @@ public class ControllerSales {
     @FXML
     private Button getAmount;
     @FXML
-    TableColumn<String[], String> nameCol, soldCol, mealCol;
+    TableColumn<String[], String> nameCol, soldCol, mealCol, sizeCol;
 
 
     public ControllerSales(DB conn, HashMap<Integer, String[]> menu) {
@@ -204,22 +204,24 @@ public class ControllerSales {
         view.getItems().clear();
         
         ResultSet itemSoldAmount = conn.select(
-                "SELECT is_meal, menu_item_name, count(*) AS count FROM order_items JOIN orders ON " +
+                "SELECT size, is_meal, menu_item_name, count(*) AS count FROM order_items JOIN orders ON " +
                         "orders.order_id=order_items.order_id JOIN menu_items ON order_items.menu_item_id = menu_items.menu_item_id "
                         +
                         "WHERE order_time::date >= '" + start + "' AND order_time::date <= '" + end
-                        + "' GROUP BY is_meal, menu_item_name ORDER BY menu_item_name;");
+                        + "' GROUP BY size, is_meal, menu_item_name ORDER BY menu_item_name;");
 
         while (itemSoldAmount.next()) {
-            String[] data = new String[3];
+            String[] data = new String[4];
             data[0] = itemSoldAmount.getString("menu_item_name");
             data[1] = itemSoldAmount.getString("count");
             data[2] = itemSoldAmount.getString("is_meal");
+            data[3] = itemSoldAmount.getString("size");
             view.getItems().add(data);
         }
 
         nameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
         soldCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[1]));
         mealCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[2]));
+        sizeCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[3]));
     }
 }
