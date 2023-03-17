@@ -3,6 +3,8 @@ package chickfila.manager;
 import java.io.IOException;
 import java.sql.*;
 import java.util.*;
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter;  
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -144,8 +146,10 @@ public class ControllerSales {
     public void addSalesReport(ActionEvent event) throws SQLException, IOException {
         double profits;
         double taxes;
-        if (createSalesReport.getText().equals("")) {
-            System.out.println("input value");
+        Button b = (Button)event.getSource();        
+
+        if (createSalesReport.getText().equals("") && (b.getId()).equals("addSalesRep")) {
+            System.out.println("input a date");
         } else {
             // int itemId = Integer.parseInt(inventoryId.getText());
             // int quantity_query = Integer.parseInt(quantity.getText());
@@ -157,18 +161,26 @@ public class ControllerSales {
 
             }
             Integer newSalesRepId = max_id + 1;
-
-            Double sales = getTotalDaySales(createSalesReport.getText());
-
+            Double sales;
+            String date;
+            if((b.getId()).contains("ZReport")) {
+                date = (java.time.LocalDate.now()).toString();
+            }
+            else {
+                date = createSalesReport.getText();
+            }
+            sales = getTotalDaySales(date);
             taxes = sales * 0.0825;
             profits = sales - taxes;
 
             conn.performQuery("INSERT INTO sales (sales_id, sales_date, total_sales, total_tax) VALUES ("
-                    + newSalesRepId + ",'" + createSalesReport.getText() + "' , " + profits + " , " + taxes + ");");
+                    + newSalesRepId + ",'" + date + "' , " + profits + " , " + taxes + ");");
             loadSales();
 
         }
     }
+
+   
 
     /**
      * 
@@ -198,6 +210,7 @@ public class ControllerSales {
 
         return dailySales;
     }
+
 
     public void loadItems(String start, String end) throws SQLException {
 

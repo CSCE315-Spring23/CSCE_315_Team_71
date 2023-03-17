@@ -227,6 +227,8 @@ public class ControllerCashier {
             currentOrder.addItem(new OrderItem("strawberry milkshake", 22));
         } else if (b.equals(milkshakeV)) {
             currentOrder.addItem(new OrderItem("vanilla milkshake", 21));
+        } else if (b.equals(water)) {
+            currentOrder.addItem(new OrderItem("water bottle", 41));
         }
 
         updateDisplay();
@@ -298,8 +300,12 @@ public class ControllerCashier {
 
             handleInventory(item);
         }
-
+        
         handleNewOrder();
+
+        //add TOGO bag
+        conn.performQuery(String.format("UPDATE inventory SET quantity = quantity - 1 WHERE item_id = 59; "));
+
     }
 
     private void updateDisplay() {
