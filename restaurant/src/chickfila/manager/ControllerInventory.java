@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.scene.control.TextField;
 import javafx.scene.Node;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -43,11 +44,18 @@ public class ControllerInventory {
     private TableColumn<inventory, Integer> idColumn, quantityColumn, minColumn;
     @FXML
     private TableColumn<inventory, String> nameColumn;
-
     @FXML
     private TableView<String[]> view;
     @FXML
     TableColumn<String[], String> nCol, qCol, mCol;
+    @FXML
+    private TableView<String[]> excessView;
+    @FXML
+    private Button getExcess;
+    @FXML
+    private TextField timestamp;
+    @FXML
+    TableColumn<String[], String> nameCol, soldCol, qtyCol;
 
     public ControllerInventory(DB conn, HashMap<Integer, String[]> menu) {
         this.conn = conn;
@@ -84,6 +92,16 @@ public class ControllerInventory {
     public void initialize() throws SQLException, IOException {
         loadInventory();
         loadRestock();
+
+        getExcess.setOnAction(event -> {
+            try {
+                loadItems2(timestamp.getText(), (java.time.LocalDate.now()).toString());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            timestamp.setText(null);
+        });
     }
 
     /**
@@ -140,5 +158,49 @@ public class ControllerInventory {
         nCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
         qCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[1]));
         mCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[2]));
+    }
+
+    public void loadItems2(String start, String end) throws SQLException {
+
+        excessView.getItems().clear();
+
+
+        //logic flows from innermost to outermost
+        //TODO: finish up logic 
+        ResultSet itemSoldAmount = conn.select(
+            "SELECT coalesce(j.qty,0) AS qty, item_name, quantity FROM inventory FULL OUTER JOIN "+ 
+
+                "(SELECT inventory_id, quantity*count AS qty FROM "+
+                    
+                    "(SELECT m.menu_item_id, SUM(count) AS count FROM " +
+                        "(SELECT order_items.menu_item_id, quantity*count(*) AS count FROM order_items JOIN orders ON " +
+                                "orders.order_id=order_items.order_id JOIN menu_items ON order_items.menu_item_id = menu_items.menu_item_id "
+                                +
+                                "WHERE order_time::date >= '" + start + "' AND order_time::date <= '" + end
+                                + "' GROUP BY order_items.menu_item_id, quantity ORDER BY menu_item_id) m"+
+                            " GROUP BY menu_item_id) k " +
+
+                    "JOIN recipes ON k.menu_item_id = recipes.menu_item_id GROUP BY inventory_id, qty) j"+
+        
+                " ON j.inventory_id = inventory.item_id" +
+                " WHERE coalesce(j.qty,0) < 0.1*(quantity + coalesce(j.qty,0))" +
+                " GROUP BY item_name, qty, quantity ORDER BY item_name;"
+        );
+
+
+
+        while (itemSoldAmount.next()) {
+            String[] data = new String[3];
+            data[0] = itemSoldAmount.getString("qty");
+            data[1] = itemSoldAmount.getString("item_name");
+            data[2] = itemSoldAmount.getString("quantity");
+            excessView.getItems().add(data);
+        }
+
+        nameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
+        soldCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[1]));
+        qtyCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[2]));
+
+
     }
 }

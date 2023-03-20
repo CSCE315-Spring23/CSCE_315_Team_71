@@ -5,7 +5,9 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -43,6 +45,24 @@
                   </AnchorPane>
             </content>
           </Tab>
+            <Tab text="Excess">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="timestamp" layoutX="249.0" layoutY="503.0" />
+                        <Text layoutX="253.0" layoutY="541.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter start (YYYY-MM-DD)" />
+                        <TableView fx:id="excessView" prefHeight="488.0" prefWidth="700.0">
+                           <columns>
+                              <TableColumn fx:id="nameCol" prefWidth="185.3333282470703" text="Item ID" />
+                              <TableColumn fx:id="soldCol" prefWidth="290.22222900390625" text="Item Name" />
+                              <TableColumn fx:id="qtyCol" prefWidth="223.5555419921875" text="Stock quantity" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="getExcess" layoutX="409.0" layoutY="503.0" mnemonicParsing="false" text="Get Excess" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>

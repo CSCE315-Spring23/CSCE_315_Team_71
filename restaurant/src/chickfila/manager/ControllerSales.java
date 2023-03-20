@@ -158,17 +158,19 @@ public class ControllerSales {
             ResultSet sizeFetch = conn.select("SELECT MAX(sales_id) FROM sales;");
             while (sizeFetch.next()) {
                 max_id = sizeFetch.getInt("max");
-
             }
+
             Integer newSalesRepId = max_id + 1;
             Double sales;
             String date;
+
             if((b.getId()).contains("ZReport")) {
                 date = (java.time.LocalDate.now()).toString();
             }
             else {
                 date = createSalesReport.getText();
             }
+
             sales = getTotalDaySales(date);
             taxes = sales * 0.0825;
             profits = sales - taxes;
@@ -217,19 +219,21 @@ public class ControllerSales {
         view.getItems().clear();
         
         ResultSet itemSoldAmount = conn.select(
-                "SELECT size, is_meal, menu_item_name, count(*) AS count FROM order_items JOIN orders ON " +
+                "SELECT a.size, a.is_meal, a.menu_item_name, SUM(a.count) AS count FROM " +
+                "(SELECT size, is_meal, menu_item_name, quantity*count(*) AS count FROM order_items JOIN orders ON " +
                         "orders.order_id=order_items.order_id JOIN menu_items ON order_items.menu_item_id = menu_items.menu_item_id "
                         +
                         "WHERE order_time::date >= '" + start + "' AND order_time::date <= '" + end
-                        + "' GROUP BY size, is_meal, menu_item_name ORDER BY menu_item_name;");
+                        + "' GROUP BY menu_item_name, is_meal, size, quantity ORDER BY menu_item_name) a GROUP BY menu_item_name, is_meal, size;");
 
         while (itemSoldAmount.next()) {
             String[] data = new String[4];
             data[0] = itemSoldAmount.getString("menu_item_name");
-            data[1] = itemSoldAmount.getString("count");
+            data[1] = itemSoldAmount.getString("count") ;            
             data[2] = itemSoldAmount.getString("is_meal");
             data[3] = itemSoldAmount.getString("size");
             view.getItems().add(data);
+
         }
 
         nameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
