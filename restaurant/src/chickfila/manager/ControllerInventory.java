@@ -166,9 +166,11 @@ public class ControllerInventory {
 
 
         //logic flows from innermost to outermost
-        //TODO: finish up logic 
+        //same logic from sales to get menu iems sold, map with recipes, 
+        //then map with inventory and determine which items has sold less than 10%
         ResultSet itemSoldAmount = conn.select(
-            "SELECT coalesce(j.qty,0) AS qty, item_name, quantity FROM inventory FULL OUTER JOIN "+ 
+        "SELECT item_name, SUM(qty) AS qty, quantity FROM " +
+            "(SELECT coalesce(j.qty,0) AS qty, item_name, quantity FROM inventory FULL OUTER JOIN "+ 
 
                 "(SELECT inventory_id, quantity*count AS qty FROM "+
                     
@@ -183,16 +185,19 @@ public class ControllerInventory {
                     "JOIN recipes ON k.menu_item_id = recipes.menu_item_id GROUP BY inventory_id, qty) j"+
         
                 " ON j.inventory_id = inventory.item_id" +
-                " WHERE coalesce(j.qty,0) < 0.1*(quantity + coalesce(j.qty,0))" +
-                " GROUP BY item_name, qty, quantity ORDER BY item_name;"
+                " WHERE quantity > 0" +
+                " GROUP BY item_name, qty, quantity ORDER BY item_name) n"+ 
+            " GROUP BY item_name, quantity" +
+            " HAVING SUM(qty) < 0.1 * (SUM(qty) + quantity);"
+            
         );
 
 
 
         while (itemSoldAmount.next()) {
             String[] data = new String[3];
-            data[0] = itemSoldAmount.getString("qty");
-            data[1] = itemSoldAmount.getString("item_name");
+            data[0] = itemSoldAmount.getString("item_name");
+            data[1] = itemSoldAmount.getString("qty");
             data[2] = itemSoldAmount.getString("quantity");
             excessView.getItems().add(data);
         }
