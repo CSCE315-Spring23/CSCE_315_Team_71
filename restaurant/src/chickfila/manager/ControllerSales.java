@@ -96,6 +96,8 @@ public class ControllerSales {
     }
 
     public void initialize() throws SQLException, IOException {
+
+
         salesForXReport = "";
         ResultSet salesFetch = conn.select("select * from sales order by sales_id desc limit 1;");
         showDate.setText("");
@@ -218,14 +220,14 @@ public class ControllerSales {
         double profits;
         double taxes;
 
-        ResultSet total = conn.select("SELECT SUM(price) FROM orders WHERE orders.order_time::date >= '"+ salesForXReport+"';");
+        ResultSet total = conn.select("SELECT SUM(price) FROM orders WHERE orders.order_time::date > '"+ salesForXReport+"';");
         Double total_price = 0.0;
         Double tax = 0.0;
         while (total.next()){
             total_price = total.getDouble("sum");
 
         }
-        ResultSet ordersFetch = conn.select("SELECT * FROM orders WHERE orders.order_time::date >= '"+ salesForXReport+"';");
+        ResultSet ordersFetch = conn.select("SELECT * FROM orders WHERE orders.order_time::date > '"+ salesForXReport+"';");
         String orderTime = "";
         System.out.println(total_price);
         while (ordersFetch.next()) {
@@ -241,14 +243,18 @@ public class ControllerSales {
         
         tax = total_price * 0.0825;
         xTable.getItems().clear();
-        showDate.setText(orderTime);
-        showTax.setText(Double.toString(tax));
-        showSales.setText(Double.toString(total_price));
+        // showDate.setText(orderTime);
+        // showTax.setText(Double.toString(tax));
+        // showSales.setText(Double.toString(total_price));
 
         String[] columnItems = new String[3];
-        columnItems[0] = showSales.getText();
-        columnItems[1]= showDate.getText();
-        columnItems[2] = showTax.getText();
+        // columnItems[0] = showSales.getText();
+        // columnItems[1]= showDate.getText();
+        // columnItems[2] = showTax.getText();
+
+        columnItems[0] = Double.toString(total_price);
+        columnItems[1]= orderTime;
+        columnItems[2] = Double.toString(tax);
         xTable.getItems().add(columnItems);
 
         xTotalSales.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
