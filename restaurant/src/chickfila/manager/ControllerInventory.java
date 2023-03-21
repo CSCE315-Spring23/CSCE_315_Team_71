@@ -188,8 +188,7 @@ public class ControllerInventory {
                 " WHERE quantity > 0" +
                 " GROUP BY item_name, qty, quantity ORDER BY item_name) n"+ 
             " GROUP BY item_name, quantity" +
-            " HAVING SUM(qty) < 0.1 * (SUM(qty) + quantity);"
-            
+            " HAVING SUM(qty) < 0.1 * (SUM(qty) + quantity);"    
         );
 
 
