@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import chickfila.Controller;
 import chickfila.logic.DB;
 import javafx.event.ActionEvent;
@@ -30,6 +31,7 @@ import javafx.collections.ObservableList;
 import chickfila.logic.DB;
 import chickfila.logic.dbSetup;
 import chickfila.logic.sales;
+import chickfila.logic.orders;
 
 public class ControllerSales {
 
@@ -61,6 +63,16 @@ public class ControllerSales {
     private Button getAmount;
     @FXML
     TableColumn<String[], String> nameCol, soldCol, mealCol, sizeCol;
+    @FXML
+    private Button makeXreport;
+    @FXML 
+    private Text showSales;
+    @FXML 
+    private Text showTax;
+    @FXML 
+    private Text showDate;
+
+    protected String salesForXReport;
 
 
     public ControllerSales(DB conn, HashMap<Integer, String[]> menu) {
@@ -81,6 +93,20 @@ public class ControllerSales {
     }
 
     public void initialize() throws SQLException, IOException {
+        salesForXReport = "";
+        ResultSet salesFetch = conn.select("select * from sales order by sales_id desc limit 1;");
+        showDate.setText("");
+        showTax.setText("");
+        showSales.setText("");
+        while (salesFetch.next()) {
+            //int salesID = salesFetch.getInt("sales_id");
+            salesForXReport = salesFetch.getString("sales_date");
+            //double cost = salesFetch.getDouble("total_sales");
+            //double tax = salesFetch.getDouble("total_tax");
+            //sales sale = new sales(salesID, date, cost, tax);
+            //data.add(sale);
+        }
+        System.out.println(salesForXReport);
         loadSales();
 
         getAmount.setOnAction(event -> {
@@ -166,6 +192,7 @@ public class ControllerSales {
 
             if((b.getId()).contains("ZReport")) {
                 date = (java.time.LocalDate.now()).toString();
+                salesForXReport = date;
             }
             else {
                 date = createSalesReport.getText();
@@ -181,6 +208,43 @@ public class ControllerSales {
 
         }
     }
+
+
+
+    public void addXReport(ActionEvent event) throws SQLException, IOException {
+        double profits;
+        double taxes;
+
+        ResultSet total = conn.select("SELECT SUM(price) FROM orders WHERE orders.order_time::date >= '"+ salesForXReport+"';");
+        Double total_price = 0.0;
+        Double tax = 0.0;
+        while (total.next()){
+            total_price = total.getDouble("sum");
+
+        }
+        ResultSet ordersFetch = conn.select("SELECT * FROM orders WHERE orders.order_time::date >= '"+ salesForXReport+"';");
+        String orderTime = "";
+        System.out.println(total_price);
+        while (ordersFetch.next()) {
+            int orderId = ordersFetch.getInt("order_id");
+            double price = ordersFetch.getDouble("price");
+            Boolean paid = ordersFetch.getBoolean("is_paid");
+            orderTime = ordersFetch.getString("order_time");
+            // addProfit += price;
+            //orders menu = new orders(orderId, price, paid, orderTime);
+            // data.add(menu);
+           // System.out.println(menu);
+        }
+        
+        tax = total_price * 0.0825;
+
+        showDate.setText(orderTime);
+        showTax.setText(Double.toString(tax));
+        showSales.setText(Double.toString(total_price));
+
+
+        }
+    
 
    
 

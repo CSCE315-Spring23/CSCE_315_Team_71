@@ -27,7 +27,8 @@
                         </TableView>
                         <Button fx:id="addSalesRep" layoutX="387.0" layoutY="606.0" mnemonicParsing="false" onAction="#addSalesReport" text="createSalesReport" />
                         <TextField fx:id="createSalesReport" layoutX="201.0" layoutY="605.0" prefHeight="25.0" prefWidth="173.0" promptText="Enter Start Date" />
-                        <Button fx:id="createZReport" layoutX="288.0" layoutY="647.0" mnemonicParsing="false" onAction="#addSalesReport" text="create Z-Report" />
+                        <Button fx:id="createZReport" layoutX="195.0" layoutY="646.0" mnemonicParsing="false" onAction="#addSalesReport" text="create Z-Report" />
+                        <Button fx:id="makeXreport" layoutX="399.0" layoutY="646.0" mnemonicParsing="false" onAction="#addXReport" text="create X-Report" />
                      </children>
                   </AnchorPane>
             </content>
@@ -56,5 +57,16 @@
         </tabs>
       </TabPane>
       <Button fx:id="backButton" layoutX="38.0" layoutY="33.0" mnemonicParsing="false" onAction="#closeButtonAction" text="close" />
+      <AnchorPane layoutY="354.0" prefHeight="449.0" prefWidth="251.0">
+         <children>
+            <Text layoutX="36.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Sales:" />
+            <Text layoutX="37.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date and current time" />
+            <Text layoutX="36.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Tax:" />
+            <Text fx:id="showSales" layoutX="114.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="showDate" layoutX="173.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="showTax" layoutX="114.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+         </children>
+      </AnchorPane>
+      <Text layoutX="50.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CURRENT X REPORT" />
    </children>
 </AnchorPane>
