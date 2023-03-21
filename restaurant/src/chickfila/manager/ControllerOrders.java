@@ -62,21 +62,6 @@ public class ControllerOrders {
 
     /**
      * 
-     * This method is called when the "close" button is pressed in the UI. It loads
-     * the "manager.fxml" file and sets up the
-     * 
-     * connection and menu for the controller. Then, it creates a new scene using
-     * the root, and sets the scene to be displayed
-     * 
-     * in the current stage.
-     * 
-     * @param event The action event triggered by the "close" button press
-     * 
-     * @throws IOException If there is an error loading the "manager.fxml" file
-     */
-    
-    /**
-     * 
      * Handles the action of clicking the back button by loading the "manager.fxml"
      * file and setting the connection and menu properties of the controller.
      * 
