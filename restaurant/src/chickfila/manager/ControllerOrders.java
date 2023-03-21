@@ -81,7 +81,6 @@ public class ControllerOrders {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         stage.setScene(scene);
-
     }
 
     public void initialize() throws SQLException, IOException {

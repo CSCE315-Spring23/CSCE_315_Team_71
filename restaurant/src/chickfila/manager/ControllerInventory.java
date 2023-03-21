@@ -28,6 +28,9 @@ import chickfila.logic.inventory;
 
 /**
  * @author Alan Nguyen
+ * @author Jia Belanger
+ * @author An Duong
+ * @author Ahnaf Hossain
  */
 public class ControllerInventory {
 
@@ -86,7 +89,6 @@ public class ControllerInventory {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         stage.setScene(scene);
-
     }
 
     public void initialize() throws SQLException, IOException {
@@ -161,37 +163,36 @@ public class ControllerInventory {
     }
 
     public void loadItems2(String start, String end) throws SQLException {
-
         excessView.getItems().clear();
-
 
         //logic flows from innermost to outermost
         //same logic from sales to get menu iems sold, map with recipes, 
         //then map with inventory and determine which items has sold less than 10%
         ResultSet itemSoldAmount = conn.select(
-        "SELECT item_name, SUM(qty) AS qty, quantity FROM " +
-            "(SELECT coalesce(j.qty,0) AS qty, item_name, quantity FROM inventory FULL OUTER JOIN "+ 
+            "SELECT item_name, SUM(qty) AS qty, quantity FROM " +
+                "(SELECT coalesce(j.qty,0) AS qty, item_name, quantity FROM inventory FULL OUTER JOIN "+ 
 
-                "(SELECT inventory_id, quantity*count AS qty FROM "+
-                    
-                    "(SELECT m.menu_item_id, SUM(count) AS count FROM " +
-                        "(SELECT order_items.menu_item_id, quantity*count(*) AS count FROM order_items JOIN orders ON " +
-                                "orders.order_id=order_items.order_id JOIN menu_items ON order_items.menu_item_id = menu_items.menu_item_id "
-                                +
-                                "WHERE order_time::date >= '" + start + "' AND order_time::date <= '" + end
+                    "(SELECT inventory_id, quantity*count AS qty FROM "+
+                        
+                        "(SELECT m.menu_item_id, SUM(count) AS count FROM " +
+
+                            "(SELECT order_items.menu_item_id, quantity*count(*) AS count FROM order_items JOIN orders ON " +
+                                    "orders.order_id=order_items.order_id JOIN menu_items ON order_items.menu_item_id = menu_items.menu_item_id "
+                                    +
+                                    "WHERE order_time::date >= '" + start + "' AND order_time::date <= '" + end
                                 + "' GROUP BY order_items.menu_item_id, quantity ORDER BY menu_item_id) m"+
+
                             " GROUP BY menu_item_id) k " +
 
-                    "JOIN recipes ON k.menu_item_id = recipes.menu_item_id GROUP BY inventory_id, qty) j"+
-        
-                " ON j.inventory_id = inventory.item_id" +
-                " WHERE quantity > 0" +
-                " GROUP BY item_name, qty, quantity ORDER BY item_name) n"+ 
-            " GROUP BY item_name, quantity" +
-            " HAVING SUM(qty) < 0.1 * (SUM(qty) + quantity);"    
+                        "JOIN recipes ON k.menu_item_id = recipes.menu_item_id GROUP BY inventory_id, qty) j"+
+                
+                    " ON j.inventory_id = inventory.item_id" +
+                    " WHERE quantity > 0" +
+                    " GROUP BY item_name, qty, quantity ORDER BY item_name) n"+ 
+
+                " GROUP BY item_name, quantity" +
+                " HAVING SUM(qty) < 0.1 * (SUM(qty) + quantity);"    
         );
-
-
 
         while (itemSoldAmount.next()) {
             String[] data = new String[3];
@@ -204,7 +205,5 @@ public class ControllerInventory {
         nameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
         soldCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[1]));
         qtyCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[2]));
-
-
     }
 }

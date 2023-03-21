@@ -133,7 +133,6 @@ public class ControllerInventoryAdd {
         if (quantity.getText().equals("") || itemName.getText().equals("")) {
             System.out.println("input value");
         } else {
-            // int itemId = Integer.parseInt(inventoryId.getText());
             int quantity_query = Integer.parseInt(quantity.getText());
             String name = itemName.getText();
             Integer max_id = 0;
@@ -150,11 +149,18 @@ public class ControllerInventoryAdd {
         }
     }
 
+
+    /**
+     * If the user does not provide an inventory ID, a message is printed to the console.
+     * Removes an item from the inventory table in the database based on the inventory ID provided by the user.
+     * @param event the action event that triggers the method
+     * @throws SQLException if there is an error performing the database query
+     * @throws IOException if there is an error printing the success message to the console
+    */
     public void removeItem(ActionEvent event) throws SQLException, IOException {
         if (inventoryId.getText().equals("")) {
             System.out.println("input value");
         } else {
-            // int itemId = Integer.parseInt(inventoryId.getText());
             int menuID = Integer.parseInt(inventoryId.getText());
             conn.performQuery("DELETE FROM inventory WHERE item_id = "+ menuID +";");
             System.out.println("successnv");

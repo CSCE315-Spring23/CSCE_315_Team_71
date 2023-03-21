@@ -83,6 +83,20 @@ public class ControllerSales {
         this.menu = menu;
     }
 
+    /**
+     * 
+     * This method is called when the "close" button is pressed in the UI. It loads
+     * the "manager.fxml" file and sets up the
+     * 
+     * connection and menu for the controller. Then, it creates a new scene using
+     * the root, and sets the scene to be displayed
+     * 
+     * in the current stage.
+     * 
+     * @param event The action event triggered by the "close" button press
+     * 
+     * @throws IOException If there is an error loading the "manager.fxml" file
+     */
     public void closeButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager.fxml"));
         ControllerManager c = new ControllerManager(conn, menu);
@@ -96,8 +110,6 @@ public class ControllerSales {
     }
 
     public void initialize() throws SQLException, IOException {
-
-
         salesForXReport = "";
         ResultSet salesFetch = conn.select("select * from sales order by sales_id desc limit 1;");
         showDate.setText("");
@@ -125,6 +137,7 @@ public class ControllerSales {
             secondDate.setText(null);
         });
     }
+
 
     /**
      * 
@@ -159,6 +172,7 @@ public class ControllerSales {
         tableView.setItems(data);
     }
 
+    
     // Adds Functionality to create a sales Report for a specific day
     /**
      * 
@@ -208,14 +222,23 @@ public class ControllerSales {
             profits = sales - taxes;
 
             conn.performQuery("INSERT INTO sales (sales_id, sales_date, total_sales, total_tax) VALUES ("
-                    + newSalesRepId + ",'" + date + "' , " + profits + " , " + taxes + ");");
+                + newSalesRepId + ",'" + date + "' , " + profits + " , " + taxes + ");");
             loadSales();
 
         }
     }
 
 
+    /**
 
+    This method is responsible for adding a new report to the X Table
+
+    @param event The action event that triggers the report generation
+
+    @throws SQLException Thrown when there is a database error
+
+    @throws IOException Thrown when there is an input or output error
+    */
     public void addXReport(ActionEvent event) throws SQLException, IOException {
         double profits;
         double taxes;
@@ -262,13 +285,8 @@ public class ControllerSales {
         xTotalTax.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[2]));
         //sizeCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[3]));
 
-
-
-
-        }
+    }
     
-
-   
 
     /**
      * 
@@ -300,6 +318,14 @@ public class ControllerSales {
     }
 
 
+    /**
+    Loads the items sold within a specified time period and displays them in a table view.
+    The method queries the database for the count of each menu item sold within the specified time period
+    and groups them by item name, meal type, and size. The result is then displayed in a table view.
+    @param start the start date of the time period to be considered
+    @param end the end date of the time period to be considered
+    @throws SQLException if there is an error executing the SQL query
+    */
     public void loadItems(String start, String end) throws SQLException {
 
         view.getItems().clear();

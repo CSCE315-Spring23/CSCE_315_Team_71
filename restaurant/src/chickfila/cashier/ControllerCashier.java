@@ -66,6 +66,14 @@ public class ControllerCashier {
 
     }
 
+
+    /**
+    Adds new items to the menu view if there are any. The method queries the database
+    for menu items with an ID greater than 55 and creates a button for each item.
+    When a button is clicked, the corresponding item is added to the current order and the display is updated.
+    If new items have already been added, the method returns without doing anything.
+    @throws SQLException if there is an error executing the SQL query
+    */
     public void addNewItems() throws SQLException {
 
         if (isSet) {
