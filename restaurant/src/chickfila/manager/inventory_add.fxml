@@ -3,19 +3,29 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="435.0" layoutY="379.0" mnemonicParsing="false" onAction="#updateItem" text="Modify Item" />
-      <TextField fx:id="inventoryId" layoutX="264.0" layoutY="102.0" />
-      <TextField fx:id="quantity" layoutX="262.0" layoutY="182.0" />
-      <Text layoutX="293.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Item ID" />
-      <Text layoutX="314.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" />
+      <Button layoutX="683.0" layoutY="434.0" mnemonicParsing="false" onAction="#updateItem" text="Modify Item" />
+      <TextField fx:id="inventoryId" layoutX="528.0" layoutY="182.0" />
+      <TextField fx:id="quantity" layoutX="526.0" layoutY="262.0" />
+      <Text layoutX="537.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Item ID">
+         <font>
+            <Font name="Lucida Fax Regular" size="14.0" />
+         </font></Text>
+      <Text layoutX="572.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity">
+         <font>
+            <Font name="Lucida Fax Regular" size="14.0" />
+         </font></Text>
       <Button layoutX="45.0" layoutY="44.0" mnemonicParsing="false" onAction="#closeButtonAction" text="back" />
-      <Button fx:id="addButton" layoutX="150.0" layoutY="379.0" mnemonicParsing="false" onAction="#addItem" text="Add new ingredient" />
-      <TextField fx:id="itemName" layoutX="261.0" layoutY="267.0" />
-      <Text layoutX="307.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name" />
-      <Button layoutX="298.0" layoutY="430.0" mnemonicParsing="false" onAction="#removeItem" text="Delete Item" />
+      <Button fx:id="addButton" layoutX="437.0" layoutY="434.0" mnemonicParsing="false" onAction="#addItem" text="Add new ingredient" />
+      <TextField fx:id="itemName" layoutX="525.0" layoutY="347.0" />
+      <Text layoutX="564.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name">
+         <font>
+            <Font name="Lucida Fax Regular" size="14.0" />
+         </font></Text>
+      <Button layoutX="573.0" layoutY="496.0" mnemonicParsing="false" onAction="#removeItem" text="Delete Item" />
    </children>
 </AnchorPane>
