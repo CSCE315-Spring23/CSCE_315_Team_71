@@ -74,6 +74,18 @@ public class ControllerOrders {
      * 
      * @throws IOException If there is an error loading the "manager.fxml" file
      */
+    
+    /**
+     * 
+     * Handles the action of clicking the back button by loading the "manager.fxml"
+     * file and setting the connection and menu properties of the controller.
+     * 
+     * @param event The event object representing the action of clicking the back
+     *              button.
+     * 
+     * @throws IOException If an error occurs while loading the "start.fxml" file.
+     */
+
     public void closeButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager.fxml"));
         ControllerManager c = new ControllerManager(conn, menu);

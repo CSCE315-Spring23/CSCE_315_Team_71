@@ -80,7 +80,6 @@ public class ControllerMenu {
         loadMenu();
     }
 
-    // FIXME: CAN'T FIND is_meal for some reason.
     private void loadMenu() throws SQLException, IOException {
         // THESE LINES TELLS THE COUMNS TO GET THE CERTAIN ATTRIBUTES FROM THE menuItem
         // class objects for the certain columns

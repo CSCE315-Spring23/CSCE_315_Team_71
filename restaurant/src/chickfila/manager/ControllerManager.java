@@ -51,7 +51,16 @@ public class ControllerManager {
         this.ingredientString = "";
         this.inventory = new HashMap<String, Integer>();
     }
+/**
 
+* This method is used to add ingredients to a recipe.
+* It is triggered by an ActionEvent when the user clicks the "Add Ingredient" button.
+* If the user has not entered a value for the ingredient or quantity, an error message is displayed.
+* Otherwise, the ingredient and its corresponding quantity are appended to a string variable, separated by a comma.
+* If there are already ingredients in the string, they are separated by a hyphen.
+* After adding the ingredient, the method displays a success message and clears the ingredient and quantity fields.
+* @param event The ActionEvent triggered by clicking the "Add Ingredient" button
+*/
     public void ingredientAdder(ActionEvent event) {
         if (ingredientlist.getText().equals("") || quantityIngredient.getText().equals("")) {
             System.out.println("needs the values");
@@ -68,11 +77,20 @@ public class ControllerManager {
 
     }
 
-    // creates order when add order is clicked on
-    // see instruction on the app to see how the string format is implemented and
-    // how parsing works.
-    // FIXME: WON'T WORK IF INPUT ISN'T PROVIDED IN SPECIFIC FORMAT AND IF NAME OF
-    // INGREDIENT ISN'T THE EXACT SAME AS INGREDIENTS. NEED TO USE TRY CATCH FOR IT
+/**
+
+* This method is used to create a new order by inserting a new menu item and its corresponding recipe into the database.
+* It is triggered by an ActionEvent when the user clicks the "Create Order" button.
+* If the user has not entered a value for the item name or price, an error message is displayed.
+* If there are no ingredients in the recipe, an error message is displayed.
+* If all input values are valid, the method generates a new menu item ID by querying the database for the highest existing ID and incrementing it by 1.
+* It then inserts the new menu item into the database with the given item name, price, and ID.
+*
+* Next, it splits the ingredientString into individual ingredients and quantities and inserts each one as a recipe for the new menu item.
+* If an ingredient in the recipe is not found in the available inventory, the method displays an error message and clears the input fields.
+* @param event The ActionEvent triggered by clicking the "Create Order" button
+* @throws SQLException if there is an error executing SQL statements
+*/
     public void orderCreation(ActionEvent event) throws SQLException {
         boolean noInput = false;
         boolean noIng = false;
@@ -127,8 +145,13 @@ public class ControllerManager {
 
     }
 
-    // creates a hashmap of all the inventory items. It's used to get inventory_id
-    // from inventory_name for creation of recipes.
+
+/**
+* This private method is used to load the available inventory items and their IDs into a HashMap called "inventory".
+* It queries the database for all rows in the inventory table and iterates over the ResultSet to extract the item ID, quantity, and name for each inventory item.
+* It then adds the item name and ID as a key-value pair to the inventory HashMap.
+* @throws SQLException if there is an error executing SQL statements
+*/
     private void loadInventory() throws SQLException {
         ResultSet invFetch = conn.select("SELECT * FROM inventory;");
 
@@ -140,7 +163,19 @@ public class ControllerManager {
         }
     }
 
-    // changes scene to start onclick of back button
+
+    /**
+     * 
+     * This method is called when the "close" button is pressed in the UI. It loads
+     * the "manager.fxml" file and sets up the
+     * 
+     * connection and menu for the controller. Then, it creates a new scene using
+     * the root, and sets the scene to be displayed in the current stage.
+     * 
+     * @param event The action event triggered by the "close" button press
+     * 
+     * @throws IOException If there is an error loading the "manager.fxml" file
+     */
     public void handleBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../start.fxml"));
         Controller c = new Controller(conn, menu);
@@ -154,8 +189,19 @@ public class ControllerManager {
     }
     // db connection stuff, don't know deets
 
-    // switches to sales report stage. This just opens the seperate fxml file. Sales
-    // report code goes in ControllerSales
+    /**
+    *
+    * This public method is used to handle the "Show Sales" button click and load the salesRep.fxml file.
+    * It is triggered by an ActionEvent when the user clicks the "Show Sales" button.
+    *
+    * The method loads the salesRep.fxml file and sets the controller to a new instance of the 
+    * ControllerSales class with the same connection and menu as the current instance.
+    *
+    * It then sets the loaded Parent as the root of a new Scene and sets the Scene of the current Stage to the new Scene.
+    @param event The ActionEvent triggered by clicking the "Show Sales" button
+    @throws IOException if there is an error loading the salesRep.fxml file
+    @throws SQLException if there is an error executing SQL statements
+    */
     public void showSales(ActionEvent event) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./salesRep.fxml"));
         ControllerSales c = new ControllerSales(conn, menu);
@@ -168,8 +214,19 @@ public class ControllerManager {
         stage.setScene(scene);
     }
 
-    // switches to menu recipes stage. This just opens the seperate fxml file. Sales
-    // report code goes in ControllerMenu
+    /**
+    *
+    * This public method is used to handle the "Show Menu" button click and load the showMenu.fxml file.
+    * It is triggered by an ActionEvent when the user clicks the "Show Menu" button.
+    *
+    * The method loads the showMenu.fxml file and sets the controller to a new instance of the ControllerMenu 
+    * class with the same connection and menu as the current instance.
+    *
+    *It then sets the loaded Parent as the root of a new Scene and sets the Scene of the current Stage to the new Scene.
+    @param event The ActionEvent triggered by clicking the "Show Menu" button
+    @throws IOException if there is an error loading the showMenu.fxml file
+    @throws SQLException if there is an error executing SQL statements
+    */
     public void showMenu(ActionEvent event) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./showMenu.fxml"));
         ControllerMenu c = new ControllerMenu(conn, menu);
@@ -183,7 +240,19 @@ public class ControllerManager {
 
     }
 
-    // switches to menu recipes stage. This just opens the seperate fxml file.
+    /**
+    *
+    * This public method is used to handle the "Show Menu" button click and load the inventory.fxml file.
+    * It is triggered by an ActionEvent when the user clicks the "Show Menu" button.
+    *
+    * The method loads the showMenu.fxml file and sets the controller to a new instance of the ControllerInventory
+    * class with the same connection and menu as the current instance.
+    *
+    *It then sets the loaded Parent as the root of a new Scene and sets the Scene of the current Stage to the new Scene.
+    @param event The ActionEvent triggered by clicking the "Show Menu" button
+    @throws IOException if there is an error loading the inventory.fxml file
+    @throws SQLException if there is an error executing SQL statements
+    */
     public void showInventory(ActionEvent event) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./inventory.fxml"));
         ControllerInventory c = new ControllerInventory(conn, menu);
@@ -197,7 +266,19 @@ public class ControllerManager {
 
     }
 
-    // switches to Inventory_Add stage. This just opens the seperate fxml file.
+    /**
+    *
+    * This public method is used to handle the "Show Menu" button click and load the inventory_add.fxml file.
+    * It is triggered by an ActionEvent when the user clicks the "Show Menu" button.
+    *
+    * The method loads the showMenu.fxml file and sets the controller to a new instance of the ControllerInventoryAdd
+    * class with the same connection and menu as the current instance.
+    *
+    *It then sets the loaded Parent as the root of a new Scene and sets the Scene of the current Stage to the new Scene.
+    @param event The ActionEvent triggered by clicking the "Show Menu" button
+    @throws IOException if there is an error loading the inventory.fxml file
+    @throws SQLException if there is an error executing SQL statements
+    */
     public void showInventoryAdd(ActionEvent event) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./inventory_add.fxml"));
         ControllerInventoryAdd c = new ControllerInventoryAdd(conn, menu);
@@ -211,7 +292,19 @@ public class ControllerManager {
 
     }
 
-    // switches to Orders stage. This just opens the seperate fxml file.
+    /**
+    *
+    * This public method is used to handle the "Show Menu" button click and load the orders.fxml file.
+    * It is triggered by an ActionEvent when the user clicks the "Show Menu" button.
+    *
+    * The method loads the showMenu.fxml file and sets the controller to a new instance of the ControllerOrders
+    * class with the same connection and menu as the current instance.
+    *
+    *It then sets the loaded Parent as the root of a new Scene and sets the Scene of the current Stage to the new Scene.
+    @param event The ActionEvent triggered by clicking the "Show Menu" button
+    @throws IOException if there is an error loading the inventory.fxml file
+    @throws SQLException if there is an error executing SQL statements
+    */
     public void showOrders(ActionEvent event) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./orders.fxml"));
         ControllerOrders c = new ControllerOrders(conn, menu);
