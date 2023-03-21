@@ -71,7 +71,10 @@ public class ControllerSales {
     private Text showTax;
     @FXML 
     private Text showDate;
-
+    @FXML
+    private TableView <String[] > xTable;
+    @FXML 
+    private TableColumn<String[] , String> xTotalSales, xDate , xTotalTax;
     protected String salesForXReport;
 
 
@@ -237,10 +240,23 @@ public class ControllerSales {
         }
         
         tax = total_price * 0.0825;
-
+        xTable.getItems().clear();
         showDate.setText(orderTime);
         showTax.setText(Double.toString(tax));
         showSales.setText(Double.toString(total_price));
+
+        String[] columnItems = new String[3];
+        columnItems[0] = showSales.getText();
+        columnItems[1]= showDate.getText();
+        columnItems[2] = showTax.getText();
+        xTable.getItems().add(columnItems);
+
+        xTotalSales.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
+        xDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[1]));
+        xTotalTax.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[2]));
+        //sizeCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[3]));
+
+
 
 
         }

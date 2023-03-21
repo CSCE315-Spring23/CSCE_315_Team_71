@@ -28,7 +28,6 @@
                         <Button fx:id="addSalesRep" layoutX="387.0" layoutY="606.0" mnemonicParsing="false" onAction="#addSalesReport" text="createSalesReport" />
                         <TextField fx:id="createSalesReport" layoutX="201.0" layoutY="605.0" prefHeight="25.0" prefWidth="173.0" promptText="Enter Start Date" />
                         <Button fx:id="createZReport" layoutX="195.0" layoutY="646.0" mnemonicParsing="false" onAction="#addSalesReport" text="create Z-Report" />
-                        <Button fx:id="makeXreport" layoutX="399.0" layoutY="646.0" mnemonicParsing="false" onAction="#addXReport" text="create X-Report" />
                      </children>
                   </AnchorPane>
             </content>
@@ -53,6 +52,22 @@
                      </children>
                   </AnchorPane>
                </content>
+            </Tab>
+            <Tab text="x rep">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="1.0" prefHeight="288.0" prefWidth="700.0" fx:id="xTable">
+                          <columns>
+                            <TableColumn prefWidth="215.0" text="Total Sales" fx:id="xTotalSales" />
+                            <TableColumn prefWidth="263.0" text="Date and Current Time" fx:id="xDate" />
+                              <TableColumn prefWidth="221.0" text="Total Tax" fx:id="xTotalTax" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="makeXreport" layoutX="271.0" layoutY="348.0" mnemonicParsing="false" onAction="#addXReport" text="create X-Report" />
+                     </children>
+                  </AnchorPane>
+              </content>
             </Tab>
         </tabs>
       </TabPane>
