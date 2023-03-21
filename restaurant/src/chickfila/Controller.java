@@ -29,6 +29,11 @@ public class Controller {
         this.menu = menu;
     }
 
+    /**
+    * 
+    * Initializes the controller class. Sets up the mouse entered and exited event handlers for the
+    * cashier and manager buttons, changing their background color.
+    */
     public void initialize() {
         cashier.setOnMouseEntered(e -> cashier.setStyle("-fx-background-color: #ff3c46;"));
         cashier.setOnMouseExited(e -> cashier.setStyle("-fx-background-color: #e60e33;"));
@@ -37,6 +42,14 @@ public class Controller {
         manager.setOnMouseExited(e -> manager.setStyle("-fx-background-color: #e60e33;"));
     }
 
+    /**
+    *
+    * Handles the event when the "Cashier" button is clicked. Loads the Cashier view,
+    * creates a new instance of the ControllerCashier class and sets it as the controller
+    * for the view. Sets the new scene and shows the stage.
+    * @param event the ActionEvent triggered by the "Cashier" button
+    * @throws IOException if the FXMLLoader fails to load the FXML file
+    */
     public void handleCashier(ActionEvent event) throws IOException {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./cashier/cashier.fxml"));
@@ -51,7 +64,15 @@ public class Controller {
         stage.show();
 
     }
-
+    
+    /**
+    *
+    * Handles the event when the manager button is clicked. 
+    * Loads the Manager.fxml file, sets its controller to a new instance of ControllerManager,
+    * and sets the scene to display the loaded file on the current stage.
+    * @param event The action event triggered by the manager button.
+    * @throws IOException If an input/output error occurs during the loading of the FXML file.
+    */
     public void handleManager(ActionEvent event) throws IOException {
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./manager/manager.fxml"));
