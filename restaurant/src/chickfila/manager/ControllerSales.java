@@ -79,6 +79,13 @@ public class ControllerSales {
     private TableColumn<String[], String> xTotalSales, xDate, xTotalTax;
     protected String salesForXReport;
 
+
+    /**
+    Creates a new instance of the ControllerSales class with the specified database connection
+    and menu.
+    @param conn the database connection to use for retrieving sales information
+    @param menu the menu items to display in the sales view
+    */
     public ControllerSales(DB conn, HashMap<Integer, String[]> menu) {
         this.conn = conn;
         this.menu = menu;
@@ -110,6 +117,18 @@ public class ControllerSales {
         stage.setScene(scene);
     }
 
+    /**
+
+    Initializes the sales report by retrieving the latest sales information from the database,
+
+    loading the sales report preferences, and loading the sales data. It also sets up an action
+
+    listener for the getAmount button, which retrieves the sales data for a specified date range.
+
+    @throws SQLException if there is an error retrieving the latest sales information from the database
+
+    @throws IOException if there is an error loading the sales report preferences
+    */
     public void initialize() throws SQLException, IOException {
 
         salesForXReport = "";

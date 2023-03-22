@@ -100,6 +100,7 @@ Sets the size of the menu item.
     public void setSize(String size) {
         this.size = size;
     }
+
 /**
 
 Returns a boolean value indicating whether the menu item is a meal or not.
@@ -108,6 +109,7 @@ Returns a boolean value indicating whether the menu item is a meal or not.
     public Boolean getIs_meal() {
         return this.is_meal;
     }
+    
 /**
 
 Sets a boolean value indicating whether the menu item is a meal or not.

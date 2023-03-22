@@ -11,11 +11,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
+/**
+The Main class is the entry point for the Chick-Fil-A application.
+*/
 public class Main extends Application {
 
     private DB conn;
     private HashMap<Integer, String[]> menu;
 
+
+    /**
+
+    The start method is called when the application is launched. It sets up the database connection, loads the menu, and displays the UI.
+
+    @param primaryStage The primary stage of the application.
+
+    @throws Exception If an error occurs while loading the UI or closing the database connection.
+    */
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -33,11 +46,22 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+
+    The stop method is called when the application is stopped. It closes the database connection.
+    @throws Exception If an error occurs while closing the database connection.
+    */
     @Override
     public void stop() throws Exception {
         conn.close();
     }
 
+    /**
+
+    The loadMenu method loads the menu from the database into a HashMap.
+
+    @throws SQLException If an error occurs while querying the database.
+    */
     private void loadMenu() throws SQLException {
         ResultSet menuFetch = conn.select("SELECT * FROM menu_items;");
 

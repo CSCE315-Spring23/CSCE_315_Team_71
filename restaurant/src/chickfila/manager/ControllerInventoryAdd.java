@@ -41,6 +41,8 @@ public class ControllerInventoryAdd {
     @FXML
     private Button addButton;
 
+
+    
     public ControllerInventoryAdd(DB conn, HashMap<Integer, String[]> menu) {
         this.conn = conn;
         this.menu = menu;
