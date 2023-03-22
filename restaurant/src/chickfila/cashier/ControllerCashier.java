@@ -316,6 +316,12 @@ public class ControllerCashier {
 
     }
 
+    /**
+    *
+    * Updates the display with the current order information, including subtotal, tax, and total price.
+    * The subtotal is calculated by dividing the current order price by 1.0825.
+    * The subtotal, tax, and total price are displayed in their respective UI elements with a dollar sign and rounded to 2 decimal places.
+    */
     private void updateDisplay() {
         double subtotal = (currentOrder.getPrice()) / 1.0825;
         subtotalDisplay.setText("Subtotal: " + "$" + String.format("%.2f", subtotal));
