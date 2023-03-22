@@ -6,6 +6,8 @@ import java.util.*;
 import java.time.LocalDateTime;  
 import java.time.format.DateTimeFormatter;  
 
+import java.util.prefs.Preferences;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -110,20 +112,28 @@ public class ControllerSales {
     }
 
     public void initialize() throws SQLException, IOException {
+
         salesForXReport = "";
-        ResultSet salesFetch = conn.select("select * from sales order by sales_id desc limit 1;");
-        showDate.setText("");
-        showTax.setText("");
-        showSales.setText("");
-        while (salesFetch.next()) {
-            //int salesID = salesFetch.getInt("sales_id");
-            salesForXReport = salesFetch.getString("sales_date");
-            //double cost = salesFetch.getDouble("total_sales");
-            //double tax = salesFetch.getDouble("total_tax");
-            //sales sale = new sales(salesID, date, cost, tax);
-            //data.add(sale);
+        Preferences prefs = Preferences.userRoot().node("myprogram");
+        salesForXReport = prefs.get("salesForXReport", "");
+        System.out.println(prefs.get("salesForXReport", ""));
+        if(salesForXReport.isEmpty()){
+            ResultSet salesFetch = conn.select("select * from sales order by sales_id desc limit 1;");
+            showDate.setText("");
+            showTax.setText("");
+            showSales.setText("");
+            while (salesFetch.next()) {
+                //int salesID = salesFetch.getInt("sales_id");
+                salesForXReport = salesFetch.getString("sales_date");
+                //double cost = salesFetch.getDouble("total_sales");
+                //double tax = salesFetch.getDouble("total_tax");
+                //sales sale = new sales(salesID, date, cost, tax);
+                //data.add(sale);
+            }
+            System.out.println(salesForXReport);
         }
-        System.out.println(salesForXReport);
+
+        
         loadSales();
 
         getAmount.setOnAction(event -> {
@@ -212,6 +222,13 @@ public class ControllerSales {
             if((b.getId()).contains("ZReport")) {
                 date = (java.time.LocalDate.now()).toString();
                 salesForXReport = date;
+                Preferences prefs = Preferences.userRoot().node("myprogram");
+                ResultSet lastTimeFetch = conn.select("select * from orders order by order_id desc limit 1;");
+                while(lastTimeFetch.next()){
+                    prefs.put("salesForXReport",lastTimeFetch.getString("order_time"));
+                    System.out.println(prefs.get("salesForXReport", ""));
+                    salesForXReport = prefs.get("salesForXReport", "") ;
+                }
             }
             else {
                 date = createSalesReport.getText();
@@ -243,14 +260,14 @@ public class ControllerSales {
         double profits;
         double taxes;
 
-        ResultSet total = conn.select("SELECT SUM(price) FROM orders WHERE orders.order_time::date > '"+ salesForXReport+"';");
+        ResultSet total = conn.select("SELECT SUM(price) FROM orders WHERE orders.order_time > '"+ salesForXReport+"';");
         Double total_price = 0.0;
         Double tax = 0.0;
         while (total.next()){
             total_price = total.getDouble("sum");
 
         }
-        ResultSet ordersFetch = conn.select("SELECT * FROM orders WHERE orders.order_time::date > '"+ salesForXReport+"';");
+        ResultSet ordersFetch = conn.select("SELECT * FROM orders WHERE orders.order_time > '"+ salesForXReport+"';");
         String orderTime = "";
         System.out.println(total_price);
         while (ordersFetch.next()) {
@@ -258,22 +275,13 @@ public class ControllerSales {
             double price = ordersFetch.getDouble("price");
             Boolean paid = ordersFetch.getBoolean("is_paid");
             orderTime = ordersFetch.getString("order_time");
-            // addProfit += price;
-            //orders menu = new orders(orderId, price, paid, orderTime);
-            // data.add(menu);
-           // System.out.println(menu);
         }
         
         tax = total_price * 0.0825;
         xTable.getItems().clear();
-        // showDate.setText(orderTime);
-        // showTax.setText(Double.toString(tax));
-        // showSales.setText(Double.toString(total_price));
 
         String[] columnItems = new String[3];
-        // columnItems[0] = showSales.getText();
-        // columnItems[1]= showDate.getText();
-        // columnItems[2] = showTax.getText();
+
 
         columnItems[0] = Double.toString(total_price);
         columnItems[1]= orderTime;

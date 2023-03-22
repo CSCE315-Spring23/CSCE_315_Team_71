@@ -30,14 +30,20 @@
                   <Font name="System Bold" size="19.0" />
                </font>
             </Text>
-            <Button fx:id="addIngredient" layoutX="242.0" layoutY="151.0" mnemonicParsing="false" onAction="#ingredientAdder" prefHeight="73.0" prefWidth="166.0" text="add ingredient" />
+            <Button fx:id="addIngredient" layoutX="242.0" layoutY="151.0" mnemonicParsing="false" onAction="#ingredientAdder" prefHeight="73.0" prefWidth="166.0" stylesheets="@../css/styleButton.css" text="ADD INGREDIENT">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
             <TextField fx:id="quantityIngredient" layoutX="239.0" layoutY="107.0" />
             <Text fill="WHITE" layoutX="122.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QUANTITY:">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
             </Text>
-            <Button fx:id="addOrder" layoutX="242.0" layoutY="362.0" mnemonicParsing="false" onAction="#orderCreation" prefHeight="73.0" prefWidth="166.0" text="addOrder" />
+            <Button fx:id="addOrder" layoutX="242.0" layoutY="362.0" mnemonicParsing="false" onAction="#orderCreation" prefHeight="73.0" prefWidth="166.0" stylesheets="@../css/styleButton.css" text="ADD ORDER">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
          </children>
       </AnchorPane>
       <Text fill="#e5173f" layoutX="188.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU CREATION:">
