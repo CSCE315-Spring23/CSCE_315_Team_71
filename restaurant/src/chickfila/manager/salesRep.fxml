@@ -17,7 +17,7 @@
         <tabs>
           <Tab text="Sales Reports">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="648.0" prefWidth="689.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="714.0" prefWidth="700.0">
                      <children>
                         <TableView fx:id="tableView" layoutX="6.0" prefHeight="600.0" prefWidth="723.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
@@ -27,12 +27,12 @@
                               <TableColumn fx:id="totalTaxColumn" prefWidth="146.0" text="Tax" />
                           </columns>
                         </TableView>
-                        <Button fx:id="addSalesRep" layoutX="212.0" layoutY="602.0" mnemonicParsing="false" onAction="#addSalesReport" prefHeight="60.0" text="CREATE REPORT">
+                        <Button fx:id="addSalesRep" layoutX="93.0" layoutY="633.0" mnemonicParsing="false" onAction="#addSalesReport" prefHeight="60.0" prefWidth="190.0" text="CREATE REPORT">
                               <font>
                                  <Font name="System Bold" size="18.0" />
                               </font></Button>
-                        <TextField fx:id="createSalesReport" layoutX="14.0" layoutY="602.0" prefHeight="60.0" prefWidth="173.0" promptText="Enter Start Date" />
-                        <Button fx:id="createZReport" layoutX="553.0" layoutY="602.0" mnemonicParsing="false" onAction="#addSalesReport" prefHeight="60.0" prefWidth="134.0" text="Z-REPORT">
+                        <TextField fx:id="createSalesReport" layoutX="93.0" layoutY="564.0" prefHeight="60.0" prefWidth="190.0" promptText="Enter Start Date" />
+                        <Button fx:id="createZReport" layoutX="467.0" layoutY="603.0" mnemonicParsing="false" onAction="#addSalesReport" prefHeight="60.0" prefWidth="134.0" text="Z-REPORT">
                               <font>
                                  <Font name="System Bold" size="18.0" />
                               </font></Button>
@@ -48,9 +48,9 @@
                               <font>
                                  <Font name="System Bold" size="18.0" />
                               </font></Button>
-                        <TextField fx:id="firstDate" layoutX="111.0" layoutY="573.0" />
+                        <TextField fx:id="firstDate" layoutX="94.0" layoutY="573.0" />
                         <TextField fx:id="secondDate" layoutX="435.0" layoutY="573.0" />
-                        <Text fill="WHITE" layoutX="66.0" layoutY="620.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date (YYYY-MM-DD)">
+                        <Text fill="WHITE" layoutX="49.0" layoutY="618.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date (YYYY-MM-DD)">
                               <font>
                                  <Font name="System Bold" size="18.0" />
                               </font></Text>

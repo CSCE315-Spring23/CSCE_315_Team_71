@@ -28,19 +28,19 @@
                </font>
             </Text>
             <TextField fx:id="itemName" layoutX="186.0" layoutY="183.0" />
-            <Button fx:id="addButton" layoutX="54.0" layoutY="321.0" mnemonicParsing="false" onAction="#addItem" prefHeight="67.0" prefWidth="200.0" text="ADD NEW INGREDIENT">
+            <Button fx:id="addButton" layoutX="49.0" layoutY="255.0" mnemonicParsing="false" onAction="#addItem" prefHeight="92.0" prefWidth="200.0" text="ADD INGREDIENT">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="293.0" layoutY="321.0" mnemonicParsing="false" onAction="#updateItem" prefHeight="67.0" prefWidth="200.0" text="MODIFY ITEM">
+            <Button layoutX="295.0" layoutY="255.0" mnemonicParsing="false" onAction="#updateItem" prefHeight="92.0" prefWidth="200.0" text="MODIFY ITEM">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button layoutX="197.0" layoutY="415.0" mnemonicParsing="false" onAction="#removeItem" prefHeight="67.0" prefWidth="149.0" text="DELETE ITEM">
+            <Button layoutX="189.0" layoutY="377.0" mnemonicParsing="false" onAction="#removeItem" prefHeight="92.0" prefWidth="171.0" text="DELETE ITEM">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Button>
          </children>
