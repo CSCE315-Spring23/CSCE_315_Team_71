@@ -3,8 +3,8 @@ package chickfila.manager;
 import java.io.IOException;
 import java.sql.*;
 import java.util.*;
-import java.time.LocalDateTime;  
-import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import java.util.prefs.Preferences;
 
@@ -67,18 +67,17 @@ public class ControllerSales {
     TableColumn<String[], String> nameCol, soldCol, mealCol, sizeCol;
     @FXML
     private Button makeXreport;
-    @FXML 
+    @FXML
     private Text showSales;
-    @FXML 
+    @FXML
     private Text showTax;
-    @FXML 
+    @FXML
     private Text showDate;
     @FXML
-    private TableView <String[] > xTable;
-    @FXML 
-    private TableColumn<String[] , String> xTotalSales, xDate , xTotalTax;
+    private TableView<String[]> xTable;
+    @FXML
+    private TableColumn<String[], String> xTotalSales, xDate, xTotalTax;
     protected String salesForXReport;
-
 
     public ControllerSales(DB conn, HashMap<Integer, String[]> menu) {
         this.conn = conn;
@@ -117,23 +116,22 @@ public class ControllerSales {
         Preferences prefs = Preferences.userRoot().node("myprogram");
         salesForXReport = prefs.get("salesForXReport", "");
         System.out.println(prefs.get("salesForXReport", ""));
-        if(salesForXReport.isEmpty()){
+        if (salesForXReport.isEmpty()) {
             ResultSet salesFetch = conn.select("select * from sales order by sales_id desc limit 1;");
             showDate.setText("");
             showTax.setText("");
             showSales.setText("");
             while (salesFetch.next()) {
-                //int salesID = salesFetch.getInt("sales_id");
+                // int salesID = salesFetch.getInt("sales_id");
                 salesForXReport = salesFetch.getString("sales_date");
-                //double cost = salesFetch.getDouble("total_sales");
-                //double tax = salesFetch.getDouble("total_tax");
-                //sales sale = new sales(salesID, date, cost, tax);
-                //data.add(sale);
+                // double cost = salesFetch.getDouble("total_sales");
+                // double tax = salesFetch.getDouble("total_tax");
+                // sales sale = new sales(salesID, date, cost, tax);
+                // data.add(sale);
             }
             System.out.println(salesForXReport);
         }
 
-        
         loadSales();
 
         getAmount.setOnAction(event -> {
@@ -147,7 +145,6 @@ public class ControllerSales {
             secondDate.setText(null);
         });
     }
-
 
     /**
      * 
@@ -182,7 +179,6 @@ public class ControllerSales {
         tableView.setItems(data);
     }
 
-    
     // Adds Functionality to create a sales Report for a specific day
     /**
      * 
@@ -201,7 +197,7 @@ public class ControllerSales {
     public void addSalesReport(ActionEvent event) throws SQLException, IOException {
         double profits;
         double taxes;
-        Button b = (Button)event.getSource();        
+        Button b = (Button) event.getSource();
 
         if (createSalesReport.getText().equals("") && (b.getId()).equals("addSalesRep")) {
             System.out.println("input a date");
@@ -219,18 +215,17 @@ public class ControllerSales {
             Double sales;
             String date;
 
-            if((b.getId()).contains("ZReport")) {
+            if ((b.getId()).contains("ZReport")) {
                 date = (java.time.LocalDate.now()).toString();
                 salesForXReport = date;
                 Preferences prefs = Preferences.userRoot().node("myprogram");
                 ResultSet lastTimeFetch = conn.select("select * from orders order by order_id desc limit 1;");
-                while(lastTimeFetch.next()){
-                    prefs.put("salesForXReport",lastTimeFetch.getString("order_time"));
+                while (lastTimeFetch.next()) {
+                    prefs.put("salesForXReport", lastTimeFetch.getString("order_time"));
                     System.out.println(prefs.get("salesForXReport", ""));
-                    salesForXReport = prefs.get("salesForXReport", "") ;
+                    salesForXReport = prefs.get("salesForXReport", "");
                 }
-            }
-            else {
+            } else {
                 date = createSalesReport.getText();
             }
 
@@ -239,35 +234,36 @@ public class ControllerSales {
             profits = sales - taxes;
 
             conn.performQuery("INSERT INTO sales (sales_id, sales_date, total_sales, total_tax) VALUES ("
-                + newSalesRepId + ",'" + date + "' , " + profits + " , " + taxes + ");");
+                    + newSalesRepId + ",'" + date + "' , " + profits + " , " + taxes + ");");
             loadSales();
 
         }
     }
 
-
     /**
-
-    This method is responsible for adding a new report to the X Table
-
-    @param event The action event that triggers the report generation
-
-    @throws SQLException Thrown when there is a database error
-
-    @throws IOException Thrown when there is an input or output error
-    */
+     * 
+     * This method is responsible for adding a new report to the X Table
+     * 
+     * @param event The action event that triggers the report generation
+     * 
+     * @throws SQLException Thrown when there is a database error
+     * 
+     * @throws IOException  Thrown when there is an input or output error
+     */
     public void addXReport(ActionEvent event) throws SQLException, IOException {
         double profits;
         double taxes;
 
-        ResultSet total = conn.select("SELECT SUM(price) FROM orders WHERE orders.order_time > '"+ salesForXReport+"';");
+        ResultSet total = conn
+                .select("SELECT SUM(price) FROM orders WHERE orders.order_time > '" + salesForXReport + "';");
         Double total_price = 0.0;
         Double tax = 0.0;
-        while (total.next()){
+        while (total.next()) {
             total_price = total.getDouble("sum");
 
         }
-        ResultSet ordersFetch = conn.select("SELECT * FROM orders WHERE orders.order_time > '"+ salesForXReport+"';");
+        ResultSet ordersFetch = conn
+                .select("SELECT * FROM orders WHERE orders.order_time > '" + salesForXReport + "';");
         String orderTime = "";
         System.out.println(total_price);
         while (ordersFetch.next()) {
@@ -276,25 +272,24 @@ public class ControllerSales {
             Boolean paid = ordersFetch.getBoolean("is_paid");
             orderTime = ordersFetch.getString("order_time");
         }
-        
+
         tax = total_price * 0.0825;
         xTable.getItems().clear();
 
         String[] columnItems = new String[3];
 
-
         columnItems[0] = Double.toString(total_price);
-        columnItems[1]= orderTime;
+        columnItems[1] = orderTime;
         columnItems[2] = Double.toString(tax);
         xTable.getItems().add(columnItems);
 
         xTotalSales.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[0]));
         xDate.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[1]));
         xTotalTax.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[2]));
-        //sizeCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()[3]));
+        // sizeCol.setCellValueFactory(cellData -> new
+        // SimpleStringProperty(cellData.getValue()[3]));
 
     }
-    
 
     /**
      * 
@@ -325,22 +320,26 @@ public class ControllerSales {
         return dailySales;
     }
 
-
     /**
-    Loads the items sold within a specified time period and displays them in a table view.
-    The method queries the database for the count of each menu item sold within the specified time period
-    and groups them by item name, meal type, and size. The result is then displayed in a table view.
-    @param start the start date of the time period to be considered
-    @param end the end date of the time period to be considered
-    @throws SQLException if there is an error executing the SQL query
-    */
+     * Loads the items sold within a specified time period and displays them in a
+     * table view.
+     * The method queries the database for the count of each menu item sold within
+     * the specified time period
+     * and groups them by item name, meal type, and size. The result is then
+     * displayed in a table view.
+     * 
+     * @param start the start date of the time period to be considered
+     * @param end   the end date of the time period to be considered
+     * @throws SQLException if there is an error executing the SQL query
+     */
     public void loadItems(String start, String end) throws SQLException {
 
         view.getItems().clear();
-        
+
         ResultSet itemSoldAmount = conn.select(
                 "SELECT a.size, a.is_meal, a.menu_item_name, SUM(a.count) AS count FROM " +
-                "(SELECT size, is_meal, menu_item_name, quantity*count(*) AS count FROM order_items JOIN orders ON " +
+                        "(SELECT size, is_meal, menu_item_name, quantity*count(*) AS count FROM order_items JOIN orders ON "
+                        +
                         "orders.order_id=order_items.order_id JOIN menu_items ON order_items.menu_item_id = menu_items.menu_item_id "
                         +
                         "WHERE order_time::date >= '" + start + "' AND order_time::date <= '" + end
@@ -349,7 +348,7 @@ public class ControllerSales {
         while (itemSoldAmount.next()) {
             String[] data = new String[4];
             data[0] = itemSoldAmount.getString("menu_item_name");
-            data[1] = itemSoldAmount.getString("count") ;            
+            data[1] = itemSoldAmount.getString("count");
             data[2] = itemSoldAmount.getString("is_meal");
             data[3] = itemSoldAmount.getString("size");
             view.getItems().add(data);

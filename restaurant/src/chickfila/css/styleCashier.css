@@ -1,6 +1,5 @@
 /* Button {
-    -fx-background-color: #e60e33;
-    -fx-text-fill: WHITE;
+    -fx-background-color: WHITE;
 } */
 
 Button:hover {
@@ -9,10 +8,10 @@ Button:hover {
 }
 
 
-/* .tab-pane {
+ .tab-pane {
     -fx-background-color: WHITE;
 }
-
+/*
 .tab-pane .tab {
     -fx-background-color: #e60e33;
 }
