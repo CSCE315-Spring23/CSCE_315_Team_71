@@ -9,10 +9,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #FFF8E7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#closeButtonAction" text="Back" />
-      <TableView fx:id="tableView" layoutX="279.0" layoutY="48.0" prefHeight="468.0" prefWidth="642.0">
+      <Button layoutY="-1.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="98.0" prefWidth="158.0" text="BACK">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font></Button>
+      <TableView fx:id="tableView" layoutX="279.0" layoutY="97.0" prefHeight="468.0" prefWidth="642.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="142.66668701171875" text="order_id" />
           <TableColumn fx:id="priceColumn" prefWidth="190.66659545898438" text="price" />
@@ -20,19 +23,19 @@
           <TableColumn fx:id="timeColumn" prefWidth="198.66668701171875" text="order_time" />
         </columns>
       </TableView>
-      <TextField fx:id="beginningdate" layoutX="385.0" layoutY="573.0" promptText="Beginning Date" />
-      <TextField fx:id="enddate" layoutX="667.0" layoutY="573.0" promptText="End Date" />
-      <Button fx:id="getOrderButton" layoutX="574.0" layoutY="573.0" mnemonicParsing="false" onAction="#loadOrders" text="Enter" />
-      <Text layoutX="445.0" layoutY="557.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To get orders, set two dates in YYYY-MM-DD format" />
-      <Label fx:id="profit" layoutX="547.0" layoutY="682.0" prefHeight="17.0" prefWidth="161.0" text="Profit: ">
+      <TextField fx:id="beginningdate" layoutX="385.0" layoutY="622.0" promptText="Beginning Date" />
+      <TextField fx:id="enddate" layoutX="667.0" layoutY="622.0" promptText="End Date" />
+      <Button fx:id="getOrderButton" layoutX="585.0" layoutY="622.0" mnemonicParsing="false" onAction="#loadOrders" text="Enter" />
+      <Text layoutX="445.0" layoutY="606.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To get orders, set two dates in YYYY-MM-DD format" />
+      <Label fx:id="profit" layoutX="547.0" layoutY="731.0" prefHeight="17.0" prefWidth="161.0" text="Profit: ">
          <font>
             <Font name="Lucida Fax Regular" size="13.0" />
          </font></Label>
-      <Label fx:id="salesAmount" layoutX="547.0" layoutY="632.0" prefHeight="17.0" prefWidth="129.0" text="Sales Amount: ">
+      <Label fx:id="salesAmount" layoutX="547.0" layoutY="681.0" prefHeight="17.0" prefWidth="129.0" text="Sales Amount: ">
          <font>
             <Font name="Lucida Fax Regular" size="13.0" />
          </font></Label>
-      <Label fx:id="taxAmount" layoutX="547.0" layoutY="657.0" prefHeight="17.0" prefWidth="108.0" text="Tax: ">
+      <Label fx:id="taxAmount" layoutX="547.0" layoutY="706.0" prefHeight="17.0" prefWidth="108.0" text="Tax: ">
          <font>
             <Font name="Lucida Fax Regular" size="13.0" />
          </font></Label>
