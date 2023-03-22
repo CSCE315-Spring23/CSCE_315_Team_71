@@ -11,33 +11,42 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #FFF8E7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutY="-1.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="98.0" prefWidth="158.0" text="BACK">
-         <font>
+        <Button layoutY="-1.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="98.0" prefWidth="158.0" text="BACK">
+        <font>
             <Font name="System Bold" size="26.0" />
-         </font></Button>
-      <TableView fx:id="tableView" layoutX="279.0" layoutY="97.0" prefHeight="468.0" prefWidth="642.0">
-        <columns>
-          <TableColumn fx:id="idColumn" prefWidth="142.66668701171875" text="order_id" />
-          <TableColumn fx:id="priceColumn" prefWidth="190.66659545898438" text="price" />
-          <TableColumn fx:id="paidColumn" prefWidth="101.77783203125" text="is_paid" />
-          <TableColumn fx:id="timeColumn" prefWidth="198.66668701171875" text="order_time" />
-        </columns>
-      </TableView>
-      <TextField fx:id="beginningdate" layoutX="385.0" layoutY="622.0" promptText="Beginning Date" />
-      <TextField fx:id="enddate" layoutX="667.0" layoutY="622.0" promptText="End Date" />
-      <Button fx:id="getOrderButton" layoutX="585.0" layoutY="622.0" mnemonicParsing="false" onAction="#loadOrders" text="Enter" />
-      <Text layoutX="445.0" layoutY="606.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To get orders, set two dates in YYYY-MM-DD format" />
-      <Label fx:id="profit" layoutX="547.0" layoutY="731.0" prefHeight="17.0" prefWidth="161.0" text="Profit: ">
-         <font>
-            <Font name="Lucida Fax Regular" size="13.0" />
-         </font></Label>
-      <Label fx:id="salesAmount" layoutX="547.0" layoutY="681.0" prefHeight="17.0" prefWidth="129.0" text="Sales Amount: ">
-         <font>
-            <Font name="Lucida Fax Regular" size="13.0" />
-         </font></Label>
-      <Label fx:id="taxAmount" layoutX="547.0" layoutY="706.0" prefHeight="17.0" prefWidth="108.0" text="Tax: ">
-         <font>
-            <Font name="Lucida Fax Regular" size="13.0" />
-         </font></Label>
+        </font></Button>
+        <AnchorPane layoutX="177.0" layoutY="49.0" prefHeight="703.0" prefWidth="847.0" style="-fx-background-color: #E5173F;">
+
+            <TableView fx:id="tableView" layoutX="103.0" layoutY="25.0" prefHeight="468.0" prefWidth="642.0">
+                <columns>
+                <TableColumn fx:id="idColumn" prefWidth="142.66668701171875" text="Order ID" />
+                <TableColumn fx:id="priceColumn" prefWidth="190.66659545898438" text="Price" />
+                <TableColumn fx:id="paidColumn" prefWidth="101.77783203125" text="Paid" />
+                <TableColumn fx:id="timeColumn" prefWidth="198.66668701171875" text="Time" />
+                </columns>
+            </TableView>
+            <TextField fx:id="beginningdate" layoutX="198.0" layoutY="540.0" promptText="Beginning Date" />
+            <TextField fx:id="enddate" layoutX="480.0" layoutY="540.0" promptText="End Date" />
+            <Button fx:id="getOrderButton" layoutX="386.0" layoutY="531.0" mnemonicParsing="false" onAction="#loadOrders" prefHeight="43.0" prefWidth="79.0" text="SUBMIT">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font></Button>
+            <Text fill="WHITE" layoutX="258.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SET DATES IN (YYYY-MM-DD) FORMAT">
+            <font>
+               <Font name="System Bold" size="18.0" />
+            </font></Text>
+            <Label fx:id="profit" layoutX="305.0" layoutY="657.0" prefHeight="17.0" prefWidth="161.0" text="PROFIT:" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font></Label>
+            <Label fx:id="salesAmount" layoutX="306.0" layoutY="588.0" prefHeight="21.0" prefWidth="238.0" text="SALES AMOUNT:" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font></Label>
+            <Label fx:id="taxAmount" layoutX="305.0" layoutY="624.0" prefHeight="21.0" prefWidth="132.0" text="TAX:" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font></Label>
+        </AnchorPane>
    </children>
 </AnchorPane>
