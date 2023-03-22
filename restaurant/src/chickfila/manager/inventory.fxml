@@ -61,8 +61,8 @@
                               </font></Text>
                         <TableView fx:id="excessView" prefHeight="488.0" prefWidth="700.0">
                            <columns>
-                              <TableColumn fx:id="nameCol" prefWidth="174.2222442626953" text="Item ID" />
-                              <TableColumn fx:id="soldCol" prefWidth="301.77777099609375" text="Item Name" />
+                              <TableColumn fx:id="nameCol" prefWidth="174.2222442626953" text="Item Name" />
+                              <TableColumn fx:id="soldCol" prefWidth="301.77777099609375" text="Amount Sold" />
                               <TableColumn fx:id="qtyCol" prefWidth="219.5555419921875" text="Stock quantity" />
                            </columns>
                         </TableView>
