@@ -14,23 +14,36 @@
          <font>
             <Font name="System Bold" size="26.0" />
          </font></Button>
-      <TableView fx:id="tableView" layoutX="283.0" layoutY="100.0" prefHeight="455.0" prefWidth="633.0">
-        <columns>
-          <TableColumn fx:id="idColumn" prefWidth="92.66665649414062" text="menu_item_id" />
-          <TableColumn fx:id="nameColumn" prefWidth="199.33331298828125" text="menu_item_name" />
-            <TableColumn fx:id="priceColumn" prefWidth="123.99993896484375" text="menu_item_price" />
-            <TableColumn fx:id="sizeColumn" prefWidth="106.2222900390625" text="size" />
-            <TableColumn fx:id="mealColumn" prefWidth="101.7777099609375" text="is_meal" />
-        </columns>
-      </TableView>
-      <Text layoutX="569.0" layoutY="600.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modify Item">
-         <font>
-            <Font name="Lucida Fax Regular" size="12.0" />
-         </font></Text>
-      <TextField fx:id="menuItemInput" layoutX="365.0" layoutY="611.0" promptText="menuItemID" />
-      <TextField fx:id="priceInput" layoutX="525.0" layoutY="611.0" promptText="new Price" />
-      <Button layoutX="438.0" layoutY="674.0" mnemonicParsing="false" onAction="#modifyItem" text="Modify Price" />
-      <TextField fx:id="nameInput" layoutX="686.0" layoutY="611.0" promptText="new Name" />
-      <Button layoutX="629.0" layoutY="674.0" mnemonicParsing="false" onAction="#removeMenuItem" text="Delete Menu Item" />
+      <AnchorPane layoutX="179.0" layoutY="75.0" prefHeight="651.0" prefWidth="842.0" style="-fx-background-color: #E5173F;">
+         <children>
+            <TableView fx:id="tableView" layoutX="105.0" layoutY="26.0" prefHeight="455.0" prefWidth="633.0">
+              <columns>
+                <TableColumn fx:id="idColumn" prefWidth="92.66665649414062" text="Menu ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="199.33331298828125" text="Name" />
+                  <TableColumn fx:id="priceColumn" prefWidth="123.99993896484375" text="Price" />
+                  <TableColumn fx:id="sizeColumn" prefWidth="106.2222900390625" text="Size" />
+                  <TableColumn fx:id="mealColumn" prefWidth="101.7777099609375" text="Meal" />
+              </columns>
+            </TableView>
+            <Text fill="WHITE" layoutX="350.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MODIFY ITEM" wrappingWidth="142.103515625">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="menuItemInput" layoutX="165.0" layoutY="544.0" promptText="menuItemID" />
+            <TextField fx:id="priceInput" layoutX="507.0" layoutY="544.0" promptText="new Price" />
+            <Button layoutX="274.0" layoutY="582.0" mnemonicParsing="false" onAction="#modifyItem" prefHeight="43.0" prefWidth="124.0" text="MODIFY PRICE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <TextField fx:id="nameInput" layoutX="336.0" layoutY="544.0" promptText="new Name" />
+            <Button layoutX="440.0" layoutY="582.0" mnemonicParsing="false" onAction="#removeMenuItem" prefHeight="43.0" prefWidth="135.0" text="DELETE ITEM">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

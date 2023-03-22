@@ -16,7 +16,8 @@
          <font>
             <Font name="System Bold" size="26.0" />
          </font></Button>
-      <TabPane layoutX="250.0" layoutY="100.0" prefHeight="600.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
+        <AnchorPane layoutX="186.0" layoutY="69.0" prefHeight="663.0" prefWidth="829.0" style="-fx-background-color: #E5173F;">
+      <TabPane layoutX="65.0" layoutY="32.0" prefHeight="600.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Inventory">
             <content>
@@ -26,7 +27,7 @@
                           <columns>
                             <TableColumn fx:id="idColumn" prefWidth="160.0" text="Item ID" />
                             <TableColumn fx:id="quantityColumn" prefWidth="160.0" text="Quantity" />
-                            <TableColumn fx:id="nameColumn" prefWidth="160.0" text="Item Name" />
+                            <TableColumn fx:id="nameColumn" prefWidth="160.0" text="Name" />
                               <TableColumn fx:id="minColumn" prefWidth="160.0" text="Minimum" />
                           </columns>
                         </TableView>
@@ -53,8 +54,11 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="timestamp" layoutX="249.0" layoutY="503.0" promptText="Start Date" />
-                        <Text layoutX="253.0" layoutY="541.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter start (YYYY-MM-DD)" />
+                        <TextField fx:id="timestamp" layoutX="221.0" layoutY="503.0" promptText="Start Date" />
+                        <Text fill="WHITE" layoutX="204.0" layoutY="550.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ENTER START (YYYY-MM-DD)">
+                              <font>
+                                 <Font name="System Bold" size="18.0" />
+                              </font></Text>
                         <TableView fx:id="excessView" prefHeight="488.0" prefWidth="700.0">
                            <columns>
                               <TableColumn fx:id="nameCol" prefWidth="174.2222442626953" text="Item ID" />
@@ -62,12 +66,16 @@
                               <TableColumn fx:id="qtyCol" prefWidth="219.5555419921875" text="Stock quantity" />
                            </columns>
                         </TableView>
-                        <Button fx:id="getExcess" layoutX="409.0" layoutY="503.0" mnemonicParsing="false" text="Get Excess" />
+                        <Button fx:id="getExcess" layoutX="381.0" layoutY="503.0" mnemonicParsing="false" text="Get Excess">
+                              <font>
+                                 <Font name="System Bold" size="13.0" />
+                              </font></Button>
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
         </tabs>
       </TabPane>
+      </AnchorPane>
    </children>
 </AnchorPane>
