@@ -251,8 +251,8 @@ public class ControllerSales {
      * @throws IOException  Thrown when there is an input or output error
      */
     public void addXReport(ActionEvent event) throws SQLException, IOException {
-        double profits;
-        double taxes;
+        // double profits;
+        // double taxes;
 
         ResultSet total = conn
                 .select("SELECT SUM(price) FROM orders WHERE orders.order_time > '" + salesForXReport + "';");
@@ -267,9 +267,9 @@ public class ControllerSales {
         String orderTime = "";
         System.out.println(total_price);
         while (ordersFetch.next()) {
-            int orderId = ordersFetch.getInt("order_id");
-            double price = ordersFetch.getDouble("price");
-            Boolean paid = ordersFetch.getBoolean("is_paid");
+            // int orderId = ordersFetch.getInt("order_id");
+            // double price = ordersFetch.getDouble("price");
+            // Boolean paid = ordersFetch.getBoolean("is_paid");
             orderTime = ordersFetch.getString("order_time");
         }
 
