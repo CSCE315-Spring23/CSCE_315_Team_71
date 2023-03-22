@@ -25,8 +25,8 @@
                 <TableColumn fx:id="timeColumn" prefWidth="198.66668701171875" text="Time" />
                 </columns>
             </TableView>
-            <TextField fx:id="beginningdate" layoutX="198.0" layoutY="540.0" promptText="Beginning Date" />
-            <TextField fx:id="enddate" layoutX="480.0" layoutY="540.0" promptText="End Date" />
+            <TextField fx:id="beginningdate" layoutX="200.0" layoutY="531.0" prefHeight="43.0" promptText="Beginning Date" />
+            <TextField fx:id="enddate" layoutX="482.0" layoutY="531.0" prefHeight="43.0" promptText="End Date" />
             <Button fx:id="getOrderButton" layoutX="386.0" layoutY="531.0" mnemonicParsing="false" onAction="#loadOrders" prefHeight="43.0" prefWidth="79.0" text="SUBMIT">
             <font>
                <Font name="System Bold" size="13.0" />

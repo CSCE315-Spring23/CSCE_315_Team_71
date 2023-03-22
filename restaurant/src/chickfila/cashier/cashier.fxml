@@ -15,34 +15,35 @@
 
 <AnchorPane fx:id="wrap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #FFF8E7;" stylesheets="@../css/styleCashier.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="newOrder" layoutY="733.0" mnemonicParsing="false" onAction="#handleNewOrder" prefHeight="65.0" prefWidth="125.0" text="RESET" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+      <Button fx:id="newOrder" layoutX="550.0" layoutY="700.0" mnemonicParsing="false" onAction="#handleNewOrder" prefHeight="103.0" prefWidth="170.0" text="RESET" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="550.0">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="26.0" />
          </font></Button>
-      <Button fx:id="completeOrder" layoutX="654.0" layoutY="705.0" mnemonicParsing="false" onAction="#handleCompleteOrder" prefHeight="65.0" prefWidth="125.0" text="SUBMIT" AnchorPane.bottomAnchor="0.0">
+      <Button fx:id="completeOrder" layoutX="737.0" layoutY="700.0" mnemonicParsing="false" onAction="#handleCompleteOrder" prefHeight="103.0" prefWidth="170.0" text="SUBMIT" AnchorPane.bottomAnchor="0.0">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="26.0" />
          </font></Button>
-      <Button fx:id="back" layoutY="-2.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="70.0" prefWidth="120.0" text="BACK">
+      <Button fx:id="back" layoutY="700.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="103.0" prefWidth="190.0" text="BACK" AnchorPane.bottomAnchor="-0.0">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="26.0" />
          </font></Button>
-      <Label fx:id="subtotalDisplay" layoutX="904.0" layoutY="678.0" prefHeight="42.0" prefWidth="268.0" text="Subtotal: $ 0.00">
+      <Label fx:id="subtotalDisplay" layoutX="939.0" layoutY="695.0" prefHeight="42.0" prefWidth="268.0" text="Subtotal: $ 0.00">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="taxDisplay" layoutX="946.0" layoutY="711.0" prefHeight="42.0" prefWidth="226.0" text="Tax: $ 0.00">
+      <Label fx:id="taxDisplay" layoutX="988.0" layoutY="724.0" prefHeight="42.0" prefWidth="226.0" text="Tax: $ 0.00" AnchorPane.leftAnchor="989.0">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="priceDisplay" layoutX="918.0" layoutY="744.0" prefHeight="42.0" prefWidth="268.0" text="Total: $ 0.00" underline="true">
+      <Label fx:id="priceDisplay" layoutX="959.0" layoutY="761.0" prefHeight="42.0" prefWidth="268.0" text="Total: $ 0.00" underline="true" AnchorPane.leftAnchor="960.0">
          <font>
-            <Font size="22.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <GridPane layoutX="875.0" layoutY="33.0" prefHeight="618.0" prefWidth="292.0" style="-fx-background-color: WHITE;">
+      <AnchorPane layoutX="782.0" layoutY="14.0" prefHeight="657.0" prefWidth="373.0" style="-fx-background-color: #E5173F;" AnchorPane.rightAnchor="45.0">
+      <GridPane layoutX="41.0" layoutY="20.0" prefHeight="618.0" prefWidth="292.0" style="-fx-background-color: WHITE;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -215,7 +216,9 @@
             </Button>
          </children>
       </GridPane>
-      <TabPane layoutX="74.0" layoutY="81.0" prefHeight="618.0" prefWidth="705.0" tabClosingPolicy="UNAVAILABLE">
+      </AnchorPane>
+      <AnchorPane layoutX="46.0" layoutY="14.0" prefHeight="657.0" prefWidth="736.0" style="-fx-background-color: #E5173F;">
+      <TabPane layoutX="16.0" layoutY="20.0" prefHeight="618.0" prefWidth="705.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Menu Items">
             <content>
@@ -640,5 +643,6 @@
             </Tab>
         </tabs>
       </TabPane>
+      </AnchorPane>
    </children>
 </AnchorPane>
