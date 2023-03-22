@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"chickfila.cashier"},{"l":"chickfila.logic"},{"l":"chickfila.manager"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"chickfila"},{"l":"chickfila.cashier"},{"l":"chickfila.logic"},{"l":"chickfila.manager"}];updateSearchResults();
